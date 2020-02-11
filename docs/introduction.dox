@@ -1,0 +1,18 @@
+//
+// docs/introduction.dox
+//
+// (c) British Crown Owned Copyright 2019/AWE
+//
+// This file is part of TIO tool
+// Released under the BSD 3-clause license.
+// For more details see license.txt
+//
+
+//! \page introduction Introduction
+//!
+//! TIO tool is a TyphonIO file structure viewer.
+//!
+//! TIO tool is written in C++ and uses the Qt library for the GUI.
+//! TIO tool uses Doxygen for generation of documentation.
+//! TIO tool use Google Test and Qt Test for testing.
+//!

@@ -1,0 +1,14 @@
+# Doxyfile 1.8.5
+
+# The remainder of this file will be populated using auto-generated
+# settings from Doxygen
+
+PROJECT_NAME           = "TIO tool"
+
+JAVADOC_AUTOBRIEF      = YES
+
+WARN_LOGFILE           = "DoxygenWarningLog.txt"
+
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/..src/ \
+                         @CMAKE_CURRENT_SOURCE_DIR@/
+
