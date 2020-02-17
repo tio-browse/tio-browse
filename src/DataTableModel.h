@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,7 +12,8 @@
 #define SRC_DATATABLEMODEL_H_
 
 #include <QAbstractTableModel>
-#include "src/DataArray.h"
+
+#include "DataArray.h"
 
 //! Model to serve TyphonIO array data to a TableView widget
 //!
@@ -24,19 +25,19 @@ class DataTableModel : public QAbstractTableModel {
  public:
   //! Constructor
   //! \param[in] parent is a pointer to the Qt parent widget
-  explicit DataTableModel(QObject* parent = 0);
+  explicit DataTableModel(QObject *parent = 0);
 
   //! Fetch the column count
   //! \param[in] index A QModelIndex instance (not used)
   //! \return The column count
-  int columnCount(const QModelIndex& index = QModelIndex()) const;
+  int columnCount(const QModelIndex &index = QModelIndex()) const;
 
   //! Get the data, or formatting information for a specific cell
   //! \param[in] index The index of the cell
   //! \param[in] role An ItemDataRole enum specifying the type of data
   //! required -- data, formatting, etc.
   //! \return The data or formatting as required
-  QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+  QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
   //! Get the headerData for a specific section
   //! \param[in] section is the column or row
@@ -50,18 +51,18 @@ class DataTableModel : public QAbstractTableModel {
   //! Fetch the row count
   //! \param[in] index A QModelIndex instance (not used)
   //! \return The row count
-  int rowCount(const QModelIndex& index = QModelIndex()) const;
+  int rowCount(const QModelIndex &index = QModelIndex()) const;
 
   //! Setter for the DataArray
-  void setDataArray(DataArray* dataArray);
+  void setDataArray(DataArray *dataArray);
 
   //! Set the origin for the header labels
   //!
   //! Used for setting the origin to 0 for C++ fans and 1 for Fortran fans
-  void setHeaderOrigin(const int& origin);
+  void setHeaderOrigin(const int &origin);
 
  private:
-  DataArray* m_dataArray;
+  DataArray *m_dataArray;
   int m_headerOrigin;
 };
 

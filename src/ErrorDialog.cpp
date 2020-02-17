@@ -3,13 +3,14 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 //
 
-#include "src/ErrorDialog.h"
+#include "ErrorDialog.h"
+
 #include <string>
 
 void ErrorDialog(const std::string &message) {

@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,7 +12,8 @@
 #define SRC_TIOINFOITEM_H_
 
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 //! TyphonIO info tree item
 class TIOInfoItem : public TIOTreeItem {
@@ -20,8 +21,8 @@ class TIOInfoItem : public TIOTreeItem {
   //! Constructor
   //! \param[in] itemName as standard string
   //! \param[in] parent is the Qt parent item
-  TIOInfoItem(const std::string& itemName, const std::string& itemValue,
-              TIOTreeItem* parent = 0);
+  TIOInfoItem(const std::string &itemName, const std::string &itemValue,
+              TIOTreeItem *parent = 0);
 
   // Destructor
   ~TIOInfoItem() override;

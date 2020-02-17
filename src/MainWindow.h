@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -11,12 +11,14 @@
 #ifndef SRC_MAINWINDOW_H_
 #define SRC_MAINWINDOW_H_
 
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
 #include <string>
-#include "src/ui_MainWindow.h"
-#include "src/MainWindowMediator.h"
-#include "src/TIOTreeModel.h"
 
-namespace UI {
+#include "MainWindowMediator.h"
+#include "TIOTreeModel.h"
+
+namespace Ui {
 class MainWindow;
 }
 
@@ -33,14 +35,14 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! Constructor for MainWIndow
   //!
   //! \param[in] parent is the parent object, default is zero (none)
-  explicit MainWindow(QWidget* parent = 0);
+  explicit MainWindow(QWidget *parent = 0);
 
   ~MainWindow() override;
 
   //! Set the dialog mediator
   //!
   //! \param[in] mediator is a pointer to a dialog mediator
-  void SetMediator(MainWindowMediator* mediator) override;
+  void SetMediator(MainWindowMediator *mediator) override;
 
   //! Close the dialog
   void CloseDialog() override;
@@ -50,8 +52,8 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! \param[in] messageTitle is the message title text
   //! \param[in] messageText is the message main text
   //!
-  void DisplayWarningMessage(const std::string& messageTitle,
-                             const std::string& messageText) override;
+  void DisplayWarningMessage(const std::string &messageTitle,
+                             const std::string &messageText) override;
 
   //! Request that the tree view column headers are hidden
   //!
@@ -63,35 +65,35 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
 
  public slots:
 
-  //! Open menu item activated slot
+  //! Open menu item triggered slot
   //!
   //! Request a open file selection dialog
   //!
-  void on_action_Open_activated();
+  void on_action_Open_triggered();
 
-  //! Close menu item activated slot
+  //! Close menu item triggered slot
   //!
   //! Request that the current file is closed
   //!
-  void on_action_Close_activated();
+  void on_action_Close_triggered();
 
-  //! Exit menu item activated slot
+  //! Exit menu item triggered slot
   //!
   //! Exits the app
   //!
-  void on_action_Exit_activated();
+  void on_action_Exit_triggered();
 
   //! Display help menu item triggered slot
   //!
   //! Opens the documentation in the default browser
   //!
-  void on_action_Display_Help_activated();
+  void on_action_Display_Help_triggered();
 
   //! About menu item triggered slot
   //!
   //! Displays the About dialog
   //!
-  void on_action_About_TIO_tool_activated();
+  void on_action_About_TIO_browse_triggered();
 
   //! Tree view node expanded slot
   //!
@@ -105,9 +107,9 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   void on_treeView_activated(QModelIndex index);
 
  private:
-  Ui::MainWindow* ui;
-  MainWindowMediator* mediator;
-  TIOTreeModel* m_tioTreeModel;
+  Ui::MainWindow *ui;
+  MainWindowMediator *mediator;
+  TIOTreeModel *m_tioTreeModel;
 };
 
 #endif  // SRC_MAINWINDOW_H_

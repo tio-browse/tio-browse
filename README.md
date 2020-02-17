@@ -13,10 +13,10 @@ Google Test.
 
 TIO Browse use CMake to generate the build files.
 
-Run CMkae from the build directory, for example:
+Run CMake from the build directory, for example:
 
 ```
-cmake <source-dir> -DQt4_enabled:BOOL=ON
+cmake <source-dir> -DQt5_enabled:BOOL=ON
 ```
 
 The build accepts various options, the most important are summarised in the
@@ -28,7 +28,6 @@ table below
 | `Qt4_enabled`           | BOOL | OFF               | Build Qt4 GUI       |
 | `Qt5_enabled`           | BOOL | OFF               | Build Qt5 GUI       |
 | `CMAKE_INSTALL_PREFIX`  | PATH | platform specific | Install path        |
-| `tio_browse_enabled`    | BOOL | ON                | Build browser       |
 | `Documentation_enabled` | BOOL | ON                | Build documentation |
 | `GTEST_ROOT`            | PATH | _NA_              | Google Test path    |
 | `Example_data_enabled`  | BOOL | OFF               | Build example files |
@@ -54,7 +53,7 @@ cmake
     -DExample_data_enabled:BOOL=ON \
     -DTesting_enabled:BOOL=ON \
     -DGTEST_ROOT:PATH=<path-to-GTest> \
-    ../tio_browse
+    ../tio-browse
 ```
 
 ## Build

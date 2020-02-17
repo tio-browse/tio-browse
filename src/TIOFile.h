@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -13,12 +13,13 @@
 
 #include <memory>
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 class TIOFile : public TIOTreeItem {
  public:
-  explicit TIOFile(const std::string& itemName, const std::string& filename,
-                   TIOTreeItem* parent = 0);
+  explicit TIOFile(const std::string &itemName, const std::string &filename,
+                   TIOTreeItem *parent = 0);
 
   ~TIOFile() override;
 

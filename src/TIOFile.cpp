@@ -3,22 +3,24 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIOFile.h"
+#include "TIOFile.h"
+
 #include <sstream>
 #include <string>
 #include <utility>
-#include "src/TIOException.h"
-#include "src/TIOInfoGroup.h"
-#include "src/TIOInfoItem.h"
-#include "src/TIOState.h"
 
-TIOFile::TIOFile(const std::string& itemName, const std::string& filename,
-                 TIOTreeItem* parent)
+#include "TIOException.h"
+#include "TIOInfoGroup.h"
+#include "TIOInfoItem.h"
+#include "TIOState.h"
+
+TIOFile::TIOFile(const std::string &itemName, const std::string &filename,
+                 TIOTreeItem *parent)
     : TIOTreeItem(itemName, parent), m_fileID(TIO_NULL), m_filename(filename) {}
 
 TIOFile::~TIOFile() {
@@ -42,7 +44,7 @@ void TIOFile::fetchMore() {
 
   TIOTreeItem::fetchMore();
 
-  tErr = TIO_Open(const_cast<char*>(m_filename.c_str()), &m_fileID,
+  tErr = TIO_Open(const_cast<char *>(m_filename.c_str()), &m_fileID,
                   TIO_ACC_READONLY, codename, version, date, title,
                   MPI_COMM_NULL, MPI_INFO_NULL, MPI_PROC_NULL);
   if (tErr != TIO_SUCCESS) {

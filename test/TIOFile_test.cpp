@@ -3,15 +3,18 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
 #include "src/TIOFile.h"
+
 #include <gtest/gtest.h>
+
 #include <string>
 #include <vector>
+
 #include "src/TIOException.h"
 #include "test/TIOTreeItemTestFixture.h"
 
@@ -44,7 +47,7 @@ TEST_F(TIOFileTestFixture, fetchMoreNonexistentFile) {
   try {
     file.fetchMore();
     FAIL() << "Exception not thrown as expected";
-  } catch (const TIOException& e) {
+  } catch (const TIOException &e) {
     EXPECT_STREQ("Failed to open file - Check filename & permissions",
                  e.what());
   }
@@ -91,7 +94,7 @@ TEST_F(TIOFileTestFixture, infoValues) {
                m_mockTIOTreeItem);
   file.fetchMore();
   ASSERT_LE(1, file.childCount());
-  TIOTreeItem* infoGroup = file.child(0);
+  TIOTreeItem *infoGroup = file.child(0);
   EXPECT_EQ("File information", infoGroup->data(0).toString().toStdString());
   std::vector<std::string> infoValues = {
       "Code  :  ex_colinear_mesh", "Version  :  0.0.1",

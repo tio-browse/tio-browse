@@ -3,24 +3,27 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIOMesh.h"
+#include "TIOMesh.h"
+
 #include <typhonio.h>
+
 #include <memory>
 #include <string>
 #include <utility>
-#include "src/TIODataItem.h"
-#include "src/TIOException.h"
-#include "src/TIOInfoGroup.h"
-#include "src/TIOInfoItem.h"
-#include "src/TIOMaterial.h"
-#include "src/TIOMeshChunkGroup.h"
-#include "src/TIOQuantGroup.h"
-#include "src/TIOTypeNames.h"
+
+#include "TIODataItem.h"
+#include "TIOException.h"
+#include "TIOInfoGroup.h"
+#include "TIOInfoItem.h"
+#include "TIOMaterial.h"
+#include "TIOMeshChunkGroup.h"
+#include "TIOQuantGroup.h"
+#include "TIOTypeNames.h"
 
 TIOMesh::TIOMesh(const std::string &itemName, TIOTreeItem *parent)
     : TIOTreeItem(itemName, parent), m_meshType(TIO_MESH_NULL) {}

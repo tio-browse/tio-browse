@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,7 +12,8 @@
 #define SRC_TIOQUANT_H_
 
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 //! TyphonIO quant tree item
 class TIOQuant : public TIOTreeItem {

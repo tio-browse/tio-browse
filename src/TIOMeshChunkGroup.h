@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,9 +12,11 @@
 #define SRC_TIOMESHCHUNKGROUP_H_
 
 #include <typhonio.h>
+
 #include <QVariant>
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 //! TyphonIO chunk group tree item
 class TIOMeshChunkGroup : public TIOTreeItem {
@@ -22,9 +24,9 @@ class TIOMeshChunkGroup : public TIOTreeItem {
   //! Constructor
   //! \param[in] itemName as a std string
   //! \param[in] parent is the TIOTreeItem that is the parent of this item
-  explicit TIOMeshChunkGroup(const std::string& itemName,
-                             const TIO_Size_t& nChunks,
-                             TIOTreeItem* parent = 0);
+  explicit TIOMeshChunkGroup(const std::string &itemName,
+                             const TIO_Size_t &nChunks,
+                             TIOTreeItem *parent = 0);
 
   ~TIOMeshChunkGroup() override;
 

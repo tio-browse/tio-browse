@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,15 +12,16 @@
 #define TEST_MAINWINDOWTESTDOUBLE_H_
 
 #include <string>
+
 #include "src/MainWindowMediator.h"
 
 class MainWindowTestDouble : public MainWindowMediatorInterface {
  public:
   MainWindowTestDouble();
-  void SetMediator(MainWindowMediator* mediator) override;
+  void SetMediator(MainWindowMediator *mediator) override;
   void CloseDialog() override;
-  void DisplayWarningMessage(const std::string& messageTitle,
-                             const std::string& messageText) override;
+  void DisplayWarningMessage(const std::string &messageTitle,
+                             const std::string &messageText) override;
   void HideTreeViewColumnHeaders() override;
   void InitializeTreeModel(std::string filename) override;
 
@@ -33,7 +34,7 @@ class MainWindowTestDouble : public MainWindowMediatorInterface {
   std::string InitializeTreeModelLastFilename;
 
  private:
-  MainWindowMediator* mediator;
+  MainWindowMediator *mediator;
 };
 
 #endif  // TEST_MAINWINDOWTESTDOUBLE_H_

@@ -3,21 +3,21 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/AboutDialog.h"
+#include "AboutDialog.h"
 
-AboutDialog::AboutDialog(QWidget* parent)
+AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent), ui(new Ui::AboutDialog) {
   ui->setupUi(this);
 }
 
 AboutDialog::~AboutDialog() { delete ui; }
 
-void AboutDialog::SetAboutInfo(const AboutInfo& aboutInfo) {
+void AboutDialog::SetAboutInfo(const AboutInfo &aboutInfo) {
   QString appNameText = QString::fromStdString(aboutInfo.getAppName());
   QString appVersionText = QString::fromStdString(aboutInfo.getAppVersion());
   QString appDescriptionText =

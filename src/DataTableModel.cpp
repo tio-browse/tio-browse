@@ -3,22 +3,23 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/DataTableModel.h"
+#include "DataTableModel.h"
+
 #include <QColor>
 
-DataTableModel::DataTableModel(QObject* parent)
+DataTableModel::DataTableModel(QObject *parent)
     : m_dataArray(nullptr), m_headerOrigin(0) {}
 
-int DataTableModel::columnCount(const QModelIndex& index) const {
+int DataTableModel::columnCount(const QModelIndex &index) const {
   return m_dataArray->getDim(0);
 }
 
-QVariant DataTableModel::data(const QModelIndex& index, int role) const {
+QVariant DataTableModel::data(const QModelIndex &index, int role) const {
   if (role == Qt::DisplayRole) {
     int dataIndex = index.column() + index.row() * columnCount();
     return m_dataArray->toQVariant(dataIndex);
@@ -47,7 +48,7 @@ QVariant DataTableModel::headerData(int section, Qt::Orientation orientation,
   }
 }
 
-int DataTableModel::rowCount(const QModelIndex& index) const {
+int DataTableModel::rowCount(const QModelIndex &index) const {
   // Return 1 row for 1D data
   // Return y rows for 2D data
   // Return y * z rows for 3D data
@@ -59,11 +60,11 @@ int DataTableModel::rowCount(const QModelIndex& index) const {
   return rowCount;
 }
 
-void DataTableModel::setDataArray(DataArray* dataArray) {
+void DataTableModel::setDataArray(DataArray *dataArray) {
   m_dataArray = dataArray;
 }
 
-void DataTableModel::setHeaderOrigin(const int& origin) {
+void DataTableModel::setHeaderOrigin(const int &origin) {
   m_headerOrigin = origin;
   // Ensure that the table view updates the headers
   layoutAboutToBeChanged();

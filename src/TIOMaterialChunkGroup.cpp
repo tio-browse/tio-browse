@@ -3,19 +3,21 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIOMaterialChunkGroup.h"
+#include "TIOMaterialChunkGroup.h"
+
 #include <memory>
 #include <string>
-#include "src/TIOMaterialChunk.h"
 
-TIOMaterialChunkGroup::TIOMaterialChunkGroup(const std::string& itemName,
-                                             const TIO_Size_t& nChunks,
-                                             TIOTreeItem* parent)
+#include "TIOMaterialChunk.h"
+
+TIOMaterialChunkGroup::TIOMaterialChunkGroup(const std::string &itemName,
+                                             const TIO_Size_t &nChunks,
+                                             TIOTreeItem *parent)
     : TIOTreeItem(itemName, parent), m_nChunks(nChunks) {}
 
 TIOMaterialChunkGroup::~TIOMaterialChunkGroup() { m_childItems.clear(); }

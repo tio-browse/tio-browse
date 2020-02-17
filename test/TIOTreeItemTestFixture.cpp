@@ -3,13 +3,15 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
 #include "test/TIOTreeItemTestFixture.h"
+
 #include <typhonio.h>
+
 #include <string>
 
 TIOTreeItemTestFixture::TIOTreeItemTestFixture()
@@ -21,7 +23,7 @@ TIOTreeItemTestFixture::TIOTreeItemTestFixture()
       m_quantID(TIO_NULL),
       m_interfaceID(TIO_NULL) {}
 
-void TIOTreeItemTestFixture::OpenFile(const std::string& fileName) {
+void TIOTreeItemTestFixture::OpenFile(const std::string &fileName) {
   TIO_t tioError =
       TIO_Open(fileName.c_str(), &m_fileID, TIO_ACC_READONLY, nullptr, nullptr,
                nullptr, nullptr, MPI_COMM_NULL, MPI_INFO_NULL, MPI_PROC_NULL);
@@ -31,7 +33,7 @@ void TIOTreeItemTestFixture::OpenFile(const std::string& fileName) {
 }
 
 #ifdef TYPHONIO_INTERFACES_ENABLED
-void TIOTreeItemTestFixture::OpenInterface(const std::string& interfaceName) {
+void TIOTreeItemTestFixture::OpenInterface(const std::string &interfaceName) {
   TIO_t tioError = TIO_Open_Interface(m_fileID, m_stateID,
                                       interfaceName.c_str(), &m_interfaceID);
   if (tioError != TIO_SUCCESS) {
@@ -40,7 +42,7 @@ void TIOTreeItemTestFixture::OpenInterface(const std::string& interfaceName) {
 }
 #endif
 
-void TIOTreeItemTestFixture::OpenMaterial(const std::string& materialName) {
+void TIOTreeItemTestFixture::OpenMaterial(const std::string &materialName) {
   TIO_t tErr = TIO_Open_Material(m_fileID, m_meshID, materialName.c_str(),
                                  &m_materialID, nullptr, nullptr, nullptr,
                                  nullptr, nullptr, nullptr, nullptr);
@@ -49,7 +51,7 @@ void TIOTreeItemTestFixture::OpenMaterial(const std::string& materialName) {
   }
 }
 
-void TIOTreeItemTestFixture::OpenMesh(const std::string& meshName) {
+void TIOTreeItemTestFixture::OpenMesh(const std::string &meshName) {
   TIO_t tioError =
       TIO_Open_Mesh(m_fileID, m_stateID, meshName.c_str(), &m_meshID, nullptr,
                     nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
@@ -60,7 +62,7 @@ void TIOTreeItemTestFixture::OpenMesh(const std::string& meshName) {
   }
 }
 
-void TIOTreeItemTestFixture::OpenQuant(const std::string& quantName) {
+void TIOTreeItemTestFixture::OpenQuant(const std::string &quantName) {
   TIO_t tioError =
       TIO_Open_Quant(m_fileID, m_meshID, quantName.c_str(), &m_quantID, nullptr,
                      nullptr, nullptr, nullptr, nullptr);
@@ -69,7 +71,7 @@ void TIOTreeItemTestFixture::OpenQuant(const std::string& quantName) {
   }
 }
 
-void TIOTreeItemTestFixture::OpenState(const std::string& stateName) {
+void TIOTreeItemTestFixture::OpenState(const std::string &stateName) {
   TIO_t tioError = TIO_Open_State(m_fileID, stateName.c_str(), &m_stateID,
                                   nullptr, nullptr, nullptr);
   if (tioError != TIO_SUCCESS) {
@@ -98,9 +100,9 @@ void TIOTreeItemTestFixture::SetUp(std::string fileName, std::string stateName,
       new MockTIOTreeItem("tree item", m_fileID, m_meshID, m_meshID);
 }
 
-void TIOTreeItemTestFixture::SetUpInterface(const std::string& fileName,
-                                            const std::string& stateName,
-                                            const std::string& interfaceName) {
+void TIOTreeItemTestFixture::SetUpInterface(const std::string &fileName,
+                                            const std::string &stateName,
+                                            const std::string &interfaceName) {
   OpenFile(fileName);
   OpenState(stateName);
 #ifdef TYPHONIO_INTERFACES_ENABLED
@@ -109,10 +111,10 @@ void TIOTreeItemTestFixture::SetUpInterface(const std::string& fileName,
   m_mockTIOTreeItem = new MockTIOTreeItem("tree item", m_fileID, m_interfaceID);
 }
 
-void TIOTreeItemTestFixture::SetUpMaterial(const std::string& fileName,
-                                           const std::string& stateName,
-                                           const std::string& meshName,
-                                           const std::string& materialName) {
+void TIOTreeItemTestFixture::SetUpMaterial(const std::string &fileName,
+                                           const std::string &stateName,
+                                           const std::string &meshName,
+                                           const std::string &materialName) {
   OpenFile(fileName);
   OpenState(stateName);
   OpenMesh(meshName);
@@ -121,10 +123,10 @@ void TIOTreeItemTestFixture::SetUpMaterial(const std::string& fileName,
       new MockTIOTreeItem("Material", m_fileID, m_meshID, m_materialID);
 }
 
-void TIOTreeItemTestFixture::SetUpQuant(const std::string& fileName,
-                                        const std::string& stateName,
-                                        const std::string& meshName,
-                                        const std::string& quantName) {
+void TIOTreeItemTestFixture::SetUpQuant(const std::string &fileName,
+                                        const std::string &stateName,
+                                        const std::string &meshName,
+                                        const std::string &quantName) {
   OpenFile(fileName);
   OpenState(stateName);
   OpenMesh(meshName);

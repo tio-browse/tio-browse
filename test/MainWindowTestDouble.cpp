@@ -3,12 +3,13 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
 #include "test/MainWindowTestDouble.h"
+
 #include <string>
 
 MainWindowTestDouble::MainWindowTestDouble()
@@ -18,14 +19,14 @@ MainWindowTestDouble::MainWindowTestDouble()
       HideTreeViewColumnHeadersCalled(false),
       InitializeTreeModelCalled(false) {}
 
-void MainWindowTestDouble::SetMediator(MainWindowMediator* mediator) {
+void MainWindowTestDouble::SetMediator(MainWindowMediator *mediator) {
   this->mediator = mediator;
 }
 
 void MainWindowTestDouble::CloseDialog() { CloseDialogCalled = true; }
 
 void MainWindowTestDouble::DisplayWarningMessage(
-    const std::string& messageTitle, const std::string& messageText) {
+    const std::string &messageTitle, const std::string &messageText) {
   DisplayWarningMessageCalled = true;
   DisplayWarningMessageLastTitle = messageTitle;
   DisplayWarningMessageLastText = messageText;

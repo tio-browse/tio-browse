@@ -3,16 +3,18 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 //
 
 #include <src/TIORootItem.h>
+
 #include <memory>
 #include <string>
-#include "src/TIOFile.h"
+
+#include "TIOFile.h"
 
 TIORootItem::TIORootItem(const std::string &itemName, TIOTreeItem *parent)
     : TIOTreeItem::TIOTreeItem(itemName, parent) {}

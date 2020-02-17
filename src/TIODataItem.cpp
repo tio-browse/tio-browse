@@ -3,16 +3,17 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIODataItem.h"
+#include "TIODataItem.h"
+
 #include <string>
 
-TIODataItem::TIODataItem(const std::string& itemName,
-                         const std::string& itemValue, TIOTreeItem* parent)
+TIODataItem::TIODataItem(const std::string &itemName,
+                         const std::string &itemValue, TIOTreeItem *parent)
     : TIOTreeItem(itemName, parent) {
   QString itemData = QString().fromStdString(itemValue);
   m_itemData.append(itemData);
@@ -31,7 +32,7 @@ QVariant TIODataItem::data(int column) const {
   }
 }
 
-DataArray* TIODataItem::getArrayData() {
+DataArray *TIODataItem::getArrayData() {
   return m_parentItem->getArrayData(
       m_itemData.value(0).toString().toStdString());
 }

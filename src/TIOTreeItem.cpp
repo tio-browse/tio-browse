@@ -3,24 +3,27 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIOTreeItem.h"
+#include "TIOTreeItem.h"
+
 #include <typhonio.h>
+
 #include <memory>
 #include <sstream>
 #include <string>
 #include <utility>
-#include "src/TIODataItem.h"
-#include "src/TIOException.h"
-#include "src/TIOTypeNames.h"
-#include "src/TIOVargroup.h"
-#include "src/TIOVariable.h"
 
-TIOTreeItem::TIOTreeItem(const std::string& itemName, TIOTreeItem* parent)
+#include "TIODataItem.h"
+#include "TIOException.h"
+#include "TIOTypeNames.h"
+#include "TIOVargroup.h"
+#include "TIOVariable.h"
+
+TIOTreeItem::TIOTreeItem(const std::string &itemName, TIOTreeItem *parent)
     : m_parentItem(parent), m_objectID(TIO_NULL), m_isInitialized(false) {
   QString itemData;
   itemData = QString().fromStdString(itemName);
@@ -29,14 +32,14 @@ TIOTreeItem::TIOTreeItem(const std::string& itemName, TIOTreeItem* parent)
 
 TIOTreeItem::~TIOTreeItem() {}
 
-void TIOTreeItem::AddTIODataItem(const std::string& itemName,
-                                 const std::string& itemValue) {
+void TIOTreeItem::AddTIODataItem(const std::string &itemName,
+                                 const std::string &itemValue) {
   m_childItems.push_back(
       std::unique_ptr<TIODataItem>(new TIODataItem(itemName, itemValue, this)));
 }
 
-void TIOTreeItem::AddTIOVargroups(const TIO_File_t& fileID,
-                                  const TIO_Object_t& objectID) {
+void TIOTreeItem::AddTIOVargroups(const TIO_File_t &fileID,
+                                  const TIO_Object_t &objectID) {
   TIO_Size_t nVargroups;
   TIO_t tErr = TIO_List_Vargroups(fileID, objectID, &nVargroups, nullptr);
   if (tErr != TIO_SUCCESS) {
@@ -54,8 +57,8 @@ void TIOTreeItem::AddTIOVargroups(const TIO_File_t& fileID,
   }
 }
 
-void TIOTreeItem::AddTIOVariables(const TIO_File_t& fileID,
-                                  const TIO_Object_t& objectID) {
+void TIOTreeItem::AddTIOVariables(const TIO_File_t &fileID,
+                                  const TIO_Object_t &objectID) {
   TIO_Size_t nVariables;
   TIO_t tErr = TIO_List_Variables(fileID, objectID, &nVariables, nullptr);
   if (tErr != TIO_SUCCESS) {
@@ -82,7 +85,7 @@ bool TIOTreeItem::canFetchMore() {
   }
 }
 
-TIOTreeItem* TIOTreeItem::child(int row) {
+TIOTreeItem *TIOTreeItem::child(int row) {
   if (row < m_childItems.size()) {
     return m_childItems.at(row).get();
   }
@@ -99,9 +102,9 @@ QVariant TIOTreeItem::data(int column) const {
 
 void TIOTreeItem::fetchMore() { m_isInitialized = true; }
 
-DataArray* TIOTreeItem::getArrayData() { return nullptr; }
+DataArray *TIOTreeItem::getArrayData() { return nullptr; }
 
-DataArray* TIOTreeItem::getArrayData(const std::string& variable) {
+DataArray *TIOTreeItem::getArrayData(const std::string &variable) {
   return nullptr;
 }
 
@@ -111,7 +114,7 @@ TIO_Object_t TIOTreeItem::getObjectID() { return m_objectID; }
 
 TIO_Object_t TIOTreeItem::getMeshID() { return m_parentItem->getMeshID(); }
 
-TIOTreeItem* TIOTreeItem::getParentItem() { return m_parentItem; }
+TIOTreeItem *TIOTreeItem::getParentItem() { return m_parentItem; }
 
 bool TIOTreeItem::hasArrayData() {
   // Only TIODataItem has array data
@@ -123,7 +126,7 @@ bool TIOTreeItem::hasChildren() {
   return true;
 }
 
-TIOTreeItem* TIOTreeItem::parent() { return m_parentItem; }
+TIOTreeItem *TIOTreeItem::parent() { return m_parentItem; }
 
 int TIOTreeItem::row() const {
   if (m_parentItem) {

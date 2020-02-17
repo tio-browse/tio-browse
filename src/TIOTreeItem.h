@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,11 +12,13 @@
 #define SRC_TIOTREEITEM_H_
 
 #include <typhonio.h>
+
 #include <QVariant>
 #include <memory>
 #include <string>
 #include <vector>
-#include "src/DataArray.h"
+
+#include "DataArray.h"
 
 //! Class that forms basis of tree model
 class TIOTreeItem {
@@ -24,22 +26,22 @@ class TIOTreeItem {
   //! Constructor
   //! \param[in] itemName as standard string
   //! \param[in] parent is the Qt parent item
-  explicit TIOTreeItem(const std::string& itemName, TIOTreeItem* parent = 0);
+  explicit TIOTreeItem(const std::string &itemName, TIOTreeItem *parent = 0);
 
   virtual ~TIOTreeItem();
 
   //! Create a TIODataItem child and append to this
-  virtual void AddTIODataItem(const std::string& itemName,
-                              const std::string& itemValue);
+  virtual void AddTIODataItem(const std::string &itemName,
+                              const std::string &itemValue);
 
   //! Add the vargroup children
   //! \param[in] TyphonIO fileID
   //! \param[in] TyphonIO objectID
-  virtual void AddTIOVargroups(const TIO_File_t& fileID,
-                               const TIO_Object_t& objectID);
+  virtual void AddTIOVargroups(const TIO_File_t &fileID,
+                               const TIO_Object_t &objectID);
 
-  virtual void AddTIOVariables(const TIO_File_t& fileID,
-                               const TIO_Object_t& objectID);
+  virtual void AddTIOVariables(const TIO_File_t &fileID,
+                               const TIO_Object_t &objectID);
 
   //! Can this instance fetch more data (from file)
   //! \return boolean if this instance can fetch more data
@@ -47,7 +49,7 @@ class TIOTreeItem {
 
   //! Returns the child item at a given row
   //! \param[in] row is the requested row
-  TIOTreeItem* child(int row);
+  TIOTreeItem *child(int row);
 
   //! Get the child count
   //! \return the number of children as integer
@@ -70,12 +72,12 @@ class TIOTreeItem {
   //! Get the array data for this tree item
   //!
   //! \return is a pointer to a newly-allocated DataArray or nullptr
-  virtual DataArray* getArrayData();
+  virtual DataArray *getArrayData();
 
   //! Get the named array data for this tree item
   //!
   //! \return is a pointer to a newly-allocated DataArray or nullptr
-  virtual DataArray* getArrayData(const std::string& variable);
+  virtual DataArray *getArrayData(const std::string &variable);
 
   //! Get the TyphonIO file ID
   //! The routine just asks its parent for the file ID but is intended to be
@@ -95,7 +97,7 @@ class TIOTreeItem {
   //! Get pointer to item's parent
   //! The routine returns the m_parentItem pointer that it uses internally
   //! \return TIOTreeItem pointer to some TIOTreeItem child class instance
-  virtual TIOTreeItem* getParentItem();
+  virtual TIOTreeItem *getParentItem();
 
   //! Get the TyphonIO object ID of the mesh object
   //! The routine just asks its parent for the meshID but is intended to be
@@ -115,12 +117,12 @@ class TIOTreeItem {
   //! class
   virtual bool hasChildren();
 
-  TIOTreeItem* parent();
+  TIOTreeItem *parent();
   int row() const;
 
  protected:
   QList<QVariant> m_itemData;
-  TIOTreeItem* m_parentItem;
+  TIOTreeItem *m_parentItem;
   TIO_Object_t m_objectID;
   std::vector<std::unique_ptr<TIOTreeItem> > m_childItems;
 

@@ -3,19 +3,19 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-//! \page running Running TIO tool
+//! \page running Running TIO browse
 //!
-//! This page contains details of how to run TIO tool
+//! This page contains details of how to run TIO browse
 //!
 //! \section usage Usage
 //!
 //! \code{.sh}
-//! tiotool [-h|--help] [-v|--version] [filename(s)]
+//! tio-browse [-h|--help] [-v|--version] [filename(s)]
 //! \endcode
 //!
 //! \section options Options

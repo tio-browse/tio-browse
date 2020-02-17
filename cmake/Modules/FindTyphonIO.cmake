@@ -28,9 +28,6 @@
 #     target_link_libraries(foo PRIVATE ${TyphonIO_LIBRARIES})
 
 find_path(TyphonIO-INCLUDE_DIR typhonio.h
-    HINTS
-        $ENV{TyphonIO_ROOT}
-        ${TyphonIO_ROOT}
     PATH_SUFFIXES
         include
 )
@@ -38,13 +35,13 @@ mark_as_advanced(TyphonIO_INCLUDE_DIR)
 
 find_library(TyphonIO_C_LIBRARY
     NAMES typhonio
-    HINTS
-        $env{TyphonIO_ROOT}
-        ${TyphonIO_ROOT}
     PATH_SUFFIXES
         lib
 )
 mark_as_advanced(TyphonIO_C_LIBRARY)
+
+include(CMakeFindDependencyMacro)
+find_dependency(HDF5 REQUIRED)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(TyphonIO TyphonIO_INCLUDE_DIR TyphonIO_C_LIBRARY)

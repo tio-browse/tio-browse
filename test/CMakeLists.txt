@@ -1,5 +1,6 @@
 #
-# CMakeLists.txt
+# test/CMakeLists.txt
+#
 # (c) British Crown Owned Copyright 2019/AWE
 #
 # This file is part of TIO Browse
@@ -9,148 +10,107 @@
 
 find_package(GTest REQUIRED)
 
-set(CMAKE_INCLUDE_CURRENT_DIR on)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-include_directories(
-    ${PROJECT_SOURCE_DIR}
-    ${PROJECT_BINARY_DIR}
-    ${GTEST_INCLUDE_DIRS}
-    ${TyphonIO_INCLUDE_DIRS}
-)
+include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_BINARY_DIR}
+                    ${GTEST_INCLUDE_DIRS} ${TyphonIO_INCLUDE_DIRS})
 
-set(TEST_HEADER_FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/MainWindowTestDouble.h
-)
+set(TEST_HEADER_FILES MainWindowTestDouble.h)
 
-set(TEST_SOURCE_FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/AboutInfo_test.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/MainWindowMediator_test.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/MainWindowTestDouble.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/test_runner.cpp
-)
+set(TEST_SOURCE_FILES AboutInfo_test.cpp MainWindowMediator_test.cpp
+                      MainWindowTestDouble.cpp test-runner.cpp)
 
-add_executable(test_runner
-    ${TEST_HEADER_FILES}
-    ${TEST_SOURCE_FILES}
-)
+add_executable(test-runner ${TEST_HEADER_FILES} ${TEST_SOURCE_FILES})
 
-target_link_libraries(test_runner
-    tiotool_core
-    ${TyphonIO_LIBRARIES}
-    ${HDF5_LIBRARIES}
-)
+target_link_libraries(test-runner tio-browse-core ${TyphonIO_LIBRARIES}
+                      ${HDF5_LIBRARIES})
 
 # Link to Google Test libraries
 if("${CMAKE_VERSION}" VERSION_GREATER 3.5)
-    target_link_libraries(test_runner
-        GTest::GTest GTest::Main
-    )
+  target_link_libraries(test-runner GTest::GTest GTest::Main)
 else()
-    target_link_libraries(test_runner
-         ${GTEST_LIBRARIES} pthread
-    )
+  target_include_directories(test-runner PRIVATE ${GTEST_INCLUDE_DIRS})
+  target_link_libraries(test-runner ${GTEST_LIBRARIES} pthread)
 endif()
 
 # Qt tests
-add_test(AllGoogleTests test_runner)
+gtest_discover_tests(test-runner)
 
 # Build the app if required
-if(Qt4_enabled or Qt5_enabled)
-    set(CMAKE_AUTOMOC ON)
-    set(CMAKE_AUTOUIC ON)
-    set(CMAKE_INCLUDE_CURRENT_DIR ON)
+if(Qt4_enabled OR Qt5_enabled)
+  set(CMAKE_AUTOMOC ON)
+  set(CMAKE_AUTOUIC ON)
+  set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-    set(TEST_QT_HEADER_FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/MockTIOTreeItem.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOTreeItemTestFixture.h
-    )
+  set(TEST_QT_HEADER_FILES MockTIOTreeItem.h TIOTreeItemTestFixture.h)
 
-    set(TEST_QT_SOURCE_FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/DataArray_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/DataTableModel_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOFile_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOMaterial_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOMaterialChunk_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOMaterialChunkGroup_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOMesh_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOMeshChunk_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOMeshChunkGroup_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOQuantChunk_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOQuantChunkGroup_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOQuant_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOState_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOTreeItem_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOTreeItemTestFixture.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOTreeModel_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOVargroup_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TIOVariable_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/test_runner_qt.cpp
-    )
+  set(TEST_QT_SOURCE_FILES
+      DataArray_test.cpp
+      DataTableModel_test.cpp
+      TIOFile_test.cpp
+      TIOMaterial_test.cpp
+      TIOMaterialChunk_test.cpp
+      TIOMaterialChunkGroup_test.cpp
+      TIOMesh_test.cpp
+      TIOMeshChunk_test.cpp
+      TIOMeshChunkGroup_test.cpp
+      TIOQuantChunk_test.cpp
+      TIOQuantChunkGroup_test.cpp
+      TIOQuant_test.cpp
+      TIOState_test.cpp
+      TIOTreeItem_test.cpp
+      TIOTreeItemTestFixture.cpp
+      TIOTreeModel_test.cpp
+      TIOVargroup_test.cpp
+      TIOVariable_test.cpp
+      test-runner-qt.cpp)
 
-    if(TyphonIO_interfaces_enabled)
-        set(TEST_QT_SOURCE_FILES ${TEST_QT_SOURCE_FILES}
-            ${CMAKE_CURRENT_SOURCE_DIR}/TIOInterfaceGroup_test.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/TIOInterface_test.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/TIOPolygon_test.cpp
-    endif()
+  if(TyphonIO_interfaces_enabled)
+    set(TEST_QT_SOURCE_FILES ${TEST_QT_SOURCE_FILES} TIOInterfaceGroup_test.cpp
+                             TIOInterface_test.cpp TIOPolygon_test.cpp)
+  endif()
 
-    # Find the Qt library
-    if (Qt4_enabled)
-        find_package(Qt4 REQUIRED QtGui QtTest)
-    elseif(Qt5_enabled)
-        find_pacakge(Qt5Widgets REQUIRED)
-        find_package(Qt5Test REQUIRED)
-    endif()
+  # Find the Qt library
+  if(Qt4_enabled)
+    find_package(Qt4 REQUIRED COMPONENTS QtGui QtTest)
+  elseif(Qt5_enabled)
+    find_package(Qt5 REQUIRED COMPONENTS Widgets Test)
+  endif()
 
-    add_executable(test_runner_qt
-        ${TEST_QT_HEADER_FILES}
-        ${TEST_QT_SOURCE_FILES}
-    )
+  add_executable(test-runner-qt ${TEST_QT_HEADER_FILES} ${TEST_QT_SOURCE_FILES})
 
-    target_link_libraries(test_runner_qt
-        PRIVATE tiotool_core tiotool_qt ${TyphonIO_LIBRARIES} ${HDF5_LIBRARIES}
-    )
+  target_link_libraries(
+    test-runner-qt PRIVATE tio-browse-core tio-browse-qt ${TyphonIO_LIBRARIES}
+                           ${HDF5_LIBRARIES})
 
-    if(TyphonIO_interfaces_enabled)
-        target_compile_definitions(test_runner_qt -DTYPHONIO_INTERFACES_ENABLED)
-    endif()
+  if(TyphonIO_interfaces_enabled)
+    target_compile_definitions(test-runner-qt -DTYPHONIO_INTERFACES_ENABLED)
+  endif()
 
-    # Link to Google Test libraries
-    if("${CMAKE_VERSION}" VERSION_GREATER 3.5)
-        target_link_libraries(test_runner_qt
-            GTest::GTest GTest::Main
-        )
-    else()
-        target_link_libraries(test_runner_qt
-             ${GTEST_LIBRARIES} pthread
-        )
-    endif()
+  target_link_libraries(test-runner-qt PRIVATE GTest::GTest GTest::Main)
 
-    # Link Qt
-    if (Qt4_enabled)
-        target_link_libraries(test_runner_qt PRIVATE Qt4::QtGui Qt4::QtTest)
-    elseif(Qt5_enabled)
-        target_link_libraries(test_runner_qt PRIVATE Qt5::Widgets Qt5::Test)
-    endif()
+  # Link Qt
+  if(Qt4_enabled)
+    target_link_libraries(test-runner-qt PRIVATE Qt4::QtGui Qt4::QtTest)
+  elseif(Qt5_enabled)
+    target_link_libraries(test-runner-qt PRIVATE Qt5::Widgets Qt5::Test)
+  endif()
 
-    add_test(AllQtTests test_runner_qt)
+  gtest_discover_tests(test-runner-qt)
 
-    set(TEST_QT_GUI_SOURCE_FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/DataDialog_test.cpp
-    )
+  set(TEST_QT_GUI_SOURCE_FILES DataDialog_test.cpp)
 
-    add_executable(test_runner_qt_gui ${TEST_QT_GUI_SOURCE_FILES})
+  add_executable(test-runner-qt-gui ${TEST_QT_GUI_SOURCE_FILES})
 
-    target_link_libraries(test_runner_qt_gui
-        tiotool_core tiotool_qt ${TyphonIO_LIBRARIES} ${HDF5_LIBRARIES}
-    )
+  target_link_libraries(test-runner-qt-gui tio-browse-core tio-browse-qt
+                        ${TyphonIO_LIBRARIES} ${HDF5_LIBRARIES})
 
-    if (Qt4_enabled)
-        target_link_libraries(test_runner_qt_gui Qt4::QtGui Qt4::QtTest)
-    elseif (Qt5_enabled)
-        target_link_libraries(test_runner_qt_gui Qt4::Widgets Qt5::Test)
-    endif()
+  if(Qt4_enabled)
+    target_link_libraries(test-runner-qt-gui Qt4::QtGui Qt4::QtTest)
+  elseif(Qt5_enabled)
+    target_link_libraries(test-runner-qt-gui Qt5::Widgets Qt5::Test)
+  endif()
 
-    add_test(AllQtGuiTests test_runner_qt_gui)
+  add_test(AllQtGuiTests test-runner-qt-gui)
 
 endif()

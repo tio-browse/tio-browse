@@ -3,24 +3,26 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIOState.h"
+#include "TIOState.h"
+
 #include <memory>
 #include <sstream>
 #include <string>
 #include <utility>
-#include "src/TIOException.h"
-#include "src/TIOInfoGroup.h"
-#include "src/TIOInfoItem.h"
-#include "src/TIOInterfaceGroup.h"
-#include "src/TIOMesh.h"
-#include "src/TIOTreeItem.h"
 
-TIOState::TIOState(const std::string& itemName, TIOTreeItem* parent)
+#include "TIOException.h"
+#include "TIOInfoGroup.h"
+#include "TIOInfoItem.h"
+#include "TIOInterfaceGroup.h"
+#include "TIOMesh.h"
+#include "TIOTreeItem.h"
+
+TIOState::TIOState(const std::string &itemName, TIOTreeItem *parent)
     : TIOTreeItem(itemName, parent) {}
 
 TIOState::~TIOState() {

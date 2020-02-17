@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,7 +12,8 @@
 #define SRC_TIOPOLYGON_H_
 
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 //! TyphonIO polygon item
 class TIOPolygon : public TIOTreeItem {
@@ -20,7 +21,7 @@ class TIOPolygon : public TIOTreeItem {
   //! Constructor
   //! \param[in] itemName as a std string
   //! \param[in] parent is the TIOTreeItem that is the parent of this item
-  explicit TIOPolygon(const std::string& itemName, TIOTreeItem* parent = 0);
+  explicit TIOPolygon(const std::string &itemName, TIOTreeItem *parent = 0);
 
   ~TIOPolygon() override;
 
@@ -30,7 +31,7 @@ class TIOPolygon : public TIOTreeItem {
   //! Override getArrayData(const std::string&) in TreeItem
   //! Used to get the array data associated with the named variable
   //! \return a newly-allocated DataArray or nullptr
-  DataArray* getArrayData(const std::string& variable) override;
+  DataArray *getArrayData(const std::string &variable) override;
 };
 
 #endif  // SRC_TIOPOLYGON_H_

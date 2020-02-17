@@ -3,21 +3,24 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/DataDialog.h"
-#include <QAbstractItemModel>
-#include "src/DataTableModel.h"
+#include "DataDialog.h"
 
-DataDialog::DataDialog(DataArray* dataArray, QWidget* parent)
+#include <QAbstractItemModel>
+
+#include "DataTableModel.h"
+#include "ui_DataDialog.h"
+
+DataDialog::DataDialog(DataArray *dataArray, QWidget *parent)
     : QDialog(parent), ui(new Ui::DataDialog), m_dataArray(dataArray) {
   ui->setupUi(this);
   ui->oneOriginCheckBox->setCheckState(Qt::Unchecked);
   m_dataTableModel.setDataArray(m_dataArray);
-  ui->tableView->setModel(static_cast<QAbstractItemModel*>(&m_dataTableModel));
+  ui->tableView->setModel(static_cast<QAbstractItemModel *>(&m_dataTableModel));
 }
 
 DataDialog::~DataDialog() {

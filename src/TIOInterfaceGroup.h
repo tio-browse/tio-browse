@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,7 +12,8 @@
 #define SRC_TIOINTERFACEGROUP_H_
 
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 //! TyphonIO interface group tree item
 class TIOInterfaceGroup : public TIOTreeItem {
@@ -20,8 +21,8 @@ class TIOInterfaceGroup : public TIOTreeItem {
   //! Constructor
   //! \param[in] itemName as a std string
   //! \param[in] parent is the TIOTreeItem that is the parent of this item
-  explicit TIOInterfaceGroup(const std::string& itemName,
-                             TIOTreeItem* parent = 0);
+  explicit TIOInterfaceGroup(const std::string &itemName,
+                             TIOTreeItem *parent = 0);
 
   ~TIOInterfaceGroup() override;
 

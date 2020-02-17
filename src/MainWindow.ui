@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
 <class>MainWindow</class>
 <widget class="QMainWindow" name="MainWindow">
@@ -13,7 +13,7 @@
 </property>
 
 <property name="windowTitle">
-<string>TIO tool</string>
+<string>TIO browse</string>
 </property>
 
 <widget class="QWidget" name="centralWidget">
@@ -51,7 +51,7 @@
 </property>
 <addaction name="action_Display_Help"/>
 <addaction name="separator"/>
-<addaction name="action_About_TIO_tool"/>
+<addaction name="action_About_TIO_browse"/>
 </widget>
 
 <addaction name="menu_File"/>
@@ -84,9 +84,9 @@
 </property>
 </action>
 
-<action name="action_About_TIO_tool">
+<action name="action_About_TIO_browse">
 <property name="text">
-<string>&amp;About TIO tool</string>
+<string>&amp;About TIO browse</string>
 </property>
 </action>
 

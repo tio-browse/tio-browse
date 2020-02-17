@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,7 +12,8 @@
 #define SRC_TIODATAITEM_H_
 
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 //! TyphonIO data tree item
 class TIODataItem : public TIOTreeItem {
@@ -20,8 +21,8 @@ class TIODataItem : public TIOTreeItem {
   //! Constructor
   //! \param[in] itemName as standard string
   //! \param[in] parent is the Qt parent item
-  explicit TIODataItem(const std::string& itemName,
-                       const std::string& itemValue, TIOTreeItem* parent = 0);
+  explicit TIODataItem(const std::string &itemName,
+                       const std::string &itemValue, TIOTreeItem *parent = 0);
 
   //! Destructor
   ~TIODataItem() override;
@@ -38,7 +39,7 @@ class TIODataItem : public TIOTreeItem {
   //! Override getArrayData in TreeItem
   //! Used to get the array data associated with this variable
   //! \return a newly-allocated DataArray or nullptr
-  DataArray* getArrayData() override;
+  DataArray *getArrayData() override;
 
   //! Override hasArrayData in TreeItem
   //! Does this tree item have array data

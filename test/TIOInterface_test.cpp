@@ -3,15 +3,18 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
 #include "src/TIOInterface.h"
+
 #include <gtest/gtest.h>
+
 #include <string>
 #include <vector>
+
 #include "test/TIOTreeItemTestFixture.h"
 
 class TIOInterfaceTestFixture : public TIOTreeItemTestFixture {};
@@ -69,7 +72,7 @@ TEST_F(TIOInterfaceTestFixture, infoValues) {
   TIOInterface interface("interface_container3", m_mockTIOTreeItem);
   interface.fetchMore();
   ASSERT_LE(1, interface.childCount());
-  TIOTreeItem* infoGroup = interface.child(0);
+  TIOTreeItem *infoGroup = interface.child(0);
   std::vector<std::string> infoValues = {"N polygons  :  2"};
   EXPECT_EQ(infoValues.size(), infoGroup->childCount());
   for (int i = 0; i < infoValues.size(); ++i) {
@@ -84,7 +87,7 @@ TEST_F(TIOInterfaceTestFixture, infoValuesNoPolygons) {
   TIOInterface interface("interface_container1", m_mockTIOTreeItem);
   interface.fetchMore();
   ASSERT_LE(1, interface.childCount());
-  TIOTreeItem* infoGroup = interface.child(0);
+  TIOTreeItem *infoGroup = interface.child(0);
   std::vector<std::string> infoValues = {"N polygons  :  0"};
   EXPECT_EQ(infoValues.size(), infoGroup->childCount());
   for (int i = 0; i < infoValues.size(); ++i) {

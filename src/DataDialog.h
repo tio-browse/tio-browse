@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -11,9 +11,10 @@
 #ifndef SRC_DATADIALOG_H_
 #define SRC_DATADIALOG_H_
 
-#include "src/ui_DataDialog.h"
-#include "src/DataArray.h"
-#include "src/DataTableModel.h"
+#include <QtWidgets/QDialog>
+
+#include "DataArray.h"
+#include "DataTableModel.h"
 
 namespace Ui {
 class DataDialog;
@@ -29,7 +30,7 @@ class DataDialog : public QDialog {
   //! Constructor
   //! \param[in] dataArray is a pointer to the data instance
   //! \param[in] parent is the parent object, default is zero (none)
-  explicit DataDialog(DataArray* dataArray, QWidget* parent = 0);
+  explicit DataDialog(DataArray *dataArray, QWidget *parent = 0);
 
   //! Destructor
   ~DataDialog() override;
@@ -39,10 +40,10 @@ class DataDialog : public QDialog {
   void on_oneOriginCheckBox_stateChanged(int state);
 
  private:
-  Ui::DataDialog* ui;
-  DataArray* m_dataArray;
+  Ui::DataDialog *ui;
+  DataArray *m_dataArray;
   DataTableModel m_dataTableModel;
-  DataDialog(const DataDialog&) = delete;
+  DataDialog(const DataDialog &) = delete;
 };
 
 #endif  // SRC_DATADIALOG_H_

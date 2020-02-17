@@ -3,7 +3,7 @@
 # The remainder of this file will be populated using auto-generated
 # settings from Doxygen
 
-PROJECT_NAME           = "TIO tool"
+PROJECT_NAME           = "TIO browse"
 
 JAVADOC_AUTOBRIEF      = YES
 

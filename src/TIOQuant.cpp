@@ -3,23 +3,25 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIOQuant.h"
+#include "TIOQuant.h"
+
 #include <map>
 #include <memory>
 #include <string>
 #include <utility>
 #include <vector>
-#include "src/TIODataItem.h"
-#include "src/TIOException.h"
-#include "src/TIOInfoGroup.h"
-#include "src/TIOInfoItem.h"
-#include "src/TIOQuantChunkGroup.h"
-#include "src/TIOTypeNames.h"
+
+#include "TIODataItem.h"
+#include "TIOException.h"
+#include "TIOInfoGroup.h"
+#include "TIOInfoItem.h"
+#include "TIOQuantChunkGroup.h"
+#include "TIOTypeNames.h"
 
 namespace {
 std::string TIODataValueToString(TIO_Data_t dataType, void *value) {
@@ -222,7 +224,8 @@ void TIOQuant::fetchMore() {
         throw TIOException(tErr);
       }
       std::vector<std::pair<std::string, std::string> > unstrMeshData = {
-          {"N N", std::to_string(nN)}, {"N mix comp", std::to_string(nMixComp)},
+          {"N N", std::to_string(nN)},
+          {"N mix comp", std::to_string(nMixComp)},
       };
       for (auto &infoItem : unstrMeshData) {
         infoGroup->AddTIOInfoItem(infoItem.first, infoItem.second);

@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,7 +12,8 @@
 #define SRC_MAINWINDOWMEDIATOR_H_
 
 #include <string>
-#include "src/AboutInfo.h"
+
+#include "AboutInfo.h"
 
 class MainWindowMediator;
 
@@ -30,7 +31,7 @@ class MainWindowMediatorInterface {
 
   //! Implemented by the child class to set the mediator
   //!
-  virtual void SetMediator(MainWindowMediator* mediator) = 0;
+  virtual void SetMediator(MainWindowMediator *mediator) = 0;
 
   //! Close the dialog
   //!
@@ -46,8 +47,8 @@ class MainWindowMediatorInterface {
   //! \param[in] messageTitle is the message title text
   //! \param[in] messageText is the message main text
   //!
-  virtual void DisplayWarningMessage(const std::string& messageTitle,
-                                     const std::string& messageText) = 0;
+  virtual void DisplayWarningMessage(const std::string &messageTitle,
+                                     const std::string &messageText) = 0;
 
   //! Request that the column headers in the tree view are hidden
   //!
@@ -72,7 +73,7 @@ class MainWindowMediator {
   //!
   //! \param[in] window is a pointer to a MainWindow dialog
   //!
-  explicit MainWindowMediator(MainWindowMediatorInterface* window);
+  explicit MainWindowMediator(MainWindowMediatorInterface *window);
 
   ~MainWindowMediator();
 
@@ -80,7 +81,7 @@ class MainWindowMediator {
   //!
   //! \return AboutInfo instance populated with information about the app
   //!
-  const AboutInfo& getAboutInfo() const;
+  const AboutInfo &getAboutInfo() const;
 
   //! Exit the app
   //!
@@ -90,10 +91,10 @@ class MainWindowMediator {
   //!
   //! \param[in] fileName is the name of the file to open
   //!
-  void OpenFile(const std::string& fileName);
+  void OpenFile(const std::string &fileName);
 
  private:
-  MainWindowMediatorInterface* window;
+  MainWindowMediatorInterface *window;
   AboutInfo aboutInfo;
   std::string fileName;
 };

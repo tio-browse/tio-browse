@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -12,9 +12,11 @@
 #define SRC_TIOQUANTCHUNKGROUP_H_
 
 #include <typhonio.h>
+
 #include <QVariant>
 #include <string>
-#include "src/TIOTreeItem.h"
+
+#include "TIOTreeItem.h"
 
 //! TyphonIO quant chunk group tree item
 class TIOQuantChunkGroup : public TIOTreeItem {
@@ -22,9 +24,9 @@ class TIOQuantChunkGroup : public TIOTreeItem {
   //! Constructor
   //! \param[in] itemName as a std string
   //! \param[in] parent is the TIOTreeItem that is the parent of this item
-  explicit TIOQuantChunkGroup(const std::string& itemName,
-                              const TIO_Size_t& nChunks,
-                              TIOTreeItem* parent = 0);
+  explicit TIOQuantChunkGroup(const std::string &itemName,
+                              const TIO_Size_t &nChunks,
+                              TIOTreeItem *parent = 0);
 
   ~TIOQuantChunkGroup() override;
 
@@ -37,7 +39,7 @@ class TIOQuantChunkGroup : public TIOTreeItem {
 
   //! Overloads getObjectID to pass request to parent
   //! \return TIOTreeItem pointer to parent item
-  TIOTreeItem* getParentItem() override;
+  TIOTreeItem *getParentItem() override;
 
  private:
   TIO_Size_t m_nChunks;

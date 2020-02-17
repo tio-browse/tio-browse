@@ -3,14 +3,16 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
 
-#include "src/TIOVargroup.h"
+#include "TIOVargroup.h"
+
 #include <string>
-#include "src/TIOException.h"
+
+#include "TIOException.h"
 
 TIOVargroup::TIOVargroup(const std::string &itemName, TIOTreeItem *parent)
     : TIOTreeItem(itemName, parent) {}

@@ -3,7 +3,7 @@
 //
 // (c) British Crown Owned Copyright 2019/AWE
 //
-// This file is part of TIO tool
+// This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
 //
@@ -23,51 +23,51 @@ class AboutInfo {
 
   //! appDescription getter
   //!
-  const std::string& getAppDescription() const;
+  const std::string &getAppDescription() const;
 
   //! appDescription setter
   //!
-  void setAppDescription(const std::string& appDescription);
+  void setAppDescription(const std::string &appDescription);
 
   //! appName getter
   //!
-  const std::string& getAppName() const;
+  const std::string &getAppName() const;
 
   //! appName setter
   //!
-  void setAppName(const std::string& appName);
+  void setAppName(const std::string &appName);
 
   //! appVersion getter
   //!
-  const std::string& getAppVersion() const;
+  const std::string &getAppVersion() const;
 
   //! appVersion setter
   //!
-  void setAppVersion(const std::string& appVersion);
+  void setAppVersion(const std::string &appVersion);
 
   //! custodianEmail getter
   //!
-  const std::string& getCustodianEmail() const;
+  const std::string &getCustodianEmail() const;
 
   //! custodianEmail setter
   //!
-  void setCustodianEmail(const std::string& custodianEmail);
+  void setCustodianEmail(const std::string &custodianEmail);
 
   //! custodianExtension getter
   //!
-  const std::string& getCustodianExtension() const;
+  const std::string &getCustodianExtension() const;
 
   //! custodianExtension setter
   //!
-  void setCustodianExtension(const std::string& custodianExtension);
+  void setCustodianExtension(const std::string &custodianExtension);
 
   //! custodianName getter
   //!
-  const std::string& getCustodianName() const;
+  const std::string &getCustodianName() const;
 
   //! custodianName setter
   //!
-  void setCustodianName(const std::string& custodianName);
+  void setCustodianName(const std::string &custodianName);
 
  private:
   std::string appName;
