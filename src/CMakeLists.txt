@@ -8,9 +8,6 @@
 # For more details see license.txt
 #
 
-include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_BINARY_DIR}
-                    ${TyphonIO_INCLUDE_DIRS})
-
 set(CORE_HEADER_FILES AboutInfo.h MainWindowMediator.h TIOTypeNames.h)
 
 set(CORE_SOURCE_FILES AboutInfo.cpp MainWindowMediator.cpp TIOTypeNames.cpp)
@@ -95,14 +92,7 @@ if(Qt4_enabled OR Qt5_enabled)
 
   set(CMAKE_AUTOMOC ON)
   set(CMAKE_AUTOUIC ON)
-  set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-  # Find the Qt library
-  if(Qt4_enabled)
-    find_package(Qt4 REQUIRED COMPONENTS QtGui QtHelp)
-  elseif(Qt5_enabled)
-    find_package(Qt5 REQUIRED COMPONENTS Widgets)
-  endif()
+  set(CMAKE_AUTORCC ON)
 
   add_library(tio-browse-qt ${DIALOG_HEADER_FILES} ${DIALOG_SOURCE_FILES})
 

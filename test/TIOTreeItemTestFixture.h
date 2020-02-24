@@ -16,7 +16,7 @@
 
 #include <string>
 
-#include "test/MockTIOTreeItem.h"
+#include "MockTIOTreeItem.h"
 
 //! This is a test fixture for TIOTreeItem children
 //!

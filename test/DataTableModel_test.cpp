@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "src/DataTableModel.h"
+#include "DataTableModel.h"
 
 #include <gtest/gtest.h>
 

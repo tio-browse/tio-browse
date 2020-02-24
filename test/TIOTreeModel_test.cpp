@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "src/TIOTreeModel.h"
+#include "TIOTreeModel.h"
 
 #include <gtest/gtest.h>
 

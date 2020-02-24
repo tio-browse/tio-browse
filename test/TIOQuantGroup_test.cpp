@@ -8,14 +8,14 @@
 // For more details see license.txt
 //
 
-#include "src/TIOQuantGroup.h"
+#include "TIOQuantGroup.h"
 
 #include <gtest/gtest.h>
 
 #include <string>
 #include <vector>
 
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOTreeItemTestFixture.h"
 
 class TIOQuantGroupTestFixture : public TIOTreeItemTestFixture {};
 

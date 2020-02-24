@@ -8,11 +8,11 @@
 // For more details see license.txt
 //
 
-#include "src/TIOTreeItem.h"
+#include "TIOTreeItem.h"
 
 #include <gtest/gtest.h>
 
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOTreeItemTestFixture.h"
 
 TEST(TIOTreeItem, initialization) {
   TIOTreeItem treeItem("tree item");

@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "test/MainWindowTestDouble.h"
+#include "MainWindowTestDouble.h"
 
 #include <string>
 

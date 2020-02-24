@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "src/DataDialog.h"
+#include "DataDialog.h"
 
 #include <QTest>
 #include <QtWidgets/QCheckBox>

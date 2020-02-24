@@ -62,9 +62,18 @@ find_package(ZLIB REQUIRED)
 find_package(HDF5 REQUIRED)
 find_package(TyphonIO REQUIRED)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Find the Qt library
+if(Qt4_enabled)
+  find_package(Qt4 REQUIRED COMPONENTS QtGui QtHelp)
+elseif(Qt5_enabled)
+  find_package(Qt5 REQUIRED COMPONENTS Widgets)
+endif()
+
+if(Qt4_enabled OR Qt5_enabled)
+  set(CMAKE_AUTOMOC ON)
+  set(CMAKE_AUTOUIC ON)
+  set(CMAKE_AUTORCC ON)
+endif()
 
 add_subdirectory(src)
 

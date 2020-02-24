@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "src/TIOMaterial.h"
+#include "TIOMaterial.h"
 
 #include <gtest/gtest.h>
 #include <typhonio.h>
@@ -17,9 +17,9 @@
 #include <string>
 #include <vector>
 
-#include "src/TIOException.h"
-#include "src/TIOTreeItem.h"
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOException.h"
+#include "TIOTreeItem.h"
+#include "TIOTreeItemTestFixture.h"
 
 class TIOMaterialTestFixture : public TIOTreeItemTestFixture {};
 

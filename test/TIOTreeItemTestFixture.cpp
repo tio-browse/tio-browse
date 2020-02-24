@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOTreeItemTestFixture.h"
 
 #include <typhonio.h>
 

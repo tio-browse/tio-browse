@@ -8,12 +8,12 @@
 // For more details see license.txt
 //
 
-#include "src/TIOQuantChunk.h"
+#include "TIOQuantChunk.h"
 
 #include <string>
 #include <vector>
 
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOTreeItemTestFixture.h"
 
 class TIOQuantChunkTestFixture : public TIOTreeItemTestFixture {};
 

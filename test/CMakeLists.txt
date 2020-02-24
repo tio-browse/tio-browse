@@ -10,11 +10,6 @@
 
 find_package(GTest REQUIRED)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_BINARY_DIR}
-                    ${GTEST_INCLUDE_DIRS} ${TyphonIO_INCLUDE_DIRS})
-
 set(TEST_HEADER_FILES MainWindowTestDouble.h)
 
 set(TEST_SOURCE_FILES AboutInfo_test.cpp MainWindowMediator_test.cpp
@@ -22,16 +17,10 @@ set(TEST_SOURCE_FILES AboutInfo_test.cpp MainWindowMediator_test.cpp
 
 add_executable(test-runner ${TEST_HEADER_FILES} ${TEST_SOURCE_FILES})
 
-target_link_libraries(test-runner tio-browse-core ${TyphonIO_LIBRARIES}
-                      ${HDF5_LIBRARIES})
+target_link_libraries(test-runner PRIVATE tio-browse-core TyphonIO::typhonio
+                                          GTest::GTest GTest::Main)
 
-# Link to Google Test libraries
-if("${CMAKE_VERSION}" VERSION_GREATER 3.5)
-  target_link_libraries(test-runner GTest::GTest GTest::Main)
-else()
-  target_include_directories(test-runner PRIVATE ${GTEST_INCLUDE_DIRS})
-  target_link_libraries(test-runner ${GTEST_LIBRARIES} pthread)
-endif()
+target_include_directories(test-runner PRIVATE "${PROJECT_SOURCE_DIR}/src")
 
 # Qt tests
 gtest_discover_tests(test-runner)
@@ -79,9 +68,8 @@ if(Qt4_enabled OR Qt5_enabled)
 
   add_executable(test-runner-qt ${TEST_QT_HEADER_FILES} ${TEST_QT_SOURCE_FILES})
 
-  target_link_libraries(
-    test-runner-qt PRIVATE tio-browse-core tio-browse-qt ${TyphonIO_LIBRARIES}
-                           ${HDF5_LIBRARIES})
+  target_link_libraries(test-runner-qt PRIVATE tio-browse-core tio-browse-qt
+                                               TyphonIO::typhonio)
 
   if(TyphonIO_interfaces_enabled)
     target_compile_definitions(test-runner-qt -DTYPHONIO_INTERFACES_ENABLED)
@@ -96,19 +84,24 @@ if(Qt4_enabled OR Qt5_enabled)
     target_link_libraries(test-runner-qt PRIVATE Qt5::Widgets Qt5::Test)
   endif()
 
+  target_include_directories(test-runner-qt PRIVATE "${PROJECT_SOURCE_DIR}/src")
+
   gtest_discover_tests(test-runner-qt)
 
   set(TEST_QT_GUI_SOURCE_FILES DataDialog_test.cpp)
 
   add_executable(test-runner-qt-gui ${TEST_QT_GUI_SOURCE_FILES})
 
-  target_link_libraries(test-runner-qt-gui tio-browse-core tio-browse-qt
-                        ${TyphonIO_LIBRARIES} ${HDF5_LIBRARIES})
+  target_link_libraries(
+    test-runner-qt-gui PRIVATE tio-browse-core tio-browse-qt TyphonIO::typhonio)
+
+  target_include_directories(test-runner-qt-gui
+                             PRIVATE "${PROJECT_SOURCE_DIR}/src")
 
   if(Qt4_enabled)
-    target_link_libraries(test-runner-qt-gui Qt4::QtGui Qt4::QtTest)
+    target_link_libraries(test-runner-qt-gui PRIVATE Qt4::QtGui Qt4::QtTest)
   elseif(Qt5_enabled)
-    target_link_libraries(test-runner-qt-gui Qt5::Widgets Qt5::Test)
+    target_link_libraries(test-runner-qt-gui PRIVATE Qt5::Widgets Qt5::Test)
   endif()
 
   add_test(AllQtGuiTests test-runner-qt-gui)

@@ -8,11 +8,11 @@
 // For more details see license.txt
 //
 
-#include "src/MainWindowMediator.h"
+#include "MainWindowMediator.h"
 
 #include <gtest/gtest.h>
 
-#include "test/MainWindowTestDouble.h"
+#include "MainWindowTestDouble.h"
 
 TEST(MainWindowMediator, CheckAboutInfo) {
   MainWindowTestDouble mainWindow;

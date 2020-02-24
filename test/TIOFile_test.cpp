@@ -8,15 +8,15 @@
 // For more details see license.txt
 //
 
-#include "src/TIOFile.h"
+#include "TIOFile.h"
 
 #include <gtest/gtest.h>
 
 #include <string>
 #include <vector>
 
-#include "src/TIOException.h"
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOException.h"
+#include "TIOTreeItemTestFixture.h"
 
 class TIOFileTestFixture : public TIOTreeItemTestFixture {};
 

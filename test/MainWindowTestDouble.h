@@ -13,7 +13,7 @@
 
 #include <string>
 
-#include "src/MainWindowMediator.h"
+#include "MainWindowMediator.h"
 
 class MainWindowTestDouble : public MainWindowMediatorInterface {
  public:

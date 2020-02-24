@@ -15,7 +15,7 @@
 
 #include <string>
 
-#include "src/TIOTreeItem.h"
+#include "TIOTreeItem.h"
 
 class MockTIOTreeItem : public TIOTreeItem {
  public:

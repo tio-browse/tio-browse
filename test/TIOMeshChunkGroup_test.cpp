@@ -8,11 +8,11 @@
 // For more details see license.txt
 //
 
-#include "src/TIOMeshChunkGroup.h"
+#include "TIOMeshChunkGroup.h"
 
 #include <gtest/gtest.h>
 
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOTreeItemTestFixture.h"
 
 class TIOMeshChunkGroupTestFixture : public TIOTreeItemTestFixture {};
 

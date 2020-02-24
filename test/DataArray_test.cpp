@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "src/DataArray.h"
+#include "DataArray.h"
 
 #include <gtest/gtest.h>
 #include <typhonio.h>

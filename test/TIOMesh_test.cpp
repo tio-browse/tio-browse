@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "src/TIOMesh.h"
+#include "TIOMesh.h"
 
 #include <gtest/gtest.h>
 
@@ -16,8 +16,8 @@
 #include <string>
 #include <vector>
 
-#include "src/TIOException.h"
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOException.h"
+#include "TIOTreeItemTestFixture.h"
 
 class TIOMeshTestFixture : public TIOTreeItemTestFixture {};
 

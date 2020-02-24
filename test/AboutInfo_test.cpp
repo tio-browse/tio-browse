@@ -8,7 +8,7 @@
 // For more details see license.txt
 //
 
-#include "src/AboutInfo.h"
+#include "AboutInfo.h"
 
 #include <gtest/gtest.h>
 

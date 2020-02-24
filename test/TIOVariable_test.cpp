@@ -8,14 +8,14 @@
 // For more details see license.txt
 //
 
-#include "src/TIOVariable.h"
+#include "TIOVariable.h"
 
 #include <gtest/gtest.h>
 
 #include <string>
 #include <vector>
 
-#include "test/TIOTreeItemTestFixture.h"
+#include "TIOTreeItemTestFixture.h"
 
 class TIOVariableTestFixture : public TIOTreeItemTestFixture {};
 

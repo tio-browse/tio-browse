@@ -16,8 +16,6 @@ macro(APPEND_LIST_ITEMS list_1 suffix_to_append list_2)
   endforeach(list_item list_1)
 endmacro()
 
-include_directories(${TyphonIO_INCLUDE_DIRS})
-
 # List of examples to build
 set(example_names "ex_colinear_mesh" "ex_noncolinear_mesh"
                   "ex_unstructured_mesh" "ex_vargroup")
@@ -29,8 +27,7 @@ endif()
 # Add executable for each example
 foreach(example ${example_names})
   add_executable(${example} ${example}.cpp)
-  target_link_libraries(${example} ${TyphonIO_LIBRARIES} ${HDF5_LIBRARIES}
-                        ${ZLIB_LIBRARIES})
+  target_link_libraries(${example} PRIVATE TyphonIO::typhonio)
 endforeach()
 
 # Create target for each TyphonIO example file
