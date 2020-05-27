@@ -1,0 +1,25 @@
+# .travis.yml
+
+dist: bionic
+
+language: cpp
+
+addons:
+  apt:
+    packages:
+      - libhdf5-dev
+
+
+before_script:
+  - wget https://github.com/UK-MAC/typhonio/archive/master.tar.gz
+  - tar -zxvf master.tar.gz
+  - pushd typhonio-master/src
+  - make install HPC_COMPILER=gcc NOF90=1 CFLAGS=-DH5_NO_DEPRECATED_SYMBOLS
+  - popd
+
+script:
+  - mkdir build
+  - cd build
+  - cmake .. -DTyphonIO_ROOT:PATH=${PWD}/../typhonio-master/build/gcc
+  - make -j
+
