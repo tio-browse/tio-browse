@@ -14,7 +14,7 @@ before_script:
   - tar -xvf cmake_build_serial.tar.gz
   - mkdir typhonio-build
   - pushd typhonio-build
-  - cmake -DCMAKE_INSTALL_PREFIX:PATH=${TRAVIS_BUILD_DIR}/typhonio ../typhonio-cmake_build_serial
+  - cmake -DENABLE_MPI:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=${TRAVIS_BUILD_DIR}/typhonio ../typhonio-cmake_build_serial
   - make -j
   - make install
   - popd
