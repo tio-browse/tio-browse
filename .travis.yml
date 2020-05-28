@@ -24,6 +24,6 @@ before_script:
 script:
   - mkdir build
   - cd build
-  - cmake -DQt5_enabled:BOOL=ON -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio -DExample_data_enabled:BOOL=ON..
+  - cmake -DQt5_enabled:BOOL=ON -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio -DExample_data_enabled:BOOL=ON ..
   - make -j
   - make example_data
