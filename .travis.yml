@@ -8,6 +8,7 @@ addons:
   apt:
     packages:
       - libhdf5-dev
+      - qt5base5-dev
 
 before_script:
   - wget https://github.com/benjaminjeliot/typhonio/archive/cmake_build_serial.tar.gz
