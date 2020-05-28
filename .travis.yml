@@ -9,17 +9,19 @@ addons:
     packages:
       - libhdf5-dev
 
-
 before_script:
-  - wget https://github.com/UK-MAC/typhonio/archive/master.tar.gz
-  - tar -zxvf master.tar.gz
-  - pushd typhonio-master/src
-  - make install HPC_COMPILER=gcc NOF90=1 CFLAGS=-DH5_NO_DEPRECATED_SYMBOLS
+  - wget https://github.com/benjaminjeliot/typhonio/archive/cmake_build_serial.tar.gz
+  - tar -xvf cmake_build_serial.tar.gz
+  - mkdir typhonio-build
+  - pushd typhonio-build
+  - cmake -DCMAKE_INSTALL_PREFIX:PATH=${TRAVIS_BUILD_DIR}/typhonio ../typhonio-cmake_build_serial
+  - make -j
+  - make install
   - popd
 
 script:
   - mkdir build
   - cd build
-  - cmake .. -DTyphonIO_ROOT:PATH=${PWD}/../typhonio-master/build/gcc
+  - cmake -DQt5_enabled:BOOL=ON -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio ..
   - make -j
 
