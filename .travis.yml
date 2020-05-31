@@ -10,6 +10,7 @@ addons:
     packages:
       - libhdf5-dev
       - qtbase5-dev
+      - googletest
 
 before_script:
   - wget https://github.com/benjaminjeliot/typhonio/archive/cmake_build_serial.tar.gz
@@ -36,3 +37,4 @@ script:
     ..
   - make -j
   - make example_data
+  - ctest
