@@ -45,7 +45,7 @@ script:
     -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio
     -DExample_data_enabled:BOOL=ON
     -DTesting_enabled:BOOL=ON
-    -DGTest_DIR:PATH=${TRAVIS_BUILD_DIR}/gtest
+    -DGTest_DIR:PATH=${TRAVIS_BUILD_DIR}/gtest/lib/cmake
     ..
   - make -j
   - make example_data
