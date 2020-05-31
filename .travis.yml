@@ -10,7 +10,6 @@ addons:
     packages:
       - libhdf5-dev
       - qtbase5-dev
-      - libqt5test5
       - googletest
 
 before_script:
