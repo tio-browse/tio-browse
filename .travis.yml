@@ -10,6 +10,7 @@ addons:
     packages:
       - libhdf5-dev
       - qtbase5-dev
+      - googletest
 
 before_script:
   - wget https://github.com/benjaminjeliot/typhonio/archive/cmake_build_serial.tar.gz
@@ -24,15 +25,28 @@ before_script:
   - make -j
   - make install
   - popd
+  - mkdir gtest-build
+  - pushd gtest-build
+  - >
+    cmake
+    -DBUILD_GTEST:BOOL=ON
+    -DCMAKE_INSTALL_PREFIX:PATH=${TRAVIS_BUILD_DIR}/gtest
+    /usr/src/googletest
+  - cmake --build .
+  - cmake --build . --target install
+  - popd
 
 script:
   - mkdir build
   - cd build
+  - export CMAKE_PREFIX_PATH=${TRAVIS_BUILD_DIR}/gtest:${CMAKE_PREFIX_PATH}
   - >
     cmake
     -DQt5_enabled:BOOL=ON
     -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio
     -DExample_data_enabled:BOOL=ON
+    -DTesting_enabled:BOOL=ON
     ..
   - make -j
   - make example_data
+  - ctest
