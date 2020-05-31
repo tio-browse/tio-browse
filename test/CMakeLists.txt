@@ -104,6 +104,9 @@ if(Qt4_enabled OR Qt5_enabled)
     target_link_libraries(test-runner-qt-gui PRIVATE Qt5::Widgets Qt5::Test)
   endif()
 
+  # Qt GUI tests disabled due to problem in Travis CI
+  if (FALSE)
   add_test(AllQtGuiTests test-runner-qt-gui)
+  endif()
 
 endif()
