@@ -39,13 +39,13 @@ before_script:
 script:
   - mkdir build
   - cd build
+  - export CMAKE_PREFIX_PATH=${TRAVIS_BUILD_DIR}/gtest:${CMAKE_PREFIX_PATH}
   - >
     cmake
     -DQt5_enabled:BOOL=ON
     -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio
     -DExample_data_enabled:BOOL=ON
     -DTesting_enabled:BOOL=ON
-    -DGTest_DIR:PATH=${TRAVIS_BUILD_DIR}/gtest/lib/cmake/GTest
     ..
   - make -j
   - make example_data
