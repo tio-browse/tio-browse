@@ -50,4 +50,6 @@ script:
     ..
   - make -j
   - make example_data
+  - push test
+  - ./test-runner-qt-gui
   - ctest
