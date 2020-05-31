@@ -18,7 +18,7 @@ if(Compiler_warnings_enabled)
   target_compile_options(tio-browse-core PRIVATE "${WARNING_COMPILE_FLAGS}")
 endif()
 
-target_link_libraries(tio-browse-core ${TyphonIO_LIBRARIES} ${HDF5_LIBRARIES}
+target_link_libraries(tio-browse-core TyphonIO::typhonio ${HDF5_LIBRARIES}
                       ${ZLIB_LIBRARIES})
 
 set(DIALOG_HEADER_FILES
