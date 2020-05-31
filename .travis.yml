@@ -25,6 +25,16 @@ before_script:
   - make -j
   - make install
   - popd
+  - mkdir gtest-build
+  - pushd gtest-build
+  - >
+    cmake
+    -DBUILD_GTEST:BOOL=ON
+    -DCMAKE_INSTALL_PREFIX:PATH=${TRAVIS_BUILD_DIR}/gtest
+    /usr/src/googletest
+  - cmake --build .
+  - cmake --build . --target install
+  - popd
 
 script:
   - mkdir build
@@ -35,6 +45,7 @@ script:
     -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio
     -DExample_data_enabled:BOOL=ON
     -DTesting_enabled:BOOL=ON
+    -DGTest_DIR:PATH=${TRAVIS_BUILD_DIR}/gtest
     ..
   - make -j
   - make example_data
