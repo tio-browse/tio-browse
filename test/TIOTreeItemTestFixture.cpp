@@ -28,7 +28,7 @@ void TIOTreeItemTestFixture::OpenFile(const std::string &fileName) {
       TIO_Open(fileName.c_str(), &m_fileID, TIO_ACC_READONLY, nullptr, nullptr,
                nullptr, nullptr, MPI_COMM_NULL, MPI_INFO_NULL, MPI_PROC_NULL);
   if (tioError != TIO_SUCCESS) {
-    FAIL() << "Error in TIO_Open, perhaps file is missing";
+    FAIL() << "Error in TIO_Open, perhaps file is missing, filename: " << fileName;
   }
 }
 
@@ -58,7 +58,7 @@ void TIOTreeItemTestFixture::OpenMesh(const std::string &meshName) {
                     nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
                     nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
   if (tioError != TIO_SUCCESS) {
-    FAIL() << "Error in TIO_Open_Mesh";
+    FAIL() << "Error in TIO_Open_Mesh, mesh name: " << meshName;
   }
 }
 
@@ -75,7 +75,7 @@ void TIOTreeItemTestFixture::OpenState(const std::string &stateName) {
   TIO_t tioError = TIO_Open_State(m_fileID, stateName.c_str(), &m_stateID,
                                   nullptr, nullptr, nullptr);
   if (tioError != TIO_SUCCESS) {
-    FAIL() << "Error in TIO_Open_State";
+    FAIL() << "Error in TIO_Open_State, state name: " << stateName;
   }
 }
 

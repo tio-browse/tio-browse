@@ -42,8 +42,18 @@ endforeach()
 append_list_items("${example_names}" ".h5" example_names_h5)
 message(STATUS "example_names_h5 ${example_names_h5}")
 
+# tio-generator
+add_executable(tio-generator tio_generator.C)
+target_link_libraries(tio-generator PRIVATE TyphonIO::typhonio)
+
+add_custom_command(
+  OUTPUT 3d_chunk_v1.h5 3d_point_v1.h5
+  COMMAND tio-generator
+  DEPENDS tio-generator
+  WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/data)
+
 # Add a target to generate all the TyphonIO example_files
 add_custom_target(
   example_data
-  DEPENDS "${example_names_h5}"
+  DEPENDS "${example_names_h5}" 3d_chunk_v1.h5 3d_point_v1.h5
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/data)
