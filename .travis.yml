@@ -13,20 +13,23 @@ addons:
       - googletest
 
 before_script:
+  # Build and install TyphonIO
   - wget https://github.com/benjaminjeliot/typhonio/archive/cmake_build_serial.tar.gz
   - tar -xvf cmake_build_serial.tar.gz
   - mkdir typhonio-build
-  - pushd typhonio-build
+  - cd typhonio-build
   - >
     cmake
     -DENABLE_MPI:BOOL=OFF
     -DCMAKE_INSTALL_PREFIX:PATH=${TRAVIS_BUILD_DIR}/typhonio
     ../typhonio-cmake_build_serial
-  - make -j
-  - make install
-  - popd
+  - cmake --build .
+  - cmake --build . --target install
+  - cd -
+
+  # Build and install Google Test
   - mkdir gtest-build
-  - pushd gtest-build
+  - cd gtest-build
   - >
     cmake
     -DBUILD_GTEST:BOOL=ON
@@ -34,7 +37,7 @@ before_script:
     /usr/src/googletest
   - cmake --build .
   - cmake --build . --target install
-  - popd
+  - cd -
 
 script:
   - mkdir build
@@ -47,6 +50,6 @@ script:
     -DExample_data_enabled:BOOL=ON
     -DTesting_enabled:BOOL=ON
     ..
-  - make -j
-  - make example_data
-  - ctest
+  - cmake --build .
+  - cmake --build . --target example_data
+  - ctest --output-on-failure
