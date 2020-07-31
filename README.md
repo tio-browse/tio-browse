@@ -16,7 +16,7 @@ TIO Browse use CMake to generate the build files.
 Run CMake from the build directory, for example:
 
 ```
-cmake <source-dir> -DQt5_enabled:BOOL=ON
+cmake -DQt5_enabled:BOOL=ON <source-dir>
 ```
 
 The build accepts various options, the most important are summarised in the
@@ -28,16 +28,9 @@ table below
 | `Qt4_enabled`           | BOOL | OFF               | Build Qt4 GUI       |
 | `Qt5_enabled`           | BOOL | OFF               | Build Qt5 GUI       |
 | `CMAKE_INSTALL_PREFIX`  | PATH | platform specific | Install path        |
-| `Documentation_enabled` | BOOL | ON                | Build documentation |
+| `Documentation_enabled` | BOOL | OFF               | Build documentation |
 | `GTEST_ROOT`            | PATH | _NA_              | Google Test path    |
 | `Example_data_enabled`  | BOOL | OFF               | Build example files |
-
-It is usually necessary to export `HDF5_ROOT` into the path before running
-CMake, like so:
-
-```
-export HDF5_ROOT=<path-to-hdf5>
-```
 
 ## CMake example
 
@@ -45,9 +38,19 @@ Here is an example of how to run CMake:
 
 ```
 export CXX=g++ CC=gcc
-cmake
+cmake \
     -DQt5_enabled:BOOL=ON \
-    -TyphonIO_ROOT=<path-to-TyphonIO> \
+    -DTyphonIO_ROOT:PATH=<path-to-TyphonIO> \
+    -DHDF5_ROOT:PATH=<path-to-HDF5> \
+    ../tio-browse
+```
+and here is an example with documentation and testing enabled:
+
+```
+export CXX=g++ CC=gcc
+cmake \
+    -DQt5_enabled:BOOL=ON \
+    -DTyphonIO_ROOT:PATH=<path-to-TyphonIO> \
     -DHDF5_ROOT:PATH=<path-to-HDF5> \
     -DDocumentation_enabled:BOOL=ON \
     -DExample_data_enabled:BOOL=ON \
@@ -89,10 +92,10 @@ The test suite makes use of the Google Test framework. To build the test
 suite, it is necessary to build TIO Browse with the `Testing_enabled` option
 set to `ON`.
 
-The tests can be run using the CMake `test` target:
+The tests can be run using `ctest`:
 
 ```
-cmake --build . --target test
+ctest --output-on-failure
 ```
 
 Alternatively, the `test_runner` app can be run directly from the
