@@ -8,6 +8,17 @@
 # For more details see license.txt
 #
 
+# Copy test data to build directory
+configure_file(ex_colinear_mesh.h5 ex_colinear_mesh.h5 COPYONLY)
+configure_file(ex_noncolinear_mesh.h5 ex_noncolinear_mesh.h5 COPYONLY)
+configure_file(ex_unstructured_mesh.h5 ex_unstructured_mesh.h5 COPYONLY)
+configure_file(ex_vargroup.h5 ex_vargroup.h5 COPYONLY)
+configure_file(3d_chunk_v1.h5 3d_chunk_v1.h5 COPYONLY)
+configure_file(3d_point_v1.h5 3d_point_v1.h5 COPYONLY)
+
+# Regenerate build data
+# This is only necessary when changing the data generators
+
 # Macro to append suffix to each list item
 macro(APPEND_LIST_ITEMS list_1 suffix_to_append list_2)
   set(${list_2} "")
