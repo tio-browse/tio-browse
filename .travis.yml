@@ -51,5 +51,4 @@ script:
     -DTesting_enabled:BOOL=ON
     ..
   - cmake --build .
-  - cmake --build . --target example_data
   - ctest --output-on-failure
