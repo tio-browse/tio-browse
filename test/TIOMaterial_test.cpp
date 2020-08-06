@@ -1,12 +1,10 @@
-//
 // test/TIOMaterial_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOMaterial.h"
 
@@ -24,25 +22,25 @@
 class TIOMaterialTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOMaterialTestFixture, initialization) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   EXPECT_EQ("Material", material.data(0).toString().toStdString());
 }
 
 TEST_F(TIOMaterialTestFixture, childCount) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   EXPECT_EQ(0, material.childCount());
 }
 
 TEST_F(TIOMaterialTestFixture, canFetchMore) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   EXPECT_EQ(true, material.canFetchMore());
 }
 
 TEST_F(TIOMaterialTestFixture, fetchMore) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   EXPECT_EQ(0, material.childCount());
   material.fetchMore();
@@ -50,7 +48,7 @@ TEST_F(TIOMaterialTestFixture, fetchMore) {
 }
 
 TEST_F(TIOMaterialTestFixture, fetchMoreNonexistentMaterial) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("nonexistent material", m_mockTIOTreeItem);
   try {
     material.fetchMore();
@@ -61,7 +59,7 @@ TEST_F(TIOMaterialTestFixture, fetchMoreNonexistentMaterial) {
 }
 
 TEST_F(TIOMaterialTestFixture, childNamesColinearMaterial) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   material.fetchMore();
   std::vector<std::string> childNames = {"Material information",
@@ -84,7 +82,7 @@ TEST_F(TIOMaterialTestFixture, childNamesColinearMaterial) {
 // TODO(jim): Create childValuesPointMaterial test
 
 TEST_F(TIOMaterialTestFixture, childNamesPointMaterial) {
-  SetUp("../data/3d_point_v1.h5", "State000", "mesh");
+  SetUp("data/3d_point_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   material.fetchMore();
   std::vector<std::string> childNames = {
@@ -98,7 +96,7 @@ TEST_F(TIOMaterialTestFixture, childNamesPointMaterial) {
 }
 
 TEST_F(TIOMaterialTestFixture, childNamesVariablesAndVargroups) {
-  SetUp("../data/ex_vargroup.h5", "state000", "mesh");
+  SetUp("data/ex_vargroup.h5", "state000", "mesh");
   TIOMaterial material("material", m_mockTIOTreeItem);
   material.fetchMore();
   std::vector<std::string> childNames = {"Material information",
@@ -119,7 +117,7 @@ TEST_F(TIOMaterialTestFixture, childNamesVariablesAndVargroups) {
 }
 
 TEST_F(TIOMaterialTestFixture, infoValuesColinearMaterial) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   material.fetchMore();
   ASSERT_LE(1, material.childCount());  // info group
@@ -160,7 +158,7 @@ TEST_F(TIOMaterialTestFixture, infoValuesUnstructuredMaterial) {
 }
 
 TEST_F(TIOMaterialTestFixture, infoValuesPointMaterial) {
-  SetUp("../data/3d_point_v1.h5", "State000", "mesh");
+  SetUp("data/3d_point_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   material.fetchMore();
   ASSERT_LE(1, material.childCount());
@@ -188,7 +186,7 @@ TEST_F(TIOMaterialTestFixture, infoValuesPointMaterial) {
 }
 
 TEST_F(TIOMaterialTestFixture, dataValuesMaterialNumbersAndNames) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   material.fetchMore();
 
@@ -216,7 +214,7 @@ TEST_F(TIOMaterialTestFixture, dataValuesMaterialNumbersAndNames) {
 }
 
 TEST_F(TIOMaterialTestFixture, dataValuesColinearMaterial) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   material.fetchMore();
   DataArray *dataArray;
@@ -300,7 +298,7 @@ TEST_F(TIOMaterialTestFixture, dataValuesColinearMaterial) {
 // TODO(jim): Create dataValuesUnstructuredMaterial test
 
 TEST_F(TIOMaterialTestFixture, dataValuesPointMaterial) {
-  SetUp("../data/3d_point_v1.h5", "State000", "mesh");
+  SetUp("data/3d_point_v1.h5", "State000", "mesh");
   TIOMaterial material("Material", m_mockTIOTreeItem);
   material.fetchMore();
   DataArray *dataArray;

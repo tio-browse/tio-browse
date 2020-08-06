@@ -1,12 +1,10 @@
-//
 // test/TIOVargroup_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOVargroup.h"
 
@@ -21,25 +19,25 @@
 class TIOVargroupTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOVargroupTestFixture, initialization) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVargroup vargroup("version", m_mockTIOTreeItem);
   EXPECT_EQ(0, vargroup.childCount());
 }
 
 TEST_F(TIOVargroupTestFixture, childCount) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVargroup vargroup("version", m_mockTIOTreeItem);
   EXPECT_EQ(0, vargroup.childCount());
 }
 
 TEST_F(TIOVargroupTestFixture, canFetchMore) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVargroup vargroup("version", m_mockTIOTreeItem);
   EXPECT_EQ(true, vargroup.canFetchMore());
 }
 
 TEST_F(TIOVargroupTestFixture, fetchMore) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVargroup vargroup("version", m_mockTIOTreeItem);
   EXPECT_EQ(0, vargroup.childCount());
   vargroup.fetchMore();
@@ -47,7 +45,7 @@ TEST_F(TIOVargroupTestFixture, fetchMore) {
 }
 
 TEST_F(TIOVargroupTestFixture, fetchMoreNonexistentVargroup) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVargroup vargroup("nonexistent vargroup", m_mockTIOTreeItem);
   try {
     vargroup.fetchMore();
@@ -58,7 +56,7 @@ TEST_F(TIOVargroupTestFixture, fetchMoreNonexistentVargroup) {
 }
 
 TEST_F(TIOVargroupTestFixture, itemNamesFileChild) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVargroup vargroup("version", m_mockTIOTreeItem);
   vargroup.fetchMore();
   std::vector<std::string> childNames = {"major version", "minor version",
@@ -72,7 +70,7 @@ TEST_F(TIOVargroupTestFixture, itemNamesFileChild) {
 }
 
 TEST_F(TIOVargroupTestFixture, itemNamesStateChild) {
-  SetUp("../data/ex_vargroup.h5", "state000");
+  SetUp("data/ex_vargroup.h5", "state000");
   TIOVargroup vargroup("number sequences", m_mockTIOTreeItem);
   vargroup.fetchMore();
   std::vector<std::string> childNames = {"primes", "squares", "fibonacci"};

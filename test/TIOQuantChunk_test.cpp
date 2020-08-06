@@ -1,12 +1,10 @@
-//
 // test/TIOQuantChunk_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOQuantChunk.h"
 
@@ -18,25 +16,25 @@
 class TIOQuantChunkTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOQuantChunkTestFixture, initialization) {
-  SetUpQuant("../data/3d_chunk_v1.h5", "State000", "mesh", "Density");
+  SetUpQuant("data/3d_chunk_v1.h5", "State000", "mesh", "Density");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ("Chunk0", chunk->data(0).toString().toStdString());
 }
 
 TEST_F(TIOQuantChunkTestFixture, childCount) {
-  SetUpQuant("../data/3d_chunk_v1.h5", "State000", "mesh", "Density");
+  SetUpQuant("data/3d_chunk_v1.h5", "State000", "mesh", "Density");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ(0, chunk->childCount());
 }
 
 TEST_F(TIOQuantChunkTestFixture, canFetchMore) {
-  SetUpQuant("../data/3d_chunk_v1.h5", "State000", "mesh", "Density");
+  SetUpQuant("data/3d_chunk_v1.h5", "State000", "mesh", "Density");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ(true, chunk->canFetchMore());
 }
 
 TEST_F(TIOQuantChunkTestFixture, quadQuantChunkFetchMore) {
-  SetUpQuant("../data/3d_chunk_v1.h5", "State000", "mesh", "Density");
+  SetUpQuant("data/3d_chunk_v1.h5", "State000", "mesh", "Density");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ(0, chunk->childCount());
   chunk->fetchMore();
@@ -44,7 +42,7 @@ TEST_F(TIOQuantChunkTestFixture, quadQuantChunkFetchMore) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, pointQuantChunkFetchMore) {
-  SetUpQuant("../data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
+  SetUpQuant("data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ(0, chunk->childCount());
   chunk->fetchMore();
@@ -52,7 +50,7 @@ TEST_F(TIOQuantChunkTestFixture, pointQuantChunkFetchMore) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, quadQuantChunkChildNames) {
-  SetUpQuant("../data/3d_chunk_v1.h5", "State000", "mesh", "Density");
+  SetUpQuant("data/3d_chunk_v1.h5", "State000", "mesh", "Density");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
   ASSERT_EQ(3, chunk->childCount());
@@ -65,7 +63,7 @@ TEST_F(TIOQuantChunkTestFixture, quadQuantChunkChildNames) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, pointQuantChunkChildNames) {
-  SetUpQuant("../data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
+  SetUpQuant("data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
   ASSERT_EQ(2, chunk->childCount());
@@ -76,7 +74,7 @@ TEST_F(TIOQuantChunkTestFixture, pointQuantChunkChildNames) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, infoValuesColinearMesh) {
-  SetUpQuant("../data/3d_chunk_v1.h5", "State000", "mesh", "Density");
+  SetUpQuant("data/3d_chunk_v1.h5", "State000", "mesh", "Density");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
   ASSERT_EQ(3, chunk->childCount());
@@ -97,7 +95,7 @@ TEST_F(TIOQuantChunkTestFixture, infoValuesColinearMesh) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, infoValuesUnstrMesh) {
-  SetUpQuant("../data/ex_unstructured_mesh.h5", "state000", "mesh",
+  SetUpQuant("data/ex_unstructured_mesh.h5", "state000", "mesh",
              "N neighbours");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
@@ -114,7 +112,7 @@ TEST_F(TIOQuantChunkTestFixture, infoValuesUnstrMesh) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, infoValuesPointMesh) {
-  SetUpQuant("../data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
+  SetUpQuant("data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
   ASSERT_EQ(2, chunk->childCount());
@@ -131,7 +129,7 @@ TEST_F(TIOQuantChunkTestFixture, infoValuesPointMesh) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, quadQuantPureData) {
-  SetUpQuant("../data/ex_colinear_mesh.h5", "state000", "mesh", "sum_x_y_z");
+  SetUpQuant("data/ex_colinear_mesh.h5", "state000", "mesh", "sum_x_y_z");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
   // Check that the 'Pure' data item exists
@@ -171,7 +169,7 @@ TEST_F(TIOQuantChunkTestFixture, quadQuantPureData) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, unstrQuantPureData) {
-  SetUpQuant("../data/ex_unstructured_mesh.h5", "state000", "mesh",
+  SetUpQuant("data/ex_unstructured_mesh.h5", "state000", "mesh",
              "N neighbours");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
@@ -195,7 +193,7 @@ TEST_F(TIOQuantChunkTestFixture, unstrQuantPureData) {
 }
 
 TEST_F(TIOQuantChunkTestFixture, pointQuantPureData) {
-  SetUpQuant("../data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
+  SetUpQuant("data/3d_point_v1.h5", "State000", "mesh", "X-Velocity");
   TIOQuantChunk *chunk = new TIOQuantChunk("Chunk0", 0, m_mockTIOTreeItem);
   chunk->fetchMore();
   // Check that the 'Pure' data item exists

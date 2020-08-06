@@ -1,16 +1,14 @@
-#
 # CMakeLists.txt
-#
-# (c) British Crown Owned Copyright 2019/AWE
+
+# (c) British Crown Owned Copyright 2020/AWE
 #
 # This file is part of TIO Browse
 # Released under the BSD 3-clause license.
 # For more details see license.txt
-#
 
 cmake_minimum_required(VERSION 3.12)
 
-project("TIO Browse")
+project("tio-browse")
 
 enable_language(CXX C)
 set(CMAKE_CXX_STANDARD 11)

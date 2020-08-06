@@ -1,12 +1,10 @@
-//
 // test/TIOPolygon_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOPolygon.h"
 
@@ -21,28 +19,28 @@
 class TIOPolygonTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOPolygonTestFixture, initialization) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("polygon_1", m_mockTIOTreeItem);
   EXPECT_EQ("polygon_1", polygon.data(0).toString().toStdString());
 }
 
 TEST_F(TIOPolygonTestFixture, childCount) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("polygon_1", m_mockTIOTreeItem);
   EXPECT_EQ(0, polygon.childCount());
 }
 
 TEST_F(TIOPolygonTestFixture, canFetchMore) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("polygon_1", m_mockTIOTreeItem);
   EXPECT_TRUE(polygon.canFetchMore());
 }
 
 TEST_F(TIOPolygonTestFixture, fetchMore) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("polygon_1", m_mockTIOTreeItem);
   EXPECT_EQ(0, polygon.childCount());
@@ -51,7 +49,7 @@ TEST_F(TIOPolygonTestFixture, fetchMore) {
 }
 
 TEST_F(TIOPolygonTestFixture, fetchMoreNonexistentPolygon) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("nonexistent polygon", m_mockTIOTreeItem);
   try {
@@ -63,7 +61,7 @@ TEST_F(TIOPolygonTestFixture, fetchMoreNonexistentPolygon) {
 }
 
 TEST_F(TIOPolygonTestFixture, interfaceNames) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("polygon_1", m_mockTIOTreeItem);
   polygon.fetchMore();
@@ -84,7 +82,7 @@ TEST_F(TIOPolygonTestFixture, interfaceNames) {
 }
 
 TEST_F(TIOPolygonTestFixture, infoValues) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("polygon_1", m_mockTIOTreeItem);
   polygon.fetchMore();
@@ -101,7 +99,7 @@ TEST_F(TIOPolygonTestFixture, infoValues) {
 }
 
 TEST_F(TIOPolygonTestFixture, dataValues) {
-  SetUpInterface("../data/Test_Interface.h5", "State_01",
+  SetUpInterface("data/Test_Interface.h5", "State_01",
                  "interface_container3");
   TIOPolygon polygon("polygon_1", m_mockTIOTreeItem);
   polygon.fetchMore();
