@@ -1,12 +1,10 @@
-//
 // test/TIOMesh_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOMesh.h"
 
@@ -22,28 +20,28 @@
 class TIOMeshTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOMeshTestFixture, initialization) {
-  SetUp("../data/3d_chunk_v1.h5", "State000");
+  SetUp("data/3d_chunk_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   EXPECT_EQ("mesh", mesh->data(0).toString().toStdString());
   delete mesh;
 }
 
 TEST_F(TIOMeshTestFixture, childCount) {
-  SetUp("../data/3d_chunk_v1.h5", "State000");
+  SetUp("data/3d_chunk_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   EXPECT_EQ(0, mesh->childCount());
   delete mesh;
 }
 
 TEST_F(TIOMeshTestFixture, canFetchMore) {
-  SetUp("../data/3d_chunk_v1.h5", "State000");
+  SetUp("data/3d_chunk_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   EXPECT_EQ(true, mesh->canFetchMore());
   delete mesh;
 }
 
 TEST_F(TIOMeshTestFixture, fetchMore) {
-  SetUp("../data/3d_chunk_v1.h5", "State000");
+  SetUp("data/3d_chunk_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   EXPECT_EQ(0, mesh->childCount());
   mesh->fetchMore();
@@ -52,7 +50,7 @@ TEST_F(TIOMeshTestFixture, fetchMore) {
 }
 
 TEST_F(TIOMeshTestFixture, fetchMoreNonexistentMesh) {
-  SetUp("../data/3d_chunk_v1.h5", "State000");
+  SetUp("data/3d_chunk_v1.h5", "State000");
   TIOMesh mesh("nonexistent mesh", m_mockTIOTreeItem);
   try {
     mesh.fetchMore();
@@ -63,7 +61,7 @@ TEST_F(TIOMeshTestFixture, fetchMoreNonexistentMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, childValuesColinearMesh) {
-  SetUp("../data/3d_chunk_v1.h5", "State000");
+  SetUp("data/3d_chunk_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   std::vector<std::string> meshChildNames = {"Mesh information",
@@ -83,7 +81,7 @@ TEST_F(TIOMeshTestFixture, childValuesColinearMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, childValuesUnstructuredMesh) {
-  SetUp("../data/ex_unstructured_mesh.h5", "state000");
+  SetUp("data/ex_unstructured_mesh.h5", "state000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   std::vector<std::string> meshChildNames = {
@@ -109,7 +107,7 @@ TEST_F(TIOMeshTestFixture, childValuesUnstructuredMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, childValuesPointMesh) {
-  SetUp("../data/3d_point_v1.h5", "State000");
+  SetUp("data/3d_point_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   std::vector<std::string> meshChildNames = {"Mesh information",
@@ -129,7 +127,7 @@ TEST_F(TIOMeshTestFixture, childValuesPointMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, childValuesNoMaterial) {
-  SetUp("../data/ex_colinear_mesh.h5", "state000");
+  SetUp("data/ex_colinear_mesh.h5", "state000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   std::vector<std::string> meshChildNames = {"Mesh information",
@@ -148,7 +146,7 @@ TEST_F(TIOMeshTestFixture, childValuesNoMaterial) {
 }
 
 TEST_F(TIOMeshTestFixture, childValuesVariablesAndVargroups) {
-  SetUp("../data/ex_vargroup.h5", "state000");
+  SetUp("data/ex_vargroup.h5", "state000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   std::vector<std::string> meshChildNames = {"Mesh information",
@@ -175,7 +173,7 @@ TEST_F(TIOMeshTestFixture, childValuesVariablesAndVargroups) {
 // TODO(jim): Add test to check that 2D mesh has no K coord item
 
 TEST_F(TIOMeshTestFixture, infoValuesColinearMesh) {
-  SetUp("../data/3d_chunk_v1.h5", "State000");
+  SetUp("data/3d_chunk_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   ASSERT_LE(1, mesh->childCount());
@@ -216,7 +214,7 @@ TEST_F(TIOMeshTestFixture, infoValuesColinearMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, infoValuesUnstructuredMesh) {
-  SetUp("../data/ex_unstructured_mesh.h5", "state000");
+  SetUp("data/ex_unstructured_mesh.h5", "state000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   EXPECT_EQ(12, mesh->childCount());
@@ -259,7 +257,7 @@ TEST_F(TIOMeshTestFixture, infoValuesUnstructuredMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, infoValuesPointMesh) {
-  SetUp("../data/3d_point_v1.h5", "State000");
+  SetUp("data/3d_point_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   EXPECT_EQ(7, mesh->childCount());
@@ -299,7 +297,7 @@ TEST_F(TIOMeshTestFixture, infoValuesPointMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, dataValuesColinearMesh) {
-  SetUp("../data/ex_colinear_mesh.h5", "state000");
+  SetUp("data/ex_colinear_mesh.h5", "state000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   DataArray *dataArray;
@@ -341,7 +339,7 @@ TEST_F(TIOMeshTestFixture, dataValuesColinearMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, dataValuesUnstructuredMesh) {
-  SetUp("../data/ex_unstructured_mesh.h5", "state000");
+  SetUp("data/ex_unstructured_mesh.h5", "state000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   DataArray *dataArray;
@@ -463,7 +461,7 @@ TEST_F(TIOMeshTestFixture, dataValuesUnstructuredMesh) {
 }
 
 TEST_F(TIOMeshTestFixture, dataValuesPointMesh) {
-  SetUp("../data/3d_point_v1.h5", "State000");
+  SetUp("data/3d_point_v1.h5", "State000");
   TIOMesh *mesh = new TIOMesh("mesh", m_mockTIOTreeItem);
   mesh->fetchMore();
   DataArray *dataArray;

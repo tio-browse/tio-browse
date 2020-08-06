@@ -1,12 +1,10 @@
-//
 // test/TIOInterface_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOInterface.h"
 
@@ -20,25 +18,25 @@
 class TIOInterfaceTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOInterfaceTestFixture, initialization) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container3", m_mockTIOTreeItem);
   EXPECT_EQ("interface_container3", interface.data(0).toString().toStdString());
 }
 
 TEST_F(TIOInterfaceTestFixture, childCount) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container3", m_mockTIOTreeItem);
   EXPECT_EQ(0, interface.childCount());
 }
 
 TEST_F(TIOInterfaceTestFixture, canFetchMore) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container3", m_mockTIOTreeItem);
   EXPECT_EQ(true, interface.canFetchMore());
 }
 
 TEST_F(TIOInterfaceTestFixture, fetchMore) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container3", m_mockTIOTreeItem);
   EXPECT_EQ(0, interface.childCount());
   interface.fetchMore();
@@ -46,7 +44,7 @@ TEST_F(TIOInterfaceTestFixture, fetchMore) {
 }
 
 TEST_F(TIOInterfaceTestFixture, fetchMoreNoPolygons) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container1", m_mockTIOTreeItem);
   EXPECT_EQ(0, interface.childCount());
   interface.fetchMore();
@@ -54,7 +52,7 @@ TEST_F(TIOInterfaceTestFixture, fetchMoreNoPolygons) {
 }
 
 TEST_F(TIOInterfaceTestFixture, childNames) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container3", m_mockTIOTreeItem);
   interface.fetchMore();
   std::vector<std::string> childNames = {"Interface information", "polygon_1",
@@ -68,7 +66,7 @@ TEST_F(TIOInterfaceTestFixture, childNames) {
 }
 
 TEST_F(TIOInterfaceTestFixture, infoValues) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container3", m_mockTIOTreeItem);
   interface.fetchMore();
   ASSERT_LE(1, interface.childCount());
@@ -83,7 +81,7 @@ TEST_F(TIOInterfaceTestFixture, infoValues) {
 }
 
 TEST_F(TIOInterfaceTestFixture, infoValuesNoPolygons) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterface interface("interface_container1", m_mockTIOTreeItem);
   interface.fetchMore();
   ASSERT_LE(1, interface.childCount());

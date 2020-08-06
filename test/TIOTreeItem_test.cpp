@@ -1,12 +1,10 @@
-//
 // test/TIOTreeItem_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOTreeItem.h"
 
@@ -20,7 +18,7 @@ TEST(TIOTreeItem, initialization) {
 }
 
 TEST_F(TIOTreeItemTestFixture, addTIOVariables) {
-  SetUp("../data/ex_vargroup.h5", "state000");
+  SetUp("data/ex_vargroup.h5", "state000");
   TIOTreeItem treeItem("tree item", m_mockTIOTreeItem);
   treeItem.AddTIOVariables(m_fileID, m_stateID);
   ASSERT_EQ(treeItem.childCount(), 1);
@@ -29,7 +27,7 @@ TEST_F(TIOTreeItemTestFixture, addTIOVariables) {
 }
 
 TEST_F(TIOTreeItemTestFixture, addTIOVargroups) {
-  SetUp("../data/ex_vargroup.h5", "state000");
+  SetUp("data/ex_vargroup.h5", "state000");
   TIOTreeItem treeItem("tree item", m_mockTIOTreeItem);
   treeItem.AddTIOVargroups(m_fileID, m_stateID);
   ASSERT_EQ(treeItem.childCount(), 1);

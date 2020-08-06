@@ -1,12 +1,10 @@
-//
 // test/TIOVariable_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOVariable.h"
 
@@ -20,25 +18,25 @@
 class TIOVariableTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOVariableTestFixture, initialization) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVariable variable("colors", m_mockTIOTreeItem);
   EXPECT_EQ(0, variable.childCount());
 }
 
 TEST_F(TIOVariableTestFixture, childCount) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVariable variable("colors", m_mockTIOTreeItem);
   EXPECT_EQ(0, variable.childCount());
 }
 
 TEST_F(TIOVariableTestFixture, canFetchMore) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVariable variable("colors", m_mockTIOTreeItem);
   EXPECT_EQ(true, variable.canFetchMore());
 }
 
 TEST_F(TIOVariableTestFixture, fetchMore) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVariable variable("colors", m_mockTIOTreeItem);
   EXPECT_EQ(0, variable.childCount());
   variable.fetchMore();
@@ -46,7 +44,7 @@ TEST_F(TIOVariableTestFixture, fetchMore) {
 }
 
 TEST_F(TIOVariableTestFixture, itemNamesFileChild) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVariable variable("colors", m_mockTIOTreeItem);
   variable.fetchMore();
   std::vector<std::string> itemNames = {"Variable information",
@@ -60,7 +58,7 @@ TEST_F(TIOVariableTestFixture, itemNamesFileChild) {
 }
 
 TEST_F(TIOVariableTestFixture, infoValuesFileChild) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVariable variable("colors", m_mockTIOTreeItem);
   variable.fetchMore();
   ASSERT_LE(1, variable.childCount());
@@ -76,7 +74,7 @@ TEST_F(TIOVariableTestFixture, infoValuesFileChild) {
 }
 
 TEST_F(TIOVariableTestFixture, dataValuesFileChild) {
-  SetUp("../data/ex_vargroup.h5");
+  SetUp("data/ex_vargroup.h5");
   TIOVariable variable("colors", m_mockTIOTreeItem);
   variable.fetchMore();
   DataArray *dataArray = variable.getArrayData("Value");
@@ -92,7 +90,7 @@ TEST_F(TIOVariableTestFixture, dataValuesFileChild) {
 }
 
 TEST_F(TIOVariableTestFixture, itemNamesStateChild) {
-  SetUp("../data/ex_vargroup.h5", "state000");
+  SetUp("data/ex_vargroup.h5", "state000");
   TIOVariable variable("magic square", m_mockTIOTreeItem);
   variable.fetchMore();
   std::vector<std::string> itemNames = {"Variable information",
@@ -106,7 +104,7 @@ TEST_F(TIOVariableTestFixture, itemNamesStateChild) {
 }
 
 TEST_F(TIOVariableTestFixture, infoValuesStateChild) {
-  SetUp("../data/ex_vargroup.h5", "state000");
+  SetUp("data/ex_vargroup.h5", "state000");
   TIOVariable variable("magic square", m_mockTIOTreeItem);
   variable.fetchMore();
   ASSERT_LE(1, variable.childCount());
@@ -122,7 +120,7 @@ TEST_F(TIOVariableTestFixture, infoValuesStateChild) {
 }
 
 TEST_F(TIOVariableTestFixture, dataValuesStateChild) {
-  SetUp("../data/ex_vargroup.h5", "state000");
+  SetUp("data/ex_vargroup.h5", "state000");
   TIOVariable variable("magic square", m_mockTIOTreeItem);
   variable.fetchMore();
   DataArray *dataArray = variable.getArrayData("Value");
@@ -137,7 +135,7 @@ TEST_F(TIOVariableTestFixture, dataValuesStateChild) {
 }
 
 TEST_F(TIOVariableTestFixture, itemNamesMeshChild) {
-  SetUp("../data/ex_vargroup.h5", "state000", "mesh");
+  SetUp("data/ex_vargroup.h5", "state000", "mesh");
   TIOVariable variable("year", m_mockTIOTreeItem);
   variable.fetchMore();
   std::vector<std::string> itemNames = {"Variable information",
@@ -151,7 +149,7 @@ TEST_F(TIOVariableTestFixture, itemNamesMeshChild) {
 }
 
 TEST_F(TIOVariableTestFixture, infoValuesMeshChild) {
-  SetUp("../data/ex_vargroup.h5", "state000", "mesh");
+  SetUp("data/ex_vargroup.h5", "state000", "mesh");
   TIOVariable variable("year", m_mockTIOTreeItem);
   variable.fetchMore();
   ASSERT_LE(1, variable.childCount());
@@ -167,7 +165,7 @@ TEST_F(TIOVariableTestFixture, infoValuesMeshChild) {
 }
 
 TEST_F(TIOVariableTestFixture, dataValuesMeshChild) {
-  SetUp("../data/ex_vargroup.h5", "state000", "mesh");
+  SetUp("data/ex_vargroup.h5", "state000", "mesh");
   TIOVariable variable("year", m_mockTIOTreeItem);
   variable.fetchMore();
   DataArray *dataArray = variable.getArrayData("Value");
@@ -182,7 +180,7 @@ TEST_F(TIOVariableTestFixture, dataValuesMeshChild) {
 }
 
 TEST_F(TIOVariableTestFixture, itemNamesMaterialChild) {
-  SetUp("../data/ex_vargroup.h5", "state000", "mesh");
+  SetUp("data/ex_vargroup.h5", "state000", "mesh");
   TIOVariable variable("year", m_mockTIOTreeItem);
   variable.fetchMore();
   std::vector<std::string> itemNames = {"Variable information",
@@ -196,7 +194,7 @@ TEST_F(TIOVariableTestFixture, itemNamesMaterialChild) {
 }
 
 TEST_F(TIOVariableTestFixture, infoValuesMaterialChild) {
-  SetUpMaterial("../data/ex_vargroup.h5", "state000", "mesh", "material");
+  SetUpMaterial("data/ex_vargroup.h5", "state000", "mesh", "material");
   TIOVariable variable("the answer", m_mockTIOTreeItem);
   variable.fetchMore();
   ASSERT_LE(1, variable.childCount());
@@ -212,7 +210,7 @@ TEST_F(TIOVariableTestFixture, infoValuesMaterialChild) {
 }
 
 TEST_F(TIOVariableTestFixture, dataValuesMaterialChild) {
-  SetUpMaterial("../data/ex_vargroup.h5", "state000", "mesh", "material");
+  SetUpMaterial("data/ex_vargroup.h5", "state000", "mesh", "material");
   TIOVariable variable("the answer", m_mockTIOTreeItem);
   variable.fetchMore();
   DataArray *dataArray = variable.getArrayData("Value");
@@ -227,7 +225,7 @@ TEST_F(TIOVariableTestFixture, dataValuesMaterialChild) {
 }
 
 TEST_F(TIOVariableTestFixture, itemNamesQuantChild) {
-  SetUp("../data/ex_vargroup.h5", "state000", "mesh");
+  SetUp("data/ex_vargroup.h5", "state000", "mesh");
   TIOVariable variable("year", m_mockTIOTreeItem);
   variable.fetchMore();
   std::vector<std::string> itemNames = {"Variable information",
@@ -241,7 +239,7 @@ TEST_F(TIOVariableTestFixture, itemNamesQuantChild) {
 }
 
 TEST_F(TIOVariableTestFixture, infoValuesQuantChild) {
-  SetUpQuant("../data/ex_vargroup.h5", "state000", "mesh", "distance");
+  SetUpQuant("data/ex_vargroup.h5", "state000", "mesh", "distance");
   TIOVariable variable("directions", m_mockTIOTreeItem);
   variable.fetchMore();
   ASSERT_LE(1, variable.childCount());
@@ -257,7 +255,7 @@ TEST_F(TIOVariableTestFixture, infoValuesQuantChild) {
 }
 
 TEST_F(TIOVariableTestFixture, dataValuesQuantChild) {
-  SetUpQuant("../data/ex_vargroup.h5", "state000", "mesh", "distance");
+  SetUpQuant("data/ex_vargroup.h5", "state000", "mesh", "distance");
   TIOVariable variable("directions", m_mockTIOTreeItem);
   variable.fetchMore();
   DataArray *dataArray = variable.getArrayData("Value");

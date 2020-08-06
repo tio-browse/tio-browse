@@ -1,12 +1,10 @@
-//
 // test/TIOFile_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOFile.h"
 
@@ -21,20 +19,20 @@
 class TIOFileTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOFileTestFixture, initialization) {
-  TIOFile file("ex_colinear_mesh.h5", "../data/ex_colinear_mesh.h5",
+  TIOFile file("ex_colinear_mesh.h5", "data/ex_colinear_mesh.h5",
                m_mockTIOTreeItem);
   EXPECT_EQ("ex_colinear_mesh.h5", file.data(0).toString().toStdString());
   EXPECT_EQ(TIO_NULL, file.getFileID());
 }
 
 TEST_F(TIOFileTestFixture, canFetchMore) {
-  TIOFile file("ex_colinear_mesh.h5", "../data/ex_colinear_mesh.h5",
+  TIOFile file("ex_colinear_mesh.h5", "data/ex_colinear_mesh.h5",
                m_mockTIOTreeItem);
   EXPECT_EQ(true, file.canFetchMore());
 }
 
 TEST_F(TIOFileTestFixture, fetchMore) {
-  TIOFile file("ex_colinear_mesh.h5", "../data/ex_colinear_mesh.h5",
+  TIOFile file("ex_colinear_mesh.h5", "data/ex_colinear_mesh.h5",
                m_mockTIOTreeItem);
   EXPECT_EQ(0, file.childCount());
   file.fetchMore();
@@ -42,7 +40,7 @@ TEST_F(TIOFileTestFixture, fetchMore) {
 }
 
 TEST_F(TIOFileTestFixture, fetchMoreNonexistentFile) {
-  TIOFile file("nonexistent_file.h5", "../data/nonexistent_file.h5",
+  TIOFile file("nonexistent_file.h5", "data/nonexistent_file.h5",
                m_mockTIOTreeItem);
   try {
     file.fetchMore();
@@ -54,7 +52,7 @@ TEST_F(TIOFileTestFixture, fetchMoreNonexistentFile) {
 }
 
 TEST_F(TIOFileTestFixture, childNames) {
-  TIOFile file("ex_colinear_mesh.h5", "../data/ex_colinear_mesh.h5",
+  TIOFile file("ex_colinear_mesh.h5", "data/ex_colinear_mesh.h5",
                m_mockTIOTreeItem);
   file.fetchMore();
   ASSERT_LE(1, file.childCount());
@@ -67,7 +65,7 @@ TEST_F(TIOFileTestFixture, childNames) {
 }
 
 TEST_F(TIOFileTestFixture, childNameVariablesAndVargroups) {
-  TIOFile file("ex_vargroup.h5", "../data/ex_vargroup.h5", m_mockTIOTreeItem);
+  TIOFile file("ex_vargroup.h5", "data/ex_vargroup.h5", m_mockTIOTreeItem);
   file.fetchMore();
   ASSERT_LE(1, file.childCount());
   std::vector<std::string> childNames = {"File information", "state000",
@@ -80,7 +78,7 @@ TEST_F(TIOFileTestFixture, childNameVariablesAndVargroups) {
 }
 
 TEST_F(TIOFileTestFixture, getFileID) {
-  TIOFile file("ex_colinear_mesh.h5", "../data/ex_colinear_mesh.h5",
+  TIOFile file("ex_colinear_mesh.h5", "data/ex_colinear_mesh.h5",
                m_mockTIOTreeItem);
   EXPECT_EQ(TIO_NULL, file.getFileID());
   file.fetchMore();
@@ -88,7 +86,7 @@ TEST_F(TIOFileTestFixture, getFileID) {
 }
 
 TEST_F(TIOFileTestFixture, infoValues) {
-  TIOFile file("ex_colinear_mesh.h5", "../data/ex_colinear_mesh.h5",
+  TIOFile file("ex_colinear_mesh.h5", "data/ex_colinear_mesh.h5",
                m_mockTIOTreeItem);
   file.fetchMore();
   ASSERT_LE(1, file.childCount());

@@ -1,12 +1,10 @@
-//
 // test/TIOMaterialChunk_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOMaterialChunk.h"
 
@@ -21,28 +19,28 @@
 class TIOMaterialChunkTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOMaterialChunkTestFixture, initialization) {
-  SetUpMaterial("../data/3d_chunk_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_chunk_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *chunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ("Chunk0", chunk->data(0).toString().toStdString());
 }
 
 TEST_F(TIOMaterialChunkTestFixture, childCount) {
-  SetUpMaterial("../data/3d_chunk_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_chunk_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ(0, materialChunk->childCount());
 }
 
 TEST_F(TIOMaterialChunkTestFixture, canFetchMore) {
-  SetUpMaterial("../data/3d_chunk_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_chunk_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ(true, materialChunk->canFetchMore());
 }
 
 TEST_F(TIOMaterialChunkTestFixture, fetchMore) {
-  SetUpMaterial("../data/3d_chunk_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_chunk_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   EXPECT_EQ(0, materialChunk->childCount());
@@ -51,7 +49,7 @@ TEST_F(TIOMaterialChunkTestFixture, fetchMore) {
 }
 
 TEST_F(TIOMaterialChunkTestFixture, childValuesColinearChunk) {
-  SetUpMaterial("../data/3d_chunk_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_chunk_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   materialChunk->fetchMore();
@@ -70,7 +68,7 @@ TEST_F(TIOMaterialChunkTestFixture, childValuesColinearChunk) {
 }
 
 TEST_F(TIOMaterialChunkTestFixture, childValuesPointChunk) {
-  SetUpMaterial("../data/3d_point_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_point_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   materialChunk->fetchMore();
@@ -85,7 +83,7 @@ TEST_F(TIOMaterialChunkTestFixture, childValuesPointChunk) {
 }
 
 TEST_F(TIOMaterialChunkTestFixture, infoValuesColinearChunk) {
-  SetUpMaterial("../data/3d_chunk_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_chunk_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   materialChunk->fetchMore();
@@ -115,7 +113,7 @@ TEST_F(TIOMaterialChunkTestFixture, infoValuesColinearChunk) {
 // TODO(jim): Add test for unstructured material chunk info values
 
 TEST_F(TIOMaterialChunkTestFixture, infoValuesPointChunk) {
-  SetUpMaterial("../data/3d_point_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_point_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Chunk0", 0, m_mockTIOTreeItem);
   materialChunk->fetchMore();
@@ -135,7 +133,7 @@ TEST_F(TIOMaterialChunkTestFixture, infoValuesPointChunk) {
 }
 
 TEST_F(TIOMaterialChunkTestFixture, dataValuesColinearChunk) {
-  SetUpMaterial("../data/3d_chunk_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_chunk_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Material", 0, m_mockTIOTreeItem);
   materialChunk->fetchMore();
@@ -215,7 +213,7 @@ TEST_F(TIOMaterialChunkTestFixture, dataValuesColinearChunk) {
 // TODO(jim): Add test for unstructured material chunk data values
 
 TEST_F(TIOMaterialChunkTestFixture, dataValuesPointChunk) {
-  SetUpMaterial("../data/3d_point_v1.h5", "State000", "mesh", "Material");
+  SetUpMaterial("data/3d_point_v1.h5", "State000", "mesh", "Material");
   TIOMaterialChunk *materialChunk =
       new TIOMaterialChunk("Material", 0, m_mockTIOTreeItem);
   materialChunk->fetchMore();

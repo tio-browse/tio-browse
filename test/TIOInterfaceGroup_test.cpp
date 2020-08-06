@@ -1,12 +1,10 @@
-//
 // test/TIOInterfaceGroupItem_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOInterfaceGroup.h"
 
@@ -20,25 +18,25 @@
 class TIOInterfaceGroupTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOInterfaceGroupTestFixture, initialization) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterfaceGroup group("Interfaces", m_mockTIOTreeItem);
   EXPECT_EQ("Interfaces", group.data(0).toString().toStdString());
 }
 
 TEST_F(TIOInterfaceGroupTestFixture, childCount) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterfaceGroup group("Interfaces", m_mockTIOTreeItem);
   EXPECT_EQ(0, group.childCount());
 }
 
 TEST_F(TIOInterfaceGroupTestFixture, canFetchMore) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterfaceGroup group("Interfaces", m_mockTIOTreeItem);
   EXPECT_EQ(true, group.canFetchMore());
 }
 
 TEST_F(TIOInterfaceGroupTestFixture, fetchMore) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterfaceGroup group("Interfaces", m_mockTIOTreeItem);
   EXPECT_EQ(0, group.childCount());
   group.fetchMore();
@@ -46,7 +44,7 @@ TEST_F(TIOInterfaceGroupTestFixture, fetchMore) {
 }
 
 TEST_F(TIOInterfaceGroupTestFixture, interfaceNames) {
-  SetUp("../data/Test_Interface.h5", "State_01");
+  SetUp("data/Test_Interface.h5", "State_01");
   TIOInterfaceGroup group("Interfaces", m_mockTIOTreeItem);
   group.fetchMore();
   std::vector<std::string> interfaceNames = {

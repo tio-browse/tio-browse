@@ -1,12 +1,10 @@
-//
 // test/TIOTreeModel_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOTreeModel.h"
 
@@ -34,7 +32,7 @@ TEST(TIOTreeModel, data) {
 }
 
 TEST(TIOTreeModel, fetchMore) {
-  TIOTreeModel *treeModel = new TIOTreeModel("../data/3d_chunk_v1.h5");
+  TIOTreeModel *treeModel = new TIOTreeModel("data/3d_chunk_v1.h5");
   QModelIndex index = treeModel->index(0, 0);
   EXPECT_EQ(0, treeModel->rowCount(index));
   treeModel->fetchMore(index);

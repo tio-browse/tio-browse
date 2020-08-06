@@ -1,12 +1,10 @@
-//
 // test/TIOQuantGroup_test.cpp
-//
-// (c) British Crown Owned Copyright 2019/AWE
+
+// (c) British Crown Owned Copyright 2020/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
 // For more details see license.txt
-//
 
 #include "TIOQuantGroup.h"
 
@@ -20,28 +18,28 @@
 class TIOQuantGroupTestFixture : public TIOTreeItemTestFixture {};
 
 TEST_F(TIOQuantGroupTestFixture, initialization) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOQuantGroup *quantGroup =
       new TIOQuantGroup("Quantities", m_mockTIOTreeItem);
   EXPECT_EQ("Quantities", quantGroup->data(0).toString().toStdString());
 }
 
 TEST_F(TIOQuantGroupTestFixture, childCount) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOQuantGroup *quantGroup =
       new TIOQuantGroup("Quantities", m_mockTIOTreeItem);
   EXPECT_EQ(0, quantGroup->childCount());
 }
 
 TEST_F(TIOQuantGroupTestFixture, canFetchMore) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOQuantGroup *quantGroup =
       new TIOQuantGroup("Quantities", m_mockTIOTreeItem);
   EXPECT_EQ(true, quantGroup->canFetchMore());
 }
 
 TEST_F(TIOQuantGroupTestFixture, fetchMore) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOQuantGroup *quantGroup =
       new TIOQuantGroup("Quantities", m_mockTIOTreeItem);
   EXPECT_EQ(0, quantGroup->childCount());
@@ -50,7 +48,7 @@ TEST_F(TIOQuantGroupTestFixture, fetchMore) {
 }
 
 TEST_F(TIOQuantGroupTestFixture, quantNames) {
-  SetUp("../data/3d_chunk_v1.h5", "State000", "mesh");
+  SetUp("data/3d_chunk_v1.h5", "State000", "mesh");
   TIOQuantGroup *quantGroup =
       new TIOQuantGroup("Quantities", m_mockTIOTreeItem);
   quantGroup->fetchMore();
