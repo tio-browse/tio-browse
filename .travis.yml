@@ -47,7 +47,6 @@ script:
     cmake
     -DQt5_enabled:BOOL=ON
     -DTyphonIO_ROOT:PATH=${TRAVIS_BUILD_DIR}/typhonio
-    -DExample_data_enabled:BOOL=ON
     -DTesting_enabled:BOOL=ON
     ..
   - cmake --build .
