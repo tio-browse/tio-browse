@@ -14,7 +14,7 @@
 #ifdef CONSOLE
 #include "qpyconsole.h"
 //#include <QtWidgets/QDockWidget>
-#include <QtWidgets/QWidgets>
+#include <QtWidgets>
 #else
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
