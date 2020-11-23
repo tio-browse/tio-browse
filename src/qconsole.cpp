@@ -17,7 +17,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "../include/qconsole.h"
+#include "qconsole.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
