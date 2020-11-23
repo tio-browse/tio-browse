@@ -35,7 +35,7 @@ class DataDialog : public QDialog {
   //! Destructor
   ~DataDialog() override;
 
- public slots:
+ public Q_SLOTS:
   //! One-origin check box state changed
   void on_oneOriginCheckBox_stateChanged(int state);
 

@@ -63,7 +63,7 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //!
   void InitializeTreeModel(std::string filename) override;
 
- public slots:
+ public Q_SLOTS:
 
   //! Open menu item triggered slot
   //!
