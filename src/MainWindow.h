@@ -107,6 +107,7 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   void on_treeView_activated(QModelIndex index);
 
  private:
+  void MainWindow::createDockWindows();
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
