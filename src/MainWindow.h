@@ -13,11 +13,14 @@
 
 #ifdef CONSOLE
 #include "qpyconsole.h"
-#include <QtWidgets/QDockWidget>
-#endif
-
+//#include <QtWidgets/QDockWidget>
+#include <QtWidgets/QWidgets>
+#else
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
+#endif
+
+
 #include <string>
 
 #include "MainWindowMediator.h"
