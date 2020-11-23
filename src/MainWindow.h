@@ -13,6 +13,7 @@
 
 #ifdef CONSOLE
 #include "qpyconsole.h"
+#include <QtWidgets/QDockWidget>
 #endif
 
 #include <QtWidgets/QApplication>
