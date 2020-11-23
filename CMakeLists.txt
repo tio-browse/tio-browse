@@ -71,12 +71,12 @@ if(Qt4_enabled OR Qt5_enabled)
   set(CMAKE_AUTOMOC ON)
   set(CMAKE_AUTOUIC ON)
   set(CMAKE_AUTORCC ON)
-  ADD_DEFINITIONS(-DQT_NO_KEYWORDS)
 endif()
 
 
 if(Python_enabled)
   ADD_DEFINITIONS(-DCONSOLE)
+  ADD_DEFINITIONS(-DQT_NO_KEYWORDS)
   find_package(Python3 COMPONENTS Interpreter Development NumPy REQUIRED)
 endif()
 

@@ -140,6 +140,13 @@ if(Qt4_enabled OR Qt5_enabled)
     target_link_libraries(tio-browse Qt5::Widgets)
   endif()
 
+  if(Python_Enabled)
+    target_link_libraries(tio-browse 
+      Python3::Python
+      Python3::NumPy 
+    )
+  endif()  
+
   install(TARGETS tio-browse DESTINATION bin)
 
 endif()
