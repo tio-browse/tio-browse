@@ -11,6 +11,10 @@
 #ifndef SRC_MAINWINDOW_H_
 #define SRC_MAINWINDOW_H_
 
+#ifdef CONSOLE
+#include "qpyconsole.h"
+#endif
+
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include <string>
@@ -111,7 +115,9 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
+  #ifdef CONSOLE
   QPyConsole* console;
+  #endif
 };
 
 #endif  // SRC_MAINWINDOW_H_

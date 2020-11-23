@@ -102,7 +102,7 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
     }
   }
 }
-
+#ifdef CONSOLE
 /**
  * @brief Create all the Dock Windows
  * 
@@ -124,3 +124,4 @@ void MainWindow::createDockWindows(){
     this->addDockWidget(Qt::BottomDockWidgetArea, dock);
 
 }
+#endif
