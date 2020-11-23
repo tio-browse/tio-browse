@@ -21,6 +21,11 @@ endif()
 target_link_libraries(tio-browse-core TyphonIO::typhonio ${HDF5_LIBRARIES}
                       ${ZLIB_LIBRARIES})
 
+#if(Python_Enabled)
+#  set(CONSOLE_SOURCE_FILES qconsole.cpp qpyconsole.cpp)
+#  add_library(python-console ${CONSOLE_SOURCE_FILES})
+#endif()
+
 set(DIALOG_HEADER_FILES
     AboutDialog.h
     AboutInfo.h
@@ -85,6 +90,10 @@ if(TyphonIO_interfaces_enabled)
        TIOPolygon.h)
   list(APPEND DIALOG_SOURCE_FILES TIOInterface.cpp TIOInterfaceGroup.cpp
        TIOPolygon.cpp)
+endif()
+
+if(Python_Enabled)
+  list(APPEND DIALOG_SOURCE_FILES qconsole.cpp qpyconsole.cpp)
 endif()
 
 # Build the app if required

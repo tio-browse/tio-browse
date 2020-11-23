@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
       m_tioTreeModel(nullptr) {
   ui->setupUi(this);
   ui->treeView->setModel(nullptr);
+  #ifdef CONSOLE
+    this->createDockWindows();   
+  #endif
 }
 
 MainWindow::~MainWindow() {
@@ -98,4 +101,25 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
       dataDialog->exec();
     }
   }
+}
+
+/**
+ * @brief Create all the Dock Windows
+ * 
+ */
+void MainWindow::createDockWindows(){
+    QDockWidget* dock = new QDockWidget(tr("Python Console"), this);
+    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
+    
+    QWidget *window = new QWidget;
+    window->setMinimumSize(320, 240);
+    QPyConsole* console = QPyConsole::getInstance(window,"Type \"help()\" for more information:");
+    QVBoxLayout *layout = new QVBoxLayout();
+    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+    window->setLayout(layout);
+    layout->addWidget(console);
+    dock->setWidget(window);
+    this->addDockWidget(Qt::BottomDockWidgetArea, dock);
+
 }
