@@ -12,7 +12,7 @@
 #define SRC_DATADIALOG_H_
 
 #include <QtWidgets/QDialog>
-
+#include <string>
 #include "DataArray.h"
 #include "DataTableModel.h"
 
@@ -35,6 +35,8 @@ class DataDialog : public QDialog {
   //! Destructor
   ~DataDialog() override;
   #ifdef CONSOLE
+  public Q_SIGNAL:
+    void updateConsole(std::string name, DataArray *dataArray)
  public Q_SLOTS:
   #else 
   public slots:

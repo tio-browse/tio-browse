@@ -19,11 +19,20 @@ DataDialog::DataDialog(DataArray *dataArray, QWidget *parent)
     : QDialog(parent), ui(new Ui::DataDialog), m_dataArray(dataArray) {
   ui->setupUi(this);
   ui->oneOriginCheckBox->setCheckState(Qt::Unchecked);
+  #ifndef CONSOLE
+  ui->pushButton->hide();
+  #endif
+  ui->groupBox->hide();
   m_dataTableModel.setDataArray(m_dataArray);
   ui->tableView->setModel(static_cast<QAbstractItemModel *>(&m_dataTableModel));
 }
 
+
 DataDialog::~DataDialog() {
+  if (this.result() = 1) {
+    QString name = ui->lineEdit->text()
+    Q_EMIT updateConsole(name,m_dataArray);
+  }
   if (m_dataArray != nullptr) {
     delete m_dataArray;
   }

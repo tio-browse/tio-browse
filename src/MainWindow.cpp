@@ -96,7 +96,7 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
   if (m_tioTreeModel->hasArrayData(index)) {
     DataArray *dataArray = m_tioTreeModel->getArrayData(index);
     if (dataArray != nullptr) {
-      DataDialog *dataDialog = new DataDialog(dataArray, this);
+      DataDialog *dataDialog = new DataDialog(dataArray, this); // Potentially  pass in name of data location in tree as sensible varible name for console?
       dataDialog->show();
       dataDialog->exec();
     }
