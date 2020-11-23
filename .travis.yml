@@ -1,9 +1,12 @@
 # .travis.yml
 
 os: linux
-dist: bionic
+dist: focal
 
 language: cpp
+
+python:
+  - "3.8"
 
 addons:
   apt:
@@ -13,6 +16,9 @@ addons:
       - googletest
 
 before_script:
+  # Adding Numpy
+  - pip install numpy
+
   # Build and install TyphonIO
   - wget https://github.com/benjaminjeliot/typhonio/archive/cmake_build_serial.tar.gz
   - tar -xvf cmake_build_serial.tar.gz
