@@ -92,8 +92,8 @@ if(TyphonIO_interfaces_enabled)
        TIOPolygon.cpp)
 endif()
 
-if(Python_Enabled)
-  list(APPEND DIALOG_SOURCE_FILES qconsole.h qpyconsole.h)
+if(Python_enabled)
+  list(APPEND DIALOG_HEADER_FILES qconsole.h qpyconsole.h)
   list(APPEND DIALOG_SOURCE_FILES qconsole.cpp qpyconsole.cpp)
 endif()
 
@@ -140,7 +140,7 @@ if(Qt4_enabled OR Qt5_enabled)
     target_link_libraries(tio-browse Qt5::Widgets)
   endif()
 
-  if(Python_Enabled)
+  if(Python_enabled)
     target_link_libraries(tio-browse 
       Python3::Python
       Python3::NumPy 
