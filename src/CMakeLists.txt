@@ -122,6 +122,13 @@ if(Qt4_enabled OR Qt5_enabled)
     target_link_libraries(tio-browse-qt Qt5::Widgets)
   endif()
 
+  if(Python_enabled)
+    target_link_libraries(tio-browse-qt
+      Python3::Python
+      Python3::NumPy 
+    )
+  endif() 
+
   add_executable(tio-browse main.cpp)
 
   if(Compiler_warnings_enable)
