@@ -78,7 +78,7 @@ endif()
 if(Python_enabled)
   ADD_DEFINITIONS(-DCONSOLE)
   find_package(Python3 COMPONENTS Interpreter Development NumPy REQUIRED)
-endif
+endif()
 
 add_subdirectory(src)
 
