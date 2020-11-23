@@ -93,6 +93,7 @@ if(TyphonIO_interfaces_enabled)
 endif()
 
 if(Python_Enabled)
+  list(APPEND DIALOG_SOURCE_FILES qconsole.h qpyconsole.h)
   list(APPEND DIALOG_SOURCE_FILES qconsole.cpp qpyconsole.cpp)
 endif()
 

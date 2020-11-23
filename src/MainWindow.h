@@ -111,6 +111,7 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
+  QPyConsole* console;
 };
 
 #endif  // SRC_MAINWINDOW_H_

@@ -108,6 +108,7 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
  * 
  */
 void MainWindow::createDockWindows(){
+    this->setCentralWidget(ui->centralWidget);
     QDockWidget* dock = new QDockWidget(tr("Python Console"), this);
     dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
     
