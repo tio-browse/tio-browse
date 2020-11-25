@@ -28,11 +28,13 @@
 // modified by Thomas Cann. 
 
 #define PY_SSIZE_T_CLEAN
+#define NPY_NO_DEPRECATED_API  NPY_1_9_API_VERSION 
 
 #ifdef WIN32
 #   undef _DEBUG
 #endif
 #include <Python.h>
+#include <numpy/arrayobject.h>
 #include "qpyconsole.h"
 #include "structmember.h"
 
@@ -239,11 +241,18 @@ QPyConsole *QPyConsole::getInstance(QWidget *parent, const QString& welcomeText)
 QPyConsole::QPyConsole(QWidget *parent, const QString& welcomeText) :
         QConsole(parent, welcomeText),lines(0)
 {
+    program = Py_DecodeLocale("Tio-Browse", NULL);
+    Py_SetProgramName(program);
+
     //set the Python Prompt
     setNormalPrompt(true);
     PyImport_AppendInittab("redirector", PyInit_redirector);
     PyImport_AppendInittab("console", PyInit_console);
     Py_Initialize();
+    if(PyArray_API == NULL)
+    {
+        _import_array(); //https://stackoverflow.com/questions/32899621/numpy-capi-error-with-import-array-when-compiling-multiple-modules
+    }
     /* NOTE: In previous implementaion, local name and global name
              were allocated separately.  And it causes a problem that
              a function declared in this console cannot be called.  By
@@ -327,7 +336,14 @@ QPyConsole::py_check_for_unexpected_eof()
 //Desctructor
 QPyConsole::~QPyConsole()
 {
+    if (Py_FinalizeEx() < 0)
+    {
+            exit(120);
+    }
     Py_Finalize();
+    PyMem_RawFree(program);
+    
+    // Py_Finalize();
 }
 
 //Call the Python interpreter to execute the command
@@ -451,4 +467,42 @@ QStringList QPyConsole::suggestCommand(const QString &cmd, QString& prefix)
     }
     list.removeDuplicates();
     return list;
+}
+
+void QPyConsole::dataIntoConsole(QString name, const int ND, QList<int> DIMS, int TypeInt, void* data){
+    
+    qInfo() << name << ND << DIMS << TypeInt << data ;
+
+    // int i;
+    
+    // for(i=0;i<ND; i++){
+        // int x = ((int *)DIMS)[1];
+        // qInfo() << x;
+    // }
+    
+    PyObject *m= PyImport_AddModule("__main__");
+    // QString name;
+
+    // //Inputs
+    // const int ND = 2;
+    // const int SIZE = 10;
+    // npy_intp dims[2]{SIZE, SIZE};
+    // int typeint = NPY_DOUBLE; // https://numpy.org/doc/stable/reference/c-api/dtype.html#c.NPY_FLOAT
+    // void* data;
+
+    npy_intp dims[DIMS.size()];
+    
+    for(int i=0;i<DIMS.size(); i++){
+        dims[i]=DIMS[i];
+    }
+
+    // qInfo() << (npy_intp*)dims; 
+    // qInfo() << data;
+    // npy_intp* dims
+
+    PyObject *pArray = PyArray_SimpleNewFromData(ND, (npy_intp*)dims, TypeInt, data);
+    PyArrayObject *np_arr_tocopy = reinterpret_cast<PyArrayObject*>(pArray);
+    PyObject* py_copy= PyArray_Copy(np_arr_tocopy);
+    PyObject_SetAttrString(m, name.toStdString().c_str(), py_copy);
+
 }

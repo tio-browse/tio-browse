@@ -45,6 +45,9 @@ public:
 
     void printHistory();
 
+public Q_SLOTS:
+    void dataIntoConsole(QString name, const int ND, QList<int> DIMS , int TypeInt, void* data);
+
 protected:
     //give suggestions to complete a command (not working...)
     QStringList suggestCommand(const QString &cmd, QString& prefix);
@@ -63,6 +66,7 @@ private:
 
     //The instance
     static QPyConsole *theInstance;
+    wchar_t *program;
 
 private:
     // function to check if current command compiled and if not hinted for a multiline statement
