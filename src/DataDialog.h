@@ -34,13 +34,17 @@ class DataDialog : public QDialog {
 
   //! Destructor
   ~DataDialog() override;
+
   #ifdef CONSOLE
-  public Q_SIGNAL:
-    void updateConsole(std::string name, DataArray *dataArray)
- public Q_SLOTS:
+  Q_SIGNALS:
+    void addDataToConsole(QString name, const int ND, QList<int> DIMS , int TypeInt, void* data);//QString name, DataArray *dataArray);
+
+  public Q_SLOTS:
+    void dialogAccepted();
   #else 
   public slots:
   #endif
+
   //! One-origin check box state changed
   void on_oneOriginCheckBox_stateChanged(int state);
 
