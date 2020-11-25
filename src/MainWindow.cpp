@@ -97,6 +97,9 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
     DataArray *dataArray = m_tioTreeModel->getArrayData(index);
     if (dataArray != nullptr) {
       DataDialog *dataDialog = new DataDialog(dataArray, this); // Potentially  pass in name of data location in tree as sensible varible name for console?
+      #ifdef CONSOLE
+      QObject::connect(dataDialog, &DataDialog::addDataToConsole, console, &QPyConsole::dataIntoConsole , Qt::QueuedConnection);
+      #endif
       dataDialog->show();
       dataDialog->exec();
     }
@@ -114,7 +117,7 @@ void MainWindow::createDockWindows(){
     
     QWidget *window = new QWidget;
     window->setMinimumSize(320, 240);
-    QPyConsole* console = QPyConsole::getInstance(window,"Type \"help()\" for more information:");
+    console = QPyConsole::getInstance(window,"Type \"help()\" for more information:");
     QVBoxLayout *layout = new QVBoxLayout();
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
