@@ -471,17 +471,6 @@ QStringList QPyConsole::suggestCommand(const QString &cmd, QString& prefix)
 
 void QPyConsole::dataIntoConsole(QString name, const int ND, QList<int> DIMS, int TypeInt, void* data){
     
-    qInfo() << name << ND << DIMS << TypeInt << data ;
-
-    // int i;
-    
-    // for(i=0;i<ND; i++){
-        // int x = ((int *)DIMS)[1];
-        // qInfo() << x;
-    // }
-    
-    PyObject *m= PyImport_AddModule("__main__");
-    // QString name;
 
     // //Inputs
     // const int ND = 2;
@@ -490,16 +479,24 @@ void QPyConsole::dataIntoConsole(QString name, const int ND, QList<int> DIMS, in
     // int typeint = NPY_DOUBLE; // https://numpy.org/doc/stable/reference/c-api/dtype.html#c.NPY_FLOAT
     // void* data;
 
-    npy_intp dims[DIMS.size()];
-    
-    for(int i=0;i<DIMS.size(); i++){
-        dims[i]=DIMS[i];
-    }
-
+    // Debuging ------------------
+    // qInfo() << name << ND << DIMS << TypeInt << data ;    
+    // int i;
+    // for(i=0;i<ND; i++){
+        // int x = ((int *)DIMS)[1];
+        // qInfo() << x;
+    // }
+    // QString name;
     // qInfo() << (npy_intp*)dims; 
     // qInfo() << data;
     // npy_intp* dims
+    // ---------------------------
 
+    PyObject *m= PyImport_AddModule("__main__");
+    npy_intp dims[DIMS.size()];
+    for(int i=0;i<DIMS.size(); i++){
+        dims[i]=DIMS[i];
+    }
     PyObject *pArray = PyArray_SimpleNewFromData(ND, (npy_intp*)dims, TypeInt, data);
     PyArrayObject *np_arr_tocopy = reinterpret_cast<PyArrayObject*>(pArray);
     PyObject* py_copy= PyArray_Copy(np_arr_tocopy);
