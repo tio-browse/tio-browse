@@ -14,6 +14,7 @@
 #include <QDebug>
 #include "DataTableModel.h"
 #include "ui_DataDialog.h"
+#include "ConvTIOtoPyTypes.h"
 
 DataDialog::DataDialog(DataArray *dataArray, QWidget *parent)
     : QDialog(parent), ui(new Ui::DataDialog), m_dataArray(dataArray) {
@@ -25,8 +26,8 @@ DataDialog::DataDialog(DataArray *dataArray, QWidget *parent)
   ui->groupBox->hide();
   m_dataTableModel.setDataArray(m_dataArray);
   ui->tableView->setModel(static_cast<QAbstractItemModel *>(&m_dataTableModel));
-  ui->lineEdit->setText(QString::fromStdString(m_dataArray->getName()));
-  QObject::connect(this, SIGNAL(accepted()), this, SLOT(dialogAccepted()), Qt::QueuedConnection);
+  ui->lineEdit->setText(ConvTIOtoPyTypes::NametoPy(QString::fromStdString(m_dataArray->getName())));
+  QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this, SLOT(dialogAccepted()), Qt::QueuedConnection);
 }
 DataDialog::~DataDialog() {
   if (m_dataArray != nullptr) {
@@ -49,21 +50,25 @@ void DataDialog::on_oneOriginCheckBox_stateChanged(int state) {
 }
 
 void DataDialog::dialogAccepted(){
+  ConvTIOtoPyTypes conv;
   QString name = ui->lineEdit->text();
-  // qInfo() << name ;
   QList<int> data;
   for (int i = 0; i < m_dataArray->getNDims(); ++i) {
     data.append(m_dataArray->getDim(i));
   }
-  qInfo() << data;
+  // Debugging -------------
+  // qInfo() << name ;
+  // qInfo() << data;
   // data[0] = 1;
   // data[1] = 69;
   // void * arr =data;
   // dataArray->QString name, const int ND, int* DIMS , int TypeInt, void* data
-  Q_EMIT addDataToConsole(name, m_dataArray->getNDims(),data,12,m_dataArray->getVoidPointer());
-
   // int x = ((int *)arr)[1];
-  qInfo() << m_dataArray->getVoidPointer();
+  // qInfo() << m_dataArray->getVoidPointer();
+  // Add an override check ?? Storelist of names in pyconsole instance and check it and warn if override going happen?
+  // -----------------------
+  Q_EMIT addDataToConsole(conv.NametoPy(name), m_dataArray->getNDims(),data,conv.TIOtoPyType(m_dataArray->getTIODataType()),m_dataArray->getVoidPointer());
+
 }
 
 
