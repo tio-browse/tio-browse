@@ -93,8 +93,8 @@ if(TyphonIO_interfaces_enabled)
 endif()
 
 if(Python_enabled)
-  list(APPEND DIALOG_HEADER_FILES qconsole.h qpyconsole.h)
-  list(APPEND DIALOG_SOURCE_FILES qconsole.cpp qpyconsole.cpp)
+  list(APPEND DIALOG_HEADER_FILES qconsole.h qpyconsole.h ConvTIOtoPyTypes.h)
+  list(APPEND DIALOG_SOURCE_FILES qconsole.cpp qpyconsole.cpp ConvTIOtoPyTypes.cpp)
 endif()
 
 # Build the app if required
