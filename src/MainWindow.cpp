@@ -28,8 +28,11 @@ MainWindow::MainWindow(QWidget *parent)
       m_tioTreeModel(nullptr) {
   ui->setupUi(this);
   ui->treeView->setModel(nullptr);
+  
   #ifdef CONSOLE
-    this->createDockWindows();   
+    // createActions();
+    this->createDockWindows(); 
+    createMenus(); 
   #endif
 }
 
@@ -106,13 +109,35 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
   }
 }
 #ifdef CONSOLE
+// void MainWindow::showConsole(){
+//     if(showConsoleAct->isChecked()){
+//       dock->show();
+//     }else{
+//       dock->hide();
+//     }
+// }
+
+// void MainWindow::createActions()
+// {
+//     showConsoleAct = new QAction(tr("&Show Console"), this);
+//     showConsoleAct->setCheckable(true);
+//     // showConsoleAct->setShortcuts(QKeySequence::Console);
+//     showConsoleAct->setStatusTip(tr("Toggle show and hide of Python Console"));
+//     connect(showConsoleAct, &QAction::toggled, this, &MainWindow::showConsole);
+// }
+
+void MainWindow::createMenus()
+{
+    consoleMenu = ui->menubar->addMenu(tr("&Console"));
+    consoleMenu->addAction(dock->toggleViewAction());
+}
 /**
  * @brief Create all the Dock Windows
  * 
  */
 void MainWindow::createDockWindows(){
     this->setCentralWidget(ui->centralWidget);
-    QDockWidget* dock = new QDockWidget(tr("Python Console"), this);
+    dock = new QDockWidget(tr("Python Console"), this);
     dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
     
     QWidget *window = new QWidget;
@@ -125,6 +150,6 @@ void MainWindow::createDockWindows(){
     layout->addWidget(console);
     dock->setWidget(window);
     this->addDockWidget(Qt::BottomDockWidgetArea, dock);
-
+    dock->hide();
 }
 #endif

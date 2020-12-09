@@ -72,6 +72,7 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   void InitializeTreeModel(std::string filename) override;
 #ifdef CONSOLE
  public Q_SLOTS:
+//  void showConsole();
 #else
  public slots:
 #endif
@@ -116,12 +117,19 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! Called my the main tree view widget when a node of the tree is activated
   void on_treeView_activated(QModelIndex index);
 
+
  private:
-  void createDockWindows();
+  
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
   #ifdef CONSOLE
+  // void createActions();
+  void createMenus();
+  QMenu *consoleMenu;
+  QAction *showConsoleAct;
+  void createDockWindows();
+  QDockWidget* dock;
   QPyConsole* console;
   #endif
 };
