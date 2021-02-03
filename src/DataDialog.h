@@ -38,7 +38,6 @@ class DataDialog : public QDialog {
   #ifdef CONSOLE
   Q_SIGNALS:
     void addDataToConsole(QString name, const int ND, QList<int> DIMS , int TypeInt, void* data);//QString name, DataArray *dataArray);
-
   public Q_SLOTS:
     void dialogAccepted();
   #else 

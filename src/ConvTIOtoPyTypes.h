@@ -15,12 +15,9 @@
 
 #include <QString>
 
-// #include <map>
-//  #include <string>
 
 class ConvTIOtoPyTypes {
  public:
-  // int TIOtoPyType(std::string TIO_type);
   static int TIOtoPyType(TIO_Data_t TIO_type);
   static QString NametoPy(QString name);
 };

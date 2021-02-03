@@ -13,7 +13,6 @@
 
 #ifdef CONSOLE
 #include "qpyconsole.h"
-//#include <QtWidgets/QDockWidget>
 #include <QtWidgets>
 #else
 #include <QtWidgets/QApplication>
@@ -69,12 +68,8 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! Request that the tree model is initialized
   //!
   void InitializeTreeModel(std::string filename) override;
-#ifdef CONSOLE
- public Q_SLOTS:
-//  void showConsole();
-#else
+
  public slots:
-#endif
   //! Open menu item triggered slot
   //!
   //! Request a open file selection dialog
@@ -121,7 +116,6 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
 #ifdef CONSOLE
-  // void createActions();
   void createMenus();
   QMenu *consoleMenu;
   QAction *showConsoleAct;

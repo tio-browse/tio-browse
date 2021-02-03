@@ -30,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
   ui->treeView->setModel(nullptr);
 
 #ifdef CONSOLE
-  // createActions();
   this->createDockWindows();
   createMenus();
 #endif
@@ -112,24 +111,6 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
   }
 }
 #ifdef CONSOLE
-// void MainWindow::showConsole(){
-//     if(showConsoleAct->isChecked()){
-//       dock->show();
-//     }else{
-//       dock->hide();
-//     }
-// }
-
-// void MainWindow::createActions()
-// {
-//     showConsoleAct = new QAction(tr("&Show Console"), this);
-//     showConsoleAct->setCheckable(true);
-//     // showConsoleAct->setShortcuts(QKeySequence::Console);
-//     showConsoleAct->setStatusTip(tr("Toggle show and hide of Python
-//     Console")); connect(showConsoleAct, &QAction::toggled, this,
-//     &MainWindow::showConsole);
-// }
-
 void MainWindow::createMenus() {
   consoleMenu = ui->menubar->addMenu(tr("&Console"));
   consoleMenu->addAction(dock->toggleViewAction());

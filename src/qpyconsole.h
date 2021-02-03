@@ -47,6 +47,14 @@ class QPyConsole : public QConsole {
   void printHistory();
 
  public Q_SLOTS:
+
+  // //Inputs
+  // const int ND = 2;
+  // const int SIZE = 10;
+  // npy_intp dims[2]{SIZE, SIZE};
+  // int typeint = NPY_DOUBLE; //
+  // https://numpy.org/doc/stable/reference/c-api/dtype.html#c.NPY_FLOAT void*
+  // data;
   void dataIntoConsole(QString name, const int ND, QList<int> DIMS, int TypeInt,
                        void *data);
 

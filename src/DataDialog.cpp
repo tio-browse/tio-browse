@@ -59,18 +59,8 @@ void DataDialog::dialogAccepted() {
   for (int i = 0; i < m_dataArray->getNDims(); ++i) {
     data.append(m_dataArray->getDim(i));
   }
-  // Debugging -------------
-  // qInfo() << name ;
-  // qInfo() << data;
-  // data[0] = 1;
-  // data[1] = 69;
-  // void * arr =data;
-  // dataArray->QString name, const int ND, int* DIMS , int TypeInt, void* data
-  // int x = ((int *)arr)[1];
-  // qInfo() << m_dataArray->getVoidPointer();
-  // Add an override check ?? Storelist of names in pyconsole instance and check
-  // it and warn if override going happen?
-  // -----------------------
+  // Add an override check? 
+  // Store list of names and warn if override going to happen?
   Q_EMIT addDataToConsole(conv.NametoPy(name), m_dataArray->getNDims(), data,
                           conv.TIOtoPyType(m_dataArray->getTIODataType()),
                           m_dataArray->getVoidPointer());

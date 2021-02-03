@@ -434,26 +434,7 @@ QStringList QPyConsole::suggestCommand(const QString &cmd, QString &prefix) {
 
 void QPyConsole::dataIntoConsole(QString name, const int ND, QList<int> DIMS,
                                  int TypeInt, void *data) {
-  // //Inputs
-  // const int ND = 2;
-  // const int SIZE = 10;
-  // npy_intp dims[2]{SIZE, SIZE};
-  // int typeint = NPY_DOUBLE; //
-  // https://numpy.org/doc/stable/reference/c-api/dtype.html#c.NPY_FLOAT void*
-  // data;
 
-  // Debuging ------------------
-  // qInfo() << name << ND << DIMS << TypeInt << data ;
-  // int i;
-  // for(i=0;i<ND; i++){
-  // int x = ((int *)DIMS)[1];
-  // qInfo() << x;
-  // }
-  // QString name;
-  // qInfo() << (npy_intp*)dims;
-  // qInfo() << data;
-  // npy_intp* dims
-  // ---------------------------
 
   PyObject *m = PyImport_AddModule("__main__");
   npy_intp dims[DIMS.size()];
