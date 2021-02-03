@@ -21,11 +21,6 @@ endif()
 target_link_libraries(tio-browse-core TyphonIO::typhonio ${HDF5_LIBRARIES}
                       ${ZLIB_LIBRARIES})
 
-#if(Python_Enabled)
-#  set(CONSOLE_SOURCE_FILES qconsole.cpp qpyconsole.cpp)
-#  add_library(python-console ${CONSOLE_SOURCE_FILES})
-#endif()
-
 set(DIALOG_HEADER_FILES
     AboutDialog.h
     AboutInfo.h
