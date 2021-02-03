@@ -3,7 +3,8 @@
 
   QConsole specialization for Python
 
-  (C) 2006, Mondrian Nuessle, Computer Architecture Group, University of Mannheim, Germany
+  (C) 2006, Mondrian Nuessle, Computer Architecture Group, University of
+  Mannheim, Germany
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -29,54 +30,54 @@
 
 #include "qconsole.h"
 
-/**An emulated singleton console for Python within a Qt application (based on the QConsole class)
+/**An emulated singleton console for Python within a Qt application (based on
+ *the QConsole class)
  *@author Mondrian Nuessle
  */
 
-class QPyConsole : public QConsole
-{
-public:
-    //destructor
-    ~QPyConsole();
+class QPyConsole : public QConsole {
+ public:
+  // destructor
+  ~QPyConsole();
 
-    //get the QPyConsole instance
-    static QPyConsole *getInstance(QWidget *parent = NULL,
-                                   const QString& welcomeText = "");
+  // get the QPyConsole instance
+  static QPyConsole *getInstance(QWidget *parent = NULL,
+                                 const QString &welcomeText = "");
 
-    void printHistory();
+  void printHistory();
 
-public Q_SLOTS:
-    void dataIntoConsole(QString name, const int ND, QList<int> DIMS , int TypeInt, void* data);
+ public Q_SLOTS:
+  void dataIntoConsole(QString name, const int ND, QList<int> DIMS, int TypeInt,
+                       void *data);
 
-protected:
-    //give suggestions to complete a command (not working...)
-    QStringList suggestCommand(const QString &cmd, QString& prefix);
+ protected:
+  // give suggestions to complete a command (not working...)
+  QStringList suggestCommand(const QString &cmd, QString &prefix);
 
-    //private constructor
-    QPyConsole(QWidget *parent = NULL,
-               const QString& welcomeText = "");
+  // private constructor
+  QPyConsole(QWidget *parent = NULL, const QString &welcomeText = "");
 
-    //execute a validated command
-    QString interpretCommand(const QString &command, int *res);
+  // execute a validated command
+  QString interpretCommand(const QString &command, int *res);
 
-    void setNormalPrompt(bool display) { setPrompt(">>>", display); }
-    void setMultilinePrompt(bool display) { setPrompt("...", display); }
+  void setNormalPrompt(bool display) { setPrompt(">>>", display); }
+  void setMultilinePrompt(bool display) { setPrompt("...", display); }
 
-private:
+ private:
+  // The instance
+  static QPyConsole *theInstance;
+  wchar_t *program;
 
-    //The instance
-    static QPyConsole *theInstance;
-    wchar_t *program;
+ private:
+  // function to check if current command compiled and if not hinted for a
+  // multiline statement
+  bool py_check_for_unexpected_eof();
 
-private:
-    // function to check if current command compiled and if not hinted for a multiline statement
-    bool py_check_for_unexpected_eof();
+  // string holding the current command
+  QString command;
 
-    // string holding the current command
-    QString command;
-
-    // number of lines associated with current command
-    int lines;
+  // number of lines associated with current command
+  int lines;
 };
 
 #endif

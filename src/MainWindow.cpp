@@ -28,12 +28,12 @@ MainWindow::MainWindow(QWidget *parent)
       m_tioTreeModel(nullptr) {
   ui->setupUi(this);
   ui->treeView->setModel(nullptr);
-  
-  #ifdef CONSOLE
-    // createActions();
-    this->createDockWindows(); 
-    createMenus(); 
-  #endif
+
+#ifdef CONSOLE
+  // createActions();
+  this->createDockWindows();
+  createMenus();
+#endif
 }
 
 MainWindow::~MainWindow() {
@@ -99,10 +99,13 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
   if (m_tioTreeModel->hasArrayData(index)) {
     DataArray *dataArray = m_tioTreeModel->getArrayData(index);
     if (dataArray != nullptr) {
-      DataDialog *dataDialog = new DataDialog(dataArray, this); // Potentially  pass in name of data location in tree as sensible varible name for console?
-      #ifdef CONSOLE
-      QObject::connect(dataDialog, &DataDialog::addDataToConsole, console, &QPyConsole::dataIntoConsole , Qt::QueuedConnection);
-      #endif
+      DataDialog *dataDialog = new DataDialog(
+          dataArray, this);  // Potentially  pass in name of data location in
+                             // tree as sensible varible name for console?
+#ifdef CONSOLE
+      QObject::connect(dataDialog, &DataDialog::addDataToConsole, console,
+                       &QPyConsole::dataIntoConsole, Qt::QueuedConnection);
+#endif
       dataDialog->show();
       dataDialog->exec();
     }
@@ -122,34 +125,36 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
 //     showConsoleAct = new QAction(tr("&Show Console"), this);
 //     showConsoleAct->setCheckable(true);
 //     // showConsoleAct->setShortcuts(QKeySequence::Console);
-//     showConsoleAct->setStatusTip(tr("Toggle show and hide of Python Console"));
-//     connect(showConsoleAct, &QAction::toggled, this, &MainWindow::showConsole);
+//     showConsoleAct->setStatusTip(tr("Toggle show and hide of Python
+//     Console")); connect(showConsoleAct, &QAction::toggled, this,
+//     &MainWindow::showConsole);
 // }
 
-void MainWindow::createMenus()
-{
-    consoleMenu = ui->menubar->addMenu(tr("&Console"));
-    consoleMenu->addAction(dock->toggleViewAction());
+void MainWindow::createMenus() {
+  consoleMenu = ui->menubar->addMenu(tr("&Console"));
+  consoleMenu->addAction(dock->toggleViewAction());
 }
 /**
  * @brief Create all the Dock Windows
- * 
+ *
  */
-void MainWindow::createDockWindows(){
-    this->setCentralWidget(ui->centralWidget);
-    dock = new QDockWidget(tr("Python Console"), this);
-    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    
-    QWidget *window = new QWidget;
-    window->setMinimumSize(320, 240);
-    console = QPyConsole::getInstance(window,"Type \"help()\" for more information:");
-    QVBoxLayout *layout = new QVBoxLayout();
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
-    window->setLayout(layout);
-    layout->addWidget(console);
-    dock->setWidget(window);
-    this->addDockWidget(Qt::BottomDockWidgetArea, dock);
-    dock->hide();
+void MainWindow::createDockWindows() {
+  this->setCentralWidget(ui->centralWidget);
+  dock = new QDockWidget(tr("Python Console"), this);
+  dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea |
+                        Qt::BottomDockWidgetArea);
+
+  QWidget *window = new QWidget;
+  window->setMinimumSize(320, 240);
+  console =
+      QPyConsole::getInstance(window, "Type \"help()\" for more information:");
+  QVBoxLayout *layout = new QVBoxLayout();
+  layout->setSpacing(0);
+  layout->setContentsMargins(0, 0, 0, 0);
+  window->setLayout(layout);
+  layout->addWidget(console);
+  dock->setWidget(window);
+  this->addDockWidget(Qt::BottomDockWidgetArea, dock);
+  dock->hide();
 }
 #endif

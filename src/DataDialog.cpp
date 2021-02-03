@@ -12,22 +12,25 @@
 
 #include <QAbstractItemModel>
 #include <QDebug>
+
+#include "ConvTIOtoPyTypes.h"
 #include "DataTableModel.h"
 #include "ui_DataDialog.h"
-#include "ConvTIOtoPyTypes.h"
 
 DataDialog::DataDialog(DataArray *dataArray, QWidget *parent)
     : QDialog(parent), ui(new Ui::DataDialog), m_dataArray(dataArray) {
   ui->setupUi(this);
   ui->oneOriginCheckBox->setCheckState(Qt::Unchecked);
-  #ifndef CONSOLE
+#ifndef CONSOLE
   ui->pushButton->hide();
-  #endif
+#endif
   ui->groupBox->hide();
   m_dataTableModel.setDataArray(m_dataArray);
   ui->tableView->setModel(static_cast<QAbstractItemModel *>(&m_dataTableModel));
-  ui->lineEdit->setText(ConvTIOtoPyTypes::NametoPy(QString::fromStdString(m_dataArray->getName())));
-  QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this, SLOT(dialogAccepted()), Qt::QueuedConnection);
+  ui->lineEdit->setText(ConvTIOtoPyTypes::NametoPy(
+      QString::fromStdString(m_dataArray->getName())));
+  QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this,
+                   SLOT(dialogAccepted()), Qt::QueuedConnection);
 }
 DataDialog::~DataDialog() {
   if (m_dataArray != nullptr) {
@@ -49,7 +52,7 @@ void DataDialog::on_oneOriginCheckBox_stateChanged(int state) {
   }
 }
 
-void DataDialog::dialogAccepted(){
+void DataDialog::dialogAccepted() {
   ConvTIOtoPyTypes conv;
   QString name = ui->lineEdit->text();
   QList<int> data;
@@ -65,11 +68,10 @@ void DataDialog::dialogAccepted(){
   // dataArray->QString name, const int ND, int* DIMS , int TypeInt, void* data
   // int x = ((int *)arr)[1];
   // qInfo() << m_dataArray->getVoidPointer();
-  // Add an override check ?? Storelist of names in pyconsole instance and check it and warn if override going happen?
+  // Add an override check ?? Storelist of names in pyconsole instance and check
+  // it and warn if override going happen?
   // -----------------------
-  Q_EMIT addDataToConsole(conv.NametoPy(name), m_dataArray->getNDims(),data,conv.TIOtoPyType(m_dataArray->getTIODataType()),m_dataArray->getVoidPointer());
-
+  Q_EMIT addDataToConsole(conv.NametoPy(name), m_dataArray->getNDims(), data,
+                          conv.TIOtoPyType(m_dataArray->getTIODataType()),
+                          m_dataArray->getVoidPointer());
 }
-
-
- 
