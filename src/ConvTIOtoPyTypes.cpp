@@ -8,17 +8,17 @@
 // For more details see license.txt
 //
 #define PY_SSIZE_T_CLEAN
-#define NPY_NO_DEPRECATED_API  NPY_1_9_API_VERSION 
+#define NPY_NO_DEPRECATED_API NPY_1_9_API_VERSION
+
+#include "ConvTIOtoPyTypes.h"
 
 #include <Python.h>
 #include <numpy/ndarraytypes.h>
-#include "ConvTIOtoPyTypes.h"
 
 #include <map>
 #include <string>
 
-
-int ConvTIOtoPyTypes::TIOtoPyType(TIO_Data_t TIO_type){
+int ConvTIOtoPyTypes::TIOtoPyType(TIO_Data_t TIO_type) {
   switch (TIO_type) {
     case TIO_DATATYPE_NULL:
       // Need to Decide / TODO
@@ -51,7 +51,7 @@ int ConvTIOtoPyTypes::TIOtoPyType(TIO_Data_t TIO_type){
       return -1;
       // return NPY_CHAR; //Deprecciated don't use.
     case TIO_UCHAR:
-      return -1; //can't find 
+      return -1;  // can't find
     case TIO_STRING:
       return NPY_STRING;
     default:
@@ -59,10 +59,10 @@ int ConvTIOtoPyTypes::TIOtoPyType(TIO_Data_t TIO_type){
   }
 }
 
-QString ConvTIOtoPyTypes::NametoPy(QString name){
+QString ConvTIOtoPyTypes::NametoPy(QString name) {
   name.remove(" ");
   name[0] = name[0].toLower();
-  return name; 
+  return name;
 }
 // enum NPY_TYPES {    NPY_BOOL=0,
 //                     NPY_BYTE, NPY_UBYTE,
@@ -108,6 +108,3 @@ QString ConvTIOtoPyTypes::NametoPy(QString name){
 //     {TIO_UCHAR, "TIO_UCHAR"},
 //     {TIO_STRING, "TIO_STRING"}};
 // }
-
-
-

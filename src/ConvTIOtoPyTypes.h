@@ -12,12 +12,13 @@
 #define SRC_CONVTIOTOPYTYPES_H_
 
 #include <typhonio.h>
+
 #include <QString>
 
 // #include <map>
 //  #include <string>
 
-class ConvTIOtoPyTypes{
+class ConvTIOtoPyTypes {
  public:
   // int TIOtoPyType(std::string TIO_type);
   static int TIOtoPyType(TIO_Data_t TIO_type);

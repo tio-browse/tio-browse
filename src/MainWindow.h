@@ -20,7 +20,6 @@
 #include <QtWidgets/QMainWindow>
 #endif
 
-
 #include <string>
 
 #include "MainWindowMediator.h"
@@ -117,21 +116,19 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! Called my the main tree view widget when a node of the tree is activated
   void on_treeView_activated(QModelIndex index);
 
-
  private:
-  
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
-  #ifdef CONSOLE
+#ifdef CONSOLE
   // void createActions();
   void createMenus();
   QMenu *consoleMenu;
   QAction *showConsoleAct;
   void createDockWindows();
-  QDockWidget* dock;
-  QPyConsole* console;
-  #endif
+  QDockWidget *dock;
+  QPyConsole *console;
+#endif
 };
 
 #endif  // SRC_MAINWINDOW_H_
