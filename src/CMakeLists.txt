@@ -118,6 +118,10 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
+    target_compile_definitions(tio-browse-qt
+      CONSOLE
+      QT_NO_KEYWORDS
+    )
     target_link_libraries(tio-browse-qt
       Python3::Python
       Python3::NumPy 
@@ -143,6 +147,10 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
+    target_compile_definitions(tio-browse
+      CONSOLE
+      QT_NO_KEYWORDS
+    )
     target_link_libraries(tio-browse 
       Python3::Python
       Python3::NumPy 
