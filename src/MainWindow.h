@@ -114,20 +114,22 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! Called my the main tree view widget when a node of the tree is activated
   void on_treeView_activated(QModelIndex index);
 
-#ifdef CONSOLE
-  //! Add Console Options to Menu Bar
-  void createMenus();
-  //! Create a QPyConsole in QDockWidget with appropiate setting.
-  void createDockWindows();
-  QDockWidget *dock;
-  QMenu *consoleMenu;
-  QAction *showConsoleAct;
-  QPyConsole *console;
-#endif
  private:
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
+  
+#ifdef CONSOLE
+  //! Add Console Options to Menu Bar
+  void createMenus();
+  QMenu *consoleMenu;
+  QAction *showConsoleAct;
+  
+  //! Create a QPyConsole in QDockWidget with appropiate setting.
+  void createDockWindows();
+  QDockWidget *dock;
+  QPyConsole *console;
+#endif
 };
 
 #endif  // SRC_MAINWINDOW_H_
