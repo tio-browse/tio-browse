@@ -68,8 +68,11 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! Request that the tree model is initialized
   //!
   void InitializeTreeModel(std::string filename) override;
-
- public slots:
+#ifdef CONSOLE
+  public Q_SLOTS:
+#else
+  public slots:
+#endif
   //! Open menu item triggered slot
   //!
   //! Request a open file selection dialog
