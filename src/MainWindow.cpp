@@ -111,14 +111,12 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
   }
 }
 #ifdef CONSOLE
+
 void MainWindow::createMenus() {
   consoleMenu = ui->menubar->addMenu(tr("&Console"));
   consoleMenu->addAction(dock->toggleViewAction());
 }
-/**
- * @brief Create all the Dock Windows
- *
- */
+
 void MainWindow::createDockWindows() {
   this->setCentralWidget(ui->centralWidget);
   dock = new QDockWidget(tr("Python Console"), this);
