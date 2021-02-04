@@ -47,6 +47,8 @@ class QPyConsole : public QConsole {
   void printHistory();
 
  public Q_SLOTS:
+
+  // Customisable Slot that taking in all data require to recreate array.
   void dataIntoConsole(QString name, const int ND, QList<int> DIMS, int TypeInt,
                        void *data);
 

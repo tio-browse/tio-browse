@@ -37,10 +37,16 @@ class DataDialog : public QDialog {
 
   #ifdef CONSOLE
   Q_SIGNALS:
-    void addDataToConsole(QString name, const int ND, QList<int> DIMS , int TypeInt, void* data);//QString name, DataArray *dataArray);
-
+  //! Signal that Sends array data to Console
+  //! \param[in] name is TIO data name   
+  //! \param[in] ND is number of dimensions
+  //! \param[in] DIMS is size of each dimension
+  //! \param[in] TypeInt corresponds to dataType held in array (see ConvTIOtoPy)
+  //! \param[in] data pointer to data in memory
+  void addDataToConsole(QString name, const int ND, QList<int> DIMS , int TypeInt, void* data);//QString name, DataArray *dataArray);
   public Q_SLOTS:
-    void dialogAccepted();
+  //! Slot is custom action when dialog is accepted
+  void dialogAccepted();
   #else 
   public slots:
   #endif

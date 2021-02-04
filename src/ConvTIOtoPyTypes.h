@@ -15,13 +15,17 @@
 
 #include <QString>
 
-// #include <map>
-//  #include <string>
-
+//! Collection of functions for converting types from TIO to Python compatible. 
 class ConvTIOtoPyTypes {
  public:
-  // int TIOtoPyType(std::string TIO_type);
+  //! Get corresponding numpy array type
+  //! \param[in] TIO_type a TIO type 
+  //! \return int corresponding to equivelent type in numpy/ndarraytypes.h 
   static int TIOtoPyType(TIO_Data_t TIO_type);
+
+  //! Used make QString PEP complient
+  //! \param[in] name Default TIO data name
+  //! \return Converted QString to be PEP complient
   static QString NametoPy(QString name);
 };
 

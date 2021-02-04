@@ -75,8 +75,6 @@ endif()
 
 
 if(Python_enabled)
-  ADD_DEFINITIONS(-DCONSOLE)
-  ADD_DEFINITIONS(-DQT_NO_KEYWORDS)
   find_package(Python3 COMPONENTS Interpreter Development NumPy REQUIRED)
 endif()
 

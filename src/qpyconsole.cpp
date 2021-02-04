@@ -259,8 +259,6 @@ QPyConsole::QPyConsole(QWidget *parent, const QString &welcomeText)
                                      // path
       "sys.stdout = redirector.redirector()\n"
       "sys.stderr = sys.stdout\n"
-      //    "print(\"Python \" + sys.version + \" on \" + sys.platform)\n"
-
   );
 }
 char save_error_type[1024], save_error_info[1024];
@@ -307,15 +305,13 @@ bool QPyConsole::py_check_for_unexpected_eof() {
   return false;
 }
 
-// Desctructor
+// Destructor
 QPyConsole::~QPyConsole() {
   if (Py_FinalizeEx() < 0) {
     exit(120);
   }
   Py_Finalize();
   PyMem_RawFree(program);
-
-  // Py_Finalize();
 }
 
 // Call the Python interpreter to execute the command
@@ -404,6 +400,7 @@ QString QPyConsole::interpretCommand(const QString &command, int *res) {
     return "";
 }
 
+// Using completer python module to suggest/autocomplete commands
 QStringList QPyConsole::suggestCommand(const QString &cmd, QString &prefix) {
   char run[255];
   int n = 0;
@@ -432,28 +429,11 @@ QStringList QPyConsole::suggestCommand(const QString &cmd, QString &prefix) {
   return list;
 }
 
+//Convert Array Data to PythonArrayObject
+//Copy this to numpy array in instance of python.
 void QPyConsole::dataIntoConsole(QString name, const int ND, QList<int> DIMS,
                                  int TypeInt, void *data) {
-  // //Inputs
-  // const int ND = 2;
-  // const int SIZE = 10;
-  // npy_intp dims[2]{SIZE, SIZE};
-  // int typeint = NPY_DOUBLE; //
-  // https://numpy.org/doc/stable/reference/c-api/dtype.html#c.NPY_FLOAT void*
-  // data;
 
-  // Debuging ------------------
-  // qInfo() << name << ND << DIMS << TypeInt << data ;
-  // int i;
-  // for(i=0;i<ND; i++){
-  // int x = ((int *)DIMS)[1];
-  // qInfo() << x;
-  // }
-  // QString name;
-  // qInfo() << (npy_intp*)dims;
-  // qInfo() << data;
-  // npy_intp* dims
-  // ---------------------------
 
   PyObject *m = PyImport_AddModule("__main__");
   npy_intp dims[DIMS.size()];

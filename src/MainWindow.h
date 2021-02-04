@@ -13,7 +13,6 @@
 
 #ifdef CONSOLE
 #include "qpyconsole.h"
-//#include <QtWidgets/QDockWidget>
 #include <QtWidgets>
 #else
 #include <QtWidgets/QApplication>
@@ -70,10 +69,9 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //!
   void InitializeTreeModel(std::string filename) override;
 #ifdef CONSOLE
- public Q_SLOTS:
-//  void showConsole();
+  public Q_SLOTS:
 #else
- public slots:
+  public slots:
 #endif
   //! Open menu item triggered slot
   //!
@@ -120,11 +118,14 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
+  
 #ifdef CONSOLE
-  // void createActions();
+  //! Add Console Options to Menu Bar
   void createMenus();
   QMenu *consoleMenu;
   QAction *showConsoleAct;
+  
+  //! Create a QPyConsole in QDockWidget with appropiate setting.
   void createDockWindows();
   QDockWidget *dock;
   QPyConsole *console;

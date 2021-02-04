@@ -21,11 +21,6 @@ endif()
 target_link_libraries(tio-browse-core TyphonIO::typhonio ${HDF5_LIBRARIES}
                       ${ZLIB_LIBRARIES})
 
-#if(Python_Enabled)
-#  set(CONSOLE_SOURCE_FILES qconsole.cpp qpyconsole.cpp)
-#  add_library(python-console ${CONSOLE_SOURCE_FILES})
-#endif()
-
 set(DIALOG_HEADER_FILES
     AboutDialog.h
     AboutInfo.h
@@ -123,6 +118,10 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
+    target_compile_definitions(tio-browse-qt PRIVATE
+      CONSOLE
+      QT_NO_KEYWORDS
+    )
     target_link_libraries(tio-browse-qt
       Python3::Python
       Python3::NumPy 
@@ -148,6 +147,10 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
+    target_compile_definitions(tio-browse PRIVATE
+      CONSOLE
+      QT_NO_KEYWORDS
+    )
     target_link_libraries(tio-browse 
       Python3::Python
       Python3::NumPy 
