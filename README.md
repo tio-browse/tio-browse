@@ -118,8 +118,10 @@ Here is an example of how to used the integrated python console (assummed that y
 ```python
 # Use help() to see helper functions
 >>>help()
-# Use dir() to see all attributes and methods in the global namespace ( e.g. you should be able to see the name of your data) 
+# Use dir() to see all attributes and methods in the global namespace
 >>>dir()
+# You should be able to see the name of your array in list output
+
 # An example on how to quickly plot an array in python
 >>>import matplotlib.pyplot as plt
 >>>plt.plot(<data>) # where you replace <data> with the name of your array
