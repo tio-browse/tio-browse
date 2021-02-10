@@ -21,7 +21,7 @@
 int ConvTIOtoPyTypes::TIOtoPyType(TIO_Data_t TIO_type) {
   switch (TIO_type) {
     case TIO_DATATYPE_NULL:
-      return -1; // Need to decide what to do with Null type. 
+      return -1;  // Need to decide what to do with Null type.
     case TIO_SHORT:
       return NPY_SHORT;
     case TIO_USHORT:
@@ -47,9 +47,9 @@ int ConvTIOtoPyTypes::TIOtoPyType(TIO_Data_t TIO_type) {
     case TIO_LOGICAL:
       return NPY_BOOL;
     case TIO_CHAR:
-      return -1; // return NPY_CHAR; //Deprecciated don't use.
+      return -1;  // return NPY_CHAR; //Deprecciated don't use.
     case TIO_UCHAR:
-      return -1; // can't find an equivalent
+      return -1;  // can't find an equivalent
     case TIO_STRING:
       return NPY_STRING;
     default:

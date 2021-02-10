@@ -15,12 +15,12 @@
 
 #include <QString>
 
-//! Collection of functions for converting types from TIO to Python compatible. 
+//! Collection of functions for converting types from TIO to Python compatible.
 class ConvTIOtoPyTypes {
  public:
   //! Get corresponding numpy array type
-  //! \param[in] TIO_type a TIO type 
-  //! \return int corresponding to equivelent type in numpy/ndarraytypes.h 
+  //! \param[in] TIO_type a TIO type
+  //! \return int corresponding to equivelent type in numpy/ndarraytypes.h
   static int TIOtoPyType(TIO_Data_t TIO_type);
 
   //! Used make QString PEP complient

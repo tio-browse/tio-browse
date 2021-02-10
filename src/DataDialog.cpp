@@ -59,7 +59,7 @@ void DataDialog::dialogAccepted() {
   for (int i = 0; i < m_dataArray->getNDims(); ++i) {
     data.append(m_dataArray->getDim(i));
   }
-  // Add an override check? 
+  // Add an override check?
   // Store list of names and warn if override going to happen?
   Q_EMIT addDataToConsole(conv.NametoPy(name), m_dataArray->getNDims(), data,
                           conv.TIOtoPyType(m_dataArray->getTIODataType()),
