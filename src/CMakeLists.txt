@@ -118,7 +118,7 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
-    target_include_directories(tio-browse-qt PUBLIC ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/ )
+    target_include_directories(tio-browse-qt PUBLIC ${qtconsole_SOURCE_DIR}/include/qconsole.h ${qtconsole_SOURCE_DIR}/include/ )
     target_compile_definitions(tio-browse-qt PRIVATE
       CONSOLE
       QT_NO_KEYWORDS
@@ -148,7 +148,7 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
-    target_include_directories(tio-browse-qt PUBLIC ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/ )
+    target_include_directories(tio-browse-qt PUBLIC ${qtconsole_SOURCE_DIR}/include/qconsole.h ${qtconsole_SOURCE_DIR}/include/ )
     target_compile_definitions(tio-browse PRIVATE
       CONSOLE
       QT_NO_KEYWORDS
