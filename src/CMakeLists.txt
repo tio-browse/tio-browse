@@ -87,6 +87,11 @@ if(TyphonIO_interfaces_enabled)
        TIOPolygon.cpp)
 endif()
 
+if(Python_enabled)
+  list(APPEND DIALOG_HEADER_FILES ${qtconsole_SOURCE_DIR}/include/qconsole.h ${qtconsole_SOURCE_DIR}/include/qpyconsole.h ConvTIOtoPyTypes.h)
+  list(APPEND DIALOG_SOURCE_FILES ${qtconsole_SOURCE_DIR}/src/qconsole.cpp ${qtconsole_SOURCE_DIR}/src/qpyconsole.cpp ConvTIOtoPyTypes.cpp)
+endif()
+
 # Build the app if required
 if(Qt4_enabled OR Qt5_enabled)
 
@@ -112,6 +117,18 @@ if(Qt4_enabled OR Qt5_enabled)
     target_link_libraries(tio-browse-qt Qt5::Widgets)
   endif()
 
+  if(Python_enabled)
+    target_include_directories(tio-browse-qt PUBLIC ${qtconsole_SOURCE_DIR}/include/ )
+    target_compile_definitions(tio-browse-qt PRIVATE
+      CONSOLE
+      QT_NO_KEYWORDS
+    )
+    target_link_libraries(tio-browse-qt
+      Python3::Python
+      Python3::NumPy 
+    )
+  endif() 
+
   add_executable(tio-browse main.cpp)
 
   if(Compiler_warnings_enable)
@@ -129,6 +146,18 @@ if(Qt4_enabled OR Qt5_enabled)
   elseif(Qt5_enabled)
     target_link_libraries(tio-browse Qt5::Widgets)
   endif()
+
+  if(Python_enabled)
+    target_include_directories(tio-browse-qt PUBLIC ${qtconsole_SOURCE_DIR}/include/ )
+    target_compile_definitions(tio-browse PRIVATE
+      CONSOLE
+      QT_NO_KEYWORDS
+    )
+    target_link_libraries(tio-browse 
+      Python3::Python
+      Python3::NumPy 
+    )
+  endif()  
 
   install(TARGETS tio-browse DESTINATION bin)
 

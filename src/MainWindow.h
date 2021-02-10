@@ -11,8 +11,15 @@
 #ifndef SRC_MAINWINDOW_H_
 #define SRC_MAINWINDOW_H_
 
+#ifdef CONSOLE
+#include <QtWidgets>
+
+#include "qpyconsole.h"
+#else
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
+#endif
+
 #include <string>
 
 #include "MainWindowMediator.h"
@@ -62,9 +69,11 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   //! Request that the tree model is initialized
   //!
   void InitializeTreeModel(std::string filename) override;
-
+#ifdef CONSOLE
+ public Q_SLOTS:
+#else
  public slots:
-
+#endif
   //! Open menu item triggered slot
   //!
   //! Request a open file selection dialog
@@ -110,6 +119,18 @@ class MainWindow : public QMainWindow, public MainWindowMediatorInterface {
   Ui::MainWindow *ui;
   MainWindowMediator *mediator;
   TIOTreeModel *m_tioTreeModel;
+
+#ifdef CONSOLE
+  //! Add Console Options to Menu Bar
+  void createMenus();
+  QMenu *consoleMenu;
+  QAction *showConsoleAct;
+
+  //! Create a QPyConsole in QDockWidget with appropiate setting.
+  void createDockWindows();
+  QDockWidget *dock;
+  QPyConsole *console;
+#endif
 };
 
 #endif  // SRC_MAINWINDOW_H_
