@@ -88,8 +88,8 @@ if(TyphonIO_interfaces_enabled)
 endif()
 
 if(Python_enabled)
-  list(APPEND DIALOG_HEADER_FILES ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/qconsole.h ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/qpyconsole.h ConvTIOtoPyTypes.h)
-  list(APPEND DIALOG_SOURCE_FILES ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/src/qconsole.cpp ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/src/qpyconsole.cpp ConvTIOtoPyTypes.cpp)
+  list(APPEND DIALOG_HEADER_FILES ${qtconsole_SOURCE_DIR}/include/qconsole.h ${qtconsole_SOURCE_DIR}/include/qpyconsole.h ConvTIOtoPyTypes.h)
+  list(APPEND DIALOG_SOURCE_FILES ${qtconsole_SOURCE_DIR}/src/qconsole.cpp ${qtconsole_SOURCE_DIR}/src/qpyconsole.cpp ConvTIOtoPyTypes.cpp)
 endif()
 
 # Build the app if required
