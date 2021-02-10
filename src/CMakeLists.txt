@@ -88,8 +88,8 @@ if(TyphonIO_interfaces_enabled)
 endif()
 
 if(Python_enabled)
-  list(APPEND DIALOG_HEADER_FILES qconsole.h qpyconsole.h ConvTIOtoPyTypes.h)
-  list(APPEND DIALOG_SOURCE_FILES qconsole.cpp qpyconsole.cpp ConvTIOtoPyTypes.cpp)
+  list(APPEND DIALOG_HEADER_FILES ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/qconsole.h ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/qpyconsole.h ConvTIOtoPyTypes.h)
+  list(APPEND DIALOG_SOURCE_FILES ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/src/qconsole.cpp ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/src/qpyconsole.cpp ConvTIOtoPyTypes.cpp)
 endif()
 
 # Build the app if required
@@ -118,6 +118,7 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
+    target_include_directories(tio-browse-qt PUBLIC ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/ )
     target_compile_definitions(tio-browse-qt PRIVATE
       CONSOLE
       QT_NO_KEYWORDS
@@ -147,6 +148,7 @@ if(Qt4_enabled OR Qt5_enabled)
   endif()
 
   if(Python_enabled)
+    target_include_directories(tio-browse-qt PUBLIC ${PROJECT_BINARY_DIR}/qtConsole-prefix/src/qtConsole/include/ )
     target_compile_definitions(tio-browse PRIVATE
       CONSOLE
       QT_NO_KEYWORDS

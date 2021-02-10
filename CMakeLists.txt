@@ -75,6 +75,15 @@ endif()
 
 
 if(Python_enabled)
+  include(ExternalProject)
+  ExternalProject_Add(qtConsole
+  GIT_REPOSITORY https://github.com/t-cann/qtConsole.git
+  GIT_TAG v1.0-beta
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ""
+  INSTALL_COMMAND ""
+  TEST_COMMAND ""
+  )
   find_package(Python3 COMPONENTS Interpreter Development NumPy REQUIRED)
 endif()
 
