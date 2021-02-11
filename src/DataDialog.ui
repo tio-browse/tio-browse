@@ -26,7 +26,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="optionsHorizontalLayout">
        <item>
         <widget class="QCheckBox" name="oneOriginCheckBox">
          <property name="sizePolicy">
@@ -47,7 +47,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="sendToConsolePushButton">
          <property name="minimumSize">
           <size>
            <width>118</width>
@@ -55,12 +55,12 @@
           </size>
          </property>
          <property name="text">
-          <string>Send to Console</string>
+          <string>Send to console</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="consoleOptionsPushButton">
          <property name="minimumSize">
           <size>
            <width>25</width>
@@ -84,7 +84,7 @@
       </layout>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QGroupBox" name="consoleDataOptionsGroupBox">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -92,20 +92,20 @@
         <set>Qt::ImhNone</set>
        </property>
        <property name="title">
-        <string>Console Data Options</string>
+        <string>Console data options</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="variableNameHorizontalLayout">
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="variableNameLabel">
             <property name="text">
-             <string>Enter Name:</string>
+             <string>Enter name:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="variableNameLineEdit">
             <property name="clearButtonEnabled">
              <bool>false</bool>
             </property>
@@ -114,19 +114,19 @@
          </layout>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton">
+         <widget class="QRadioButton" name="moveDataRadioButton">
           <property name="enabled">
            <bool>false</bool>
           </property>
           <property name="text">
-           <string>Move to Console</string>
+           <string>Move to console</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QRadioButton" name="copyDataRadioButton">
           <property name="text">
-           <string>Copy to Console</string>
+           <string>Copy to console</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -153,14 +153,14 @@
  <tabstops>
   <tabstop>tableView</tabstop>
   <tabstop>oneOriginCheckBox</tabstop>
-  <tabstop>pushButton</tabstop>
+  <tabstop>consoleOptionsPushButton</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
+   <sender>consoleOptionsPushButton</sender>
    <signal>toggled(bool)</signal>
-   <receiver>groupBox</receiver>
+   <receiver>consoleDataOptionsGroupBox</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">

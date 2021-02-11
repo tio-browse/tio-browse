@@ -1,7 +1,7 @@
 //
 // src/ConvTIOtoPyTypes.cpp
 //
-// (c) British Crown Owned Copyright 2019/AWE
+// (c) British Crown Owned Copyright 2021/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
@@ -19,42 +19,65 @@
 #include <string>
 
 int ConvTIOtoPyTypes::TIOtoPyType(TIO_Data_t TIO_type) {
+  int py_type;
+
   switch (TIO_type) {
     case TIO_DATATYPE_NULL:
-      return -1;  // Need to decide what to do with Null type.
+      // TODO(t-cann): Handle NULL type correctly
+      py_type = -1;
+      break;
     case TIO_SHORT:
-      return NPY_SHORT;
+      py_type = NPY_SHORT;
+      break;
     case TIO_USHORT:
-      return NPY_USHORT;
+      py_type = NPY_USHORT;
+      break;
     case TIO_INT:
-      return NPY_INT;
+      py_type = NPY_INT;
+      break;
     case TIO_UINT:
-      return NPY_UINT;
+      py_type = NPY_UINT;
+      break;
     case TIO_LONG:
-      return NPY_LONG;
+      py_type = NPY_LONG;
+      break;
     case TIO_ULONG:
-      return NPY_ULONG;
+      py_type = NPY_ULONG;
+      break;
     case TIO_LLONG:
-      return NPY_LONGLONG;
+      py_type = NPY_LONGLONG;
+      break;
     case TIO_ULLONG:
-      return NPY_ULONGLONG;
+      py_type = NPY_ULONGLONG;
+      break;
     case TIO_FLOAT:
-      return NPY_FLOAT;
+      py_type = NPY_FLOAT;
+      break;
     case TIO_DOUBLE:
-      return NPY_DOUBLE;
+      py_type = NPY_DOUBLE;
+      break;
     case TIO_LDOUBLE:
-      return NPY_LONGDOUBLE;
+      py_type = NPY_LONGDOUBLE;
+      break;
     case TIO_LOGICAL:
-      return NPY_BOOL;
+      py_type = NPY_BOOL;
+      break;
     case TIO_CHAR:
-      return -1;  // return NPY_CHAR; //Deprecciated don't use.
+      // TODO(t-cann): Handle TIO_CHAR correctly
+      py_type = -1;
+      break;
     case TIO_UCHAR:
-      return -1;  // can't find an equivalent
+      // TODO(t-cann): Handle TIO_UCHAR correctly
+      py_type = -1;
+      break;
     case TIO_STRING:
-      return NPY_STRING;
+      py_type = NPY_STRING;
+      break;
     default:
-      return -1;
+      py_type = -1;
   }
+
+  return py_type;
 }
 
 QString ConvTIOtoPyTypes::NametoPy(QString name) {

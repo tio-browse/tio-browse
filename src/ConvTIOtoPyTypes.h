@@ -1,7 +1,7 @@
 //
 // src/ConvTIOtoPyTypes.h
 //
-// (c) British Crown Owned Copyright 2019/AWE
+// (c) British Crown Owned Copyright 2021/AWE
 //
 // This file is part of TIO browse
 // Released under the BSD 3-clause license.
@@ -20,13 +20,13 @@ class ConvTIOtoPyTypes {
  public:
   //! Get corresponding numpy array type
   //! \param[in] TIO_type a TIO type
-  //! \return int corresponding to equivelent type in numpy/ndarraytypes.h
+  //! \return int corresponding to equivalent type in numpy/ndarraytypes.h
   static int TIOtoPyType(TIO_Data_t TIO_type);
 
-  //! Used make QString PEP complient
+  //! Make QString PEP compliant
   //! \param[in] name Default TIO data name
-  //! \return Converted QString to be PEP complient
+  //! \return Converted QString to be PEP compliant
   static QString NametoPy(QString name);
 };
 
-#endif  // SRC_TIOTYPENAMES_H_
+#endif  // SRC_CONVTIOTOPYTYPES_H_

@@ -45,8 +45,7 @@ class DataDialog : public QDialog {
   //! \param[in] TypeInt corresponds to dataType held in array (see ConvTIOtoPy)
   //! \param[in] data pointer to data in memory
   void addDataToConsole(QString name, const int ND, QList<int> DIMS,
-                        int TypeInt,
-                        void *data);  // QString name, DataArray *dataArray);
+                        int TypeInt, void *data);
  public Q_SLOTS:
   //! Slot is custom action when dialog is accepted
   void dialogAccepted();

@@ -22,16 +22,17 @@ DataDialog::DataDialog(DataArray *dataArray, QWidget *parent)
   ui->setupUi(this);
   ui->oneOriginCheckBox->setCheckState(Qt::Unchecked);
 #ifndef CONSOLE
-  ui->pushButton->hide();
+  ui->consoleOptionsPushButton->hide();
 #endif
-  ui->groupBox->hide();
+  ui->consoleDataOptionsGroupBox->hide();
   m_dataTableModel.setDataArray(m_dataArray);
   ui->tableView->setModel(static_cast<QAbstractItemModel *>(&m_dataTableModel));
-  ui->lineEdit->setText(ConvTIOtoPyTypes::NametoPy(
+  ui->variableNameLineEdit->setText(ConvTIOtoPyTypes::NametoPy(
       QString::fromStdString(m_dataArray->getName())));
-  QObject::connect(this->ui->pushButton_2, SIGNAL(clicked()), this,
+  QObject::connect(ui->sendToConsolePushButton, SIGNAL(clicked()), this,
                    SLOT(dialogAccepted()), Qt::QueuedConnection);
 }
+
 DataDialog::~DataDialog() {
   if (m_dataArray != nullptr) {
     delete m_dataArray;
@@ -54,13 +55,12 @@ void DataDialog::on_oneOriginCheckBox_stateChanged(int state) {
 
 void DataDialog::dialogAccepted() {
   ConvTIOtoPyTypes conv;
-  QString name = ui->lineEdit->text();
+  QString name = ui->variableNameLineEdit->text();
   QList<int> data;
   for (int i = 0; i < m_dataArray->getNDims(); ++i) {
     data.append(m_dataArray->getDim(i));
   }
-  // Add an override check?
-  // Store list of names and warn if override going to happen?
+  // TODO(t-cann): Add override check -- warn if override going to happen
   Q_EMIT addDataToConsole(conv.NametoPy(name), m_dataArray->getNDims(), data,
                           conv.TIOtoPyType(m_dataArray->getTIODataType()),
                           m_dataArray->getVoidPointer());

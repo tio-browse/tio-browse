@@ -31,7 +31,7 @@ table below
 | `Documentation_enabled` | BOOL | OFF               | Build documentation |
 | `GTEST_ROOT`            | PATH | _NA_              | Google Test path    |
 | `Example_data_enabled`  | BOOL | OFF               | Build example files |
-| `Python_enabled`        | BOOL | ON                | Build with integrated python console|
+| `Python_enabled`        | BOOL | ON                | Enable python console |
 
 ## CMake example
 
@@ -114,7 +114,11 @@ junit-compatible xml file:
 ```
 
 ## Python Console Example
-Here is an example of how to used the integrated python console (assummed that you opened a file in tio-browse and used "Send to Console" buttom to send array to python):
+
+Here is an example of how to used the integrated python console (assumed that
+you opened a file in tio-browse and used "Send to console" button to send array
+to python):
+
 ```python
 # Use help() to see helper functions
 >>>help()
@@ -124,6 +128,6 @@ Here is an example of how to used the integrated python console (assummed that y
 
 # An example on how to quickly plot an array in python
 >>>import matplotlib.pyplot as plt
->>>plt.plot(<data>) # where you replace <data> with the name of your array
+>>>plt.plot(<data>)  # replace <data> with the name of your array
 >>>plt.show()
 ```

@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
   ui->treeView->setModel(nullptr);
 
 #ifdef CONSOLE
-  this->createDockWindows();
+  createDockWindows();
   createMenus();
 #endif
 }
@@ -98,9 +98,8 @@ void MainWindow::on_treeView_activated(QModelIndex index) {
   if (m_tioTreeModel->hasArrayData(index)) {
     DataArray *dataArray = m_tioTreeModel->getArrayData(index);
     if (dataArray != nullptr) {
-      DataDialog *dataDialog = new DataDialog(
-          dataArray, this);  // Potentially  pass in name of data location in
-                             // tree as sensible varible name for console?
+      // TODO(t-cann): Pass data location in tree as python variable name
+      DataDialog *dataDialog = new DataDialog(dataArray, this);
 #ifdef CONSOLE
       QObject::connect(dataDialog, &DataDialog::addDataToConsole, console,
                        &QPyConsole::dataIntoConsole, Qt::QueuedConnection);
@@ -118,7 +117,7 @@ void MainWindow::createMenus() {
 }
 
 void MainWindow::createDockWindows() {
-  this->setCentralWidget(ui->centralWidget);
+  setCentralWidget(ui->centralWidget);
   dock = new QDockWidget(tr("Python Console"), this);
   dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea |
                         Qt::BottomDockWidgetArea);
@@ -133,7 +132,7 @@ void MainWindow::createDockWindows() {
   window->setLayout(layout);
   layout->addWidget(console);
   dock->setWidget(window);
-  this->addDockWidget(Qt::BottomDockWidgetArea, dock);
+  addDockWidget(Qt::BottomDockWidgetArea, dock);
   dock->hide();
 }
 #endif
