@@ -4,7 +4,7 @@
 TIO Browse is a viewer for exploring the structure of TyphonIO files.
 
 TIO Browse is writen in C++ and uses the Qt library for the user interface. It
-naturally has a dependency on the TyphonIO library. the test suite is based on
+naturally has a dependency on the TyphonIO library. The test suite is based on
 Google Test.
 
 # Building
@@ -31,6 +31,7 @@ table below
 | `Documentation_enabled` | BOOL | OFF               | Build documentation |
 | `GTEST_ROOT`            | PATH | _NA_              | Google Test path    |
 | `Example_data_enabled`  | BOOL | OFF               | Build example files |
+| `Python_enabled`        | BOOL | ON                | Build with integrated python console|
 
 ## CMake example
 
@@ -110,4 +111,19 @@ junit-compatible xml file:
 
 ```
 .test_runner --gtest_output=xml
+```
+
+## Python Console Example
+Here is an example of how to used the integrated python console (assummed that you opened a file in tio-browse and used "Send to Console" buttom to send array to python):
+```python
+# Use help() to see helper functions
+>>>help()
+# Use dir() to see all attributes and methods in the global namespace
+>>>dir()
+# You should be able to see the name of your array in list output
+
+# An example on how to quickly plot an array in python
+>>>import matplotlib.pyplot as plt
+>>>plt.plot(<data>) # where you replace <data> with the name of your array
+>>>plt.show()
 ```

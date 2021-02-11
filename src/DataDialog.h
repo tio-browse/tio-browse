@@ -12,6 +12,7 @@
 #define SRC_DATADIALOG_H_
 
 #include <QtWidgets/QDialog>
+#include <string>
 
 #include "DataArray.h"
 #include "DataTableModel.h"
@@ -35,7 +36,24 @@ class DataDialog : public QDialog {
   //! Destructor
   ~DataDialog() override;
 
+#ifdef CONSOLE
+ Q_SIGNALS:
+  //! Signal that Sends array data to Console
+  //! \param[in] name is TIO data name
+  //! \param[in] ND is number of dimensions
+  //! \param[in] DIMS is size of each dimension
+  //! \param[in] TypeInt corresponds to dataType held in array (see ConvTIOtoPy)
+  //! \param[in] data pointer to data in memory
+  void addDataToConsole(QString name, const int ND, QList<int> DIMS,
+                        int TypeInt,
+                        void *data);  // QString name, DataArray *dataArray);
+ public Q_SLOTS:
+  //! Slot is custom action when dialog is accepted
+  void dialogAccepted();
+#else
  public slots:
+#endif
+
   //! One-origin check box state changed
   void on_oneOriginCheckBox_stateChanged(int state);
 

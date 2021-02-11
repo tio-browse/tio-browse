@@ -6,7 +6,7 @@
 # Released under the BSD 3-clause license.
 # For more details see license.txt
 
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
 
 project("tio-browse")
 
@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(CPack)
-
+option(Python_enabled "Build with a consonle using Python and Numpy" ON)
 option(Qt4_enabled "Build with Qt4" OFF)
 option(Qt5_enabled "Build with Qt5" OFF)
 option(Example_data_enabled "Build example data" OFF)
@@ -71,6 +71,20 @@ if(Qt4_enabled OR Qt5_enabled)
   set(CMAKE_AUTOMOC ON)
   set(CMAKE_AUTOUIC ON)
   set(CMAKE_AUTORCC ON)
+endif()
+
+
+if(Python_enabled)
+  include(FetchContent)
+  FetchContent_Declare(qtConsole
+  GIT_REPOSITORY https://github.com/t-cann/qtConsole.git
+  GIT_TAG v1.0-beta
+  )
+  if(NOT qtConsole_POPULATED)
+  FetchContent_Populate(qtConsole)
+  endif()
+  FetchContent_GetProperties(qtConsole)
+  find_package(Python3 COMPONENTS Interpreter Development NumPy REQUIRED)
 endif()
 
 add_subdirectory(src)

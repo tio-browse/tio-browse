@@ -16,7 +16,11 @@
 
 class TestDataDialog : public QObject {
   Q_OBJECT
+#ifdef CONSOLE
+ private Q_SLOTS:
+#else
  private slots:
+#endif
   void initialization();
   void defaultRowAndColumnNames();
   void oneOriginRowAndColumnNames();
